@@ -20,12 +20,15 @@ const atomParser = new XMLParser({
   isArray: (name) => REPEATABLE_ELEMENTS.has(name),
 });
 
-export function postsFromFeed(atomXml: string): Post[] {
+export type FeedReading = {
+  posts: Post[];
+  skippedEntries: number;
+};
+
+export function readFeed(atomXml: string): FeedReading {
   const entries: FeedEntry[] = atomParser.parse(atomXml).feed?.entry ?? [];
-  return entries.flatMap((entry) => {
-    const post = postFromEntry(entry);
-    return post ? [post] : [];
-  });
+  const posts = entries.map(postFromEntry).filter((post): post is Post => post !== null);
+  return { posts, skippedEntries: entries.length - posts.length };
 }
 
 function postFromEntry(entry: FeedEntry): Post | null {

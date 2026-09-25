@@ -1,20 +1,18 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { postsFromFeed } from "../src/feed";
-
-const savedFeed = readFileSync(new URL("./fixtures/pelican-tag-feed.atom", import.meta.url), "utf8");
+import { readFeed } from "../src/feed";
+import savedFeed from "./fixtures/pelican-tag-feed.atom?raw";
 
 function feedWithEntries(...entries: string[]): string {
   return `<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">${entries.join("")}</feed>`;
 }
 
-describe("postsFromFeed", () => {
+describe("readFeed", () => {
   it("reads every entry of the saved tag feed", () => {
-    expect(postsFromFeed(savedFeed)).toHaveLength(30);
+    expect(readFeed(savedFeed).posts).toHaveLength(30);
   });
 
   it("turns an entry into a post with its id, url, title, UTC date and tags", () => {
-    expect(postsFromFeed(savedFeed)[0]).toEqual({
+    expect(readFeed(savedFeed).posts[0]).toEqual({
       id: "2026-09-22-opus-and-sol-and-luna",
       url: "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/",
       title: "Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, and a new price war",
@@ -24,7 +22,7 @@ describe("postsFromFeed", () => {
   });
 
   it("decodes escaped characters in titles", () => {
-    const titles = postsFromFeed(savedFeed).map((post) => post.title);
+    const titles = readFeed(savedFeed).posts.map((post) => post.title);
 
     expect(titles).toContain('Claude Opus 4.8: "a modest but tangible improvement"');
   });
@@ -34,7 +32,7 @@ describe("postsFromFeed", () => {
       `<entry><title>T</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T20:30:00-07:00</published><category term="llm"/></entry>`,
     );
 
-    expect(postsFromFeed(feed)[0].publishedAt).toBe("2026-09-03T03:30:00.000Z");
+    expect(readFeed(feed).posts[0].publishedAt).toBe("2026-09-03T03:30:00.000Z");
   });
 
   it("keeps a lone tag as a one-item list", () => {
@@ -42,7 +40,7 @@ describe("postsFromFeed", () => {
       `<entry><title>T</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T00:00:00+00:00</published><category term="llm"/></entry>`,
     );
 
-    expect(postsFromFeed(feed)[0].tags).toEqual(["llm"]);
+    expect(readFeed(feed).posts[0].tags).toEqual(["llm"]);
   });
 
   it("skips entries that do not link to a dated post", () => {
@@ -51,10 +49,18 @@ describe("postsFromFeed", () => {
       `<entry><title>Post</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T00:00:00+00:00</published></entry>`,
     );
 
-    expect(postsFromFeed(feed).map((post) => post.title)).toEqual(["Post"]);
+    expect(readFeed(feed)).toMatchObject({ posts: [{ title: "Post" }], skippedEntries: 1 });
+  });
+
+  it("skips entries with an unreadable date", () => {
+    const feed = feedWithEntries(
+      `<entry><title>Post</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>not a date</published></entry>`,
+    );
+
+    expect(readFeed(feed)).toEqual({ posts: [], skippedEntries: 1 });
   });
 
   it("reads a feed with no entries as no posts", () => {
-    expect(postsFromFeed(feedWithEntries())).toEqual([]);
+    expect(readFeed(feedWithEntries())).toEqual({ posts: [], skippedEntries: 0 });
   });
 });
