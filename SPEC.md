@@ -115,8 +115,8 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Pelican IDs are `{post_id}-{model_slug}`. True duplicates get `-2`, `-3` as a safety net.
 - Post IDs include the date, because slugs repeat across dates.
 - `model_name` is the catalog's canonical spelling, not the post's wording, because Simon spells the same family differently across posts ("Qwen3.8" vs "Qwen 3.8"). Normalization stays a plain lowercase-and-hyphenate step; a catalog test guards against near-duplicate spellings.
-- Rate limiting uses the Workers rate-limit binding; approximate counts are acceptable.
-- Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`.
+- Rate limiting uses the Workers rate-limit binding; approximate counts are acceptable. Live check on 2026-09-25: `limit()` returned success for 80 of 80 requests from one IP (77 in one location), so the binding did not enforce on this free-plan account. Retest after the first cron run; if still permissive, choose between a Durable Object limiter and documenting the limit as unenforced.
+- Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
 
 ## Catalog rules
@@ -131,13 +131,12 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 
 ## Definition of done
 
-- [ ] Deployed to a public URL
-- [ ] `/docs` loads and documents every endpoint
-- [ ] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
+- [x] Deployed to a public URL: https://pelican-api.dynamicalchange.workers.dev
+- [x] `/docs` loads and documents every endpoint
+- [x] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
 - [ ] Daily refresh has run successfully on its own for 7 days
 - [ ] Told Simon about it
 
 ## Open decisions (Ahmed's)
 
-- API name and domain (a `workers.dev` subdomain is fine for v1)
 - Whether to later add a "pelican of the day" endpoint
