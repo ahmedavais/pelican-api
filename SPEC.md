@@ -103,7 +103,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 
 ## Non-goals (v1)
 
-No write endpoints, no user accounts, no API keys, no image hosting, no frontend beyond the docs page, no other data sources, and no AI extraction.
+No write endpoints, no user accounts, no API keys, no image hosting, no frontend beyond the docs page and a local `ui/index.html` client (opened from disk, not deployed), no other data sources, and no AI extraction.
 
 ## Decisions
 

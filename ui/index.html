@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelican Scoreboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --sky: #f2f5f7;
+  --surface: #ffffff;
+  --ink: #14212b;
+  --ink-soft: #52616c;
+  --beak: #d46a12;
+  --beak-soft: #fbe6d4;
+  --water: #2c6e8e;
+  --water-soft: #dcebf2;
+  --line: #d6dfe6;
+  --bad: #b3261e;
+  --bad-soft: #fbe3e1;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sky: #0d151b;
+    --surface: #131e26;
+    --ink: #e5ecf1;
+    --ink-soft: #97a7b3;
+    --beak: #f0964a;
+    --beak-soft: #3a2616;
+    --water: #6db0cf;
+    --water-soft: #16303d;
+    --line: #24323c;
+    --bad: #f2a29c;
+    --bad-soft: #3a1c1a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --sky: #0d151b;
+  --surface: #131e26;
+  --ink: #e5ecf1;
+  --ink-soft: #97a7b3;
+  --beak: #f0964a;
+  --beak-soft: #3a2616;
+  --water: #6db0cf;
+  --water-soft: #16303d;
+  --line: #24323c;
+  --bad: #f2a29c;
+  --bad-soft: #3a1c1a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--sky);
+  color: var(--ink);
+  font: 15px/1.55 var(--body);
+}
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 28px 64px;
+  display: grid;
+  gap: 28px;
+}
+a { color: var(--water); }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--beak);
+  outline-offset: 2px;
+}
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.soft { color: var(--ink-soft); }
+
+.masthead { display: grid; gap: 14px; }
+.masthead h1 {
+  font: 800 clamp(30px, 5vw, 46px)/1.05 var(--display);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.masthead h1 span { color: var(--beak); }
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  align-items: center;
+  font-size: 13px;
+}
+.status .live { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-soft); }
+.dot.ok { background: #2e9d5b; box-shadow: 0 0 0 3px color-mix(in srgb, #2e9d5b 25%, transparent); }
+.dot.down { background: var(--bad); }
+.status b { font-family: var(--mono); font-weight: 500; }
+
+.error {
+  background: var(--bad-soft);
+  color: var(--bad);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+h2 {
+  font: 600 13px/1 var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+.top { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+.pelican-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+.pelican-card .label { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.pelican-card .model { font: 700 24px/1.15 var(--display); margin: 0; text-wrap: balance; }
+.pelican-card .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
+.vendor-chip {
+  font: 500 12px/1 var(--mono);
+  background: var(--water-soft);
+  color: var(--water);
+  border-radius: 999px;
+  padding: 5px 9px;
+}
+.see-post { font-weight: 600; text-decoration: none; }
+.see-post:hover { text-decoration: underline; }
+.pelican-card .id { font-size: 12px; overflow-wrap: anywhere; }
+
+button, select, input {
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 7px 11px;
+}
+button { cursor: pointer; font-weight: 600; }
+button:hover { border-color: var(--beak); }
+button.primary { background: var(--beak); border-color: var(--beak); color: #fff; }
+button[disabled] { opacity: 0.55; cursor: default; }
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.vendors { display: grid; gap: 7px; }
+.vendor-row {
+  display: grid;
+  grid-template-columns: 108px 1fr 34px;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  text-align: left;
+  font-weight: 400;
+  border-radius: 4px;
+}
+.vendor-row:hover .bar { background: var(--beak); }
+.vendor-row .name { font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vendor-row .track { height: 10px; background: var(--sky); border-radius: 3px; overflow: hidden; }
+.vendor-row .bar { height: 100%; background: var(--water); border-radius: 3px; }
+.vendor-row .count { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+
+.months { overflow-x: auto; }
+.months svg { display: block; min-width: 640px; width: 100%; height: auto; }
+.months .bar { fill: var(--water); }
+.months .bar.peak { fill: var(--beak); }
+.months text { fill: var(--ink-soft); font: 11px var(--mono); }
+.months .grid { stroke: var(--line); stroke-width: 1; }
+
+.kinds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.kind-chip { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+.kind-chip b { font-family: var(--mono); font-weight: 500; }
+
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 20px; align-items: start; }
+@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+
+.leaderboard-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.leaderboard-tools input { flex: 1 1 160px; min-width: 0; }
+.table-wrap { overflow-x: auto; max-height: 560px; overflow-y: auto; border-top: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { position: sticky; top: 0; background: var(--surface); font-weight: 600; color: var(--ink-soft); font-size: 12px; }
+td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+tbody tr { cursor: pointer; }
+tbody tr:hover td { background: var(--beak-soft); }
+tr.selected td { background: var(--beak-soft); }
+
+.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.filters label { display: grid; gap: 4px; font-size: 12px; color: var(--ink-soft); font-weight: 600; }
+.filters select, .filters input { width: 100%; min-width: 0; }
+.filter-actions { display: flex; gap: 8px; align-items: end; }
+.query { font-size: 12px; overflow-wrap: anywhere; margin: 0 0 10px; }
+.query a { color: var(--ink-soft); }
+
+.pelican-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.pelican-list li {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.pelican-list .date { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+.pelican-list .name { font-weight: 600; }
+.pelican-list .vendor { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-left: 6px; }
+.list-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; }
+.empty { padding: 18px 0; color: var(--ink-soft); }
+
+@media (max-width: 480px) {
+  .pelican-list li { grid-template-columns: 1fr auto; }
+  .pelican-list .date { grid-column: 1 / -1; }
+  .vendor-row { grid-template-columns: 84px 1fr 30px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pelican-card { transition: border-color 160ms ease; }
+  .pelican-card.refreshed { border-color: var(--beak); }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="masthead">
+    <h1>Pelican <span>Scoreboard</span></h1>
+    <div class="status" id="status">
+      <span class="live"><span class="dot" id="status-dot"></span><span id="status-text">Connecting to the API…</span></span>
+    </div>
+    <div class="error" id="error" hidden></div>
+  </header>
+
+  <section class="top" aria-label="Featured pelicans and vendors">
+    <article class="pelican-card" id="latest-card" aria-live="polite">
+      <div class="label"><h2>Latest pelican</h2></div>
+      <p class="soft">Loading…</p>
+    </article>
+    <article class="pelican-card" id="random-card" aria-live="polite">
+      <div class="label"><h2>Random pelican</h2><button type="button" id="random-button">Another one</button></div>
+      <p class="soft">Loading…</p>
+    </article>
+    <section class="panel" aria-labelledby="vendors-heading">
+      <h2 id="vendors-heading">Pelicans by vendor</h2>
+      <div class="vendors" id="vendors"><p class="soft">Loading…</p></div>
+    </section>
+  </section>
+
+  <section class="panel" aria-labelledby="months-heading">
+    <h2 id="months-heading">Pelicans per month</h2>
+    <div class="months" id="months"><p class="soft">Loading…</p></div>
+    <div class="kinds" id="kinds"></div>
+  </section>
+
+  <section class="split">
+    <section class="panel" aria-labelledby="models-heading">
+      <h2 id="models-heading">Model leaderboard</h2>
+      <div class="leaderboard-tools">
+        <input type="search" id="model-search" placeholder="Find a model" aria-label="Find a model">
+        <select id="model-sort" aria-label="Sort models">
+          <option value="count">Most pelican posts</option>
+          <option value="recent">Most recent</option>
+          <option value="first">First appearance</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Model</th><th>Vendor</th><th class="num">Posts</th><th class="num">Last seen</th></tr></thead>
+          <tbody id="models"><tr><td colspan="4" class="soft">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="explorer-heading">
+      <h2 id="explorer-heading">Pelican explorer</h2>
+      <form class="filters" id="filters">
+        <label for="filter-vendor">Vendor<select id="filter-vendor"><option value="">Any vendor</option></select></label>
+        <label for="filter-model">Model<select id="filter-model"><option value="">Any model</option></select></label>
+        <label for="filter-since">Since<input type="date" id="filter-since"></label>
+        <label for="filter-until">Until (exclusive)<input type="date" id="filter-until"></label>
+        <div class="filter-actions"><button type="submit" class="primary">Apply</button><button type="button" id="filter-reset">Reset</button></div>
+      </form>
+      <p class="query mono" id="query"></p>
+      <ul class="pelican-list" id="pelicans"></ul>
+      <div class="list-footer">
+        <span class="soft" id="pelican-count"></span>
+        <button type="button" id="load-more" hidden>Load more</button>
+      </div>
+    </section>
+  </section>
+</main>
+
+<script>
+const API = "https://pelican-api.dynamicalchange.workers.dev";
+const PAGE_SIZE = 20;
+
+const byId = (id) => document.getElementById(id);
+
+function element(tag, attributes = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [name, value] of Object.entries(attributes)) {
+    if (name === "text") node.textContent = value;
+    else if (name.startsWith("on")) node.addEventListener(name.slice(2), value);
+    else node.setAttribute(name, value);
+  }
+  node.append(...children);
+  return node;
+}
+
+class ApiError extends Error {}
+
+async function getJson(path) {
+  const response = await fetch(API + path);
+  const body = await response.json().catch(() => null);
+  if (!response.ok) {
+    const message = body?.error?.message ?? `The API answered ${response.status}`;
+    throw new ApiError(`${path}: ${message}`);
+  }
+  return body;
+}
+
+function showError(error) {
+  const box = byId("error");
+  box.textContent = error instanceof ApiError ? error.message : `Could not reach the API (${error.message}).`;
+  box.hidden = false;
+}
+
+function shortDate(iso) {
+  return iso ? iso.slice(0, 10) : "—";
+}
+
+function relativeTime(iso) {
+  const minutes = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (minutes < 60) return `${minutes} min ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 48) return `${hours} h ago`;
+  return `${Math.round(hours / 24)} days ago`;
+}
+
+function vendorLabel(vendor) {
+  return vendor ?? "unknown";
+}
+
+function postLink(pelican, text = "See the pelican ↗") {
+  return element("a", { class: "see-post", href: pelican.post_url, target: "_blank", rel: "noopener", text });
+}
+
+function renderStatus(stats) {
+  byId("status-dot").className = "dot ok";
+  byId("status-text").textContent = "API live";
+  const status = byId("status");
+  const fact = (label, value) => element("span", {}, `${label} `, element("b", { text: value }));
+  status.append(
+    fact("pelicans", stats.pelican_count),
+    fact("models", stats.model_count),
+    fact("vendors", stats.vendor_count),
+    fact("posts", stats.post_count),
+    stats.last_ingest_at
+      ? fact("last refresh", relativeTime(stats.last_ingest_at))
+      : fact("last refresh", "waiting for the first daily run"),
+  );
+}
+
+function renderPelicanCard(cardId, heading, pelican, extraControl) {
+  const card = byId(cardId);
+  const label = element("div", { class: "label" }, element("h2", { text: heading }));
+  if (extraControl) label.append(extraControl);
+  card.replaceChildren(
+    label,
+    element("p", { class: "model", text: pelican.model_name }),
+    element(
+      "div",
+      { class: "meta" },
+      element("span", { class: "vendor-chip", text: vendorLabel(pelican.vendor) }),
+      element("span", { class: "mono soft", text: shortDate(pelican.published_at) }),
+      postLink(pelican),
+    ),
+    element("span", { class: "id mono soft", text: pelican.id }),
+  );
+  card.classList.add("refreshed");
+  setTimeout(() => card.classList.remove("refreshed"), 400);
+}
+
+async function showRandomPelican() {
+  const button = byId("random-button");
+  button.disabled = true;
+  try {
+    const pelican = await getJson("/pelicans/random");
+    renderPelicanCard("random-card", "Random pelican", pelican, button);
+  } catch (error) {
+    showError(error);
+  } finally {
+    button.disabled = false;
+  }
+}
+
+function renderVendors(vendors) {
+  const most = Math.max(...vendors.map((row) => row.pelican_count));
+  byId("vendors").replaceChildren(
+    ...vendors.map((row) =>
+      element(
+        "button",
+        {
+          type: "button",
+          class: "vendor-row",
+          title: `Show ${vendorLabel(row.vendor)} pelicans in the explorer`,
+          onclick: () => filterExplorer({ vendor: row.vendor ?? "" }),
+        },
+        element("span", { class: "name", text: vendorLabel(row.vendor) }),
+        element("span", { class: "track" }, element("span", { class: "bar", style: `width:${(row.pelican_count / most) * 100}%` })),
+        element("span", { class: "count", text: row.pelican_count }),
+      ),
+    ),
+  );
+}
+
+function monthsBetween(first, last) {
+  const months = [];
+  let [year, month] = first.split("-").map(Number);
+  const [lastYear, lastMonth] = last.split("-").map(Number);
+  while (year < lastYear || (year === lastYear && month <= lastMonth)) {
+    months.push(`${year}-${String(month).padStart(2, "0")}`);
+    month += 1;
+    if (month > 12) { month = 1; year += 1; }
+  }
+  return months;
+}
+
+function renderMonths(perMonth) {
+  const container = byId("months");
+  if (perMonth.length === 0) {
+    container.replaceChildren(element("p", { class: "soft", text: "No pelicans yet." }));
+    return;
+  }
+  const counts = new Map(perMonth.map((row) => [row.month, row.pelican_count]));
+  const months = monthsBetween(perMonth[0].month, perMonth.at(-1).month);
+  const peak = Math.max(...counts.values());
+  const niceMax = Math.ceil(peak / 5) * 5;
+  const width = 900, height = 220, left = 30, right = 8, top = 12, bottom = 34;
+  const slot = (width - left - right) / months.length;
+  const y = (value) => top + (height - top - bottom) * (1 - value / niceMax);
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", `Pelicans per month from ${months[0]} to ${months.at(-1)}, peaking at ${peak}`);
+  const add = (tag, attributes, text) => {
+    const node = document.createElementNS(ns, tag);
+    for (const [name, value] of Object.entries(attributes)) node.setAttribute(name, value);
+    if (text !== undefined) node.textContent = text;
+    svg.append(node);
+    return node;
+  };
+  for (let tick = 0; tick <= niceMax; tick += niceMax / 5) {
+    add("line", { class: "grid", x1: left, x2: width - right, y1: y(tick), y2: y(tick) });
+    add("text", { x: left - 6, y: y(tick) + 4, "text-anchor": "end" }, tick);
+  }
+  months.forEach((month, index) => {
+    const count = counts.get(month) ?? 0;
+    const x = left + index * slot + slot * 0.18;
+    const bar = add("rect", {
+      class: count === peak ? "bar peak" : "bar",
+      x,
+      y: y(count),
+      width: slot * 0.64,
+      height: Math.max(0, y(0) - y(count)),
+      rx: 2,
+    });
+    const title = document.createElementNS(ns, "title");
+    title.textContent = `${month}: ${count} pelican${count === 1 ? "" : "s"}`;
+    bar.append(title);
+    const [year, monthNumber] = month.split("-");
+    if (monthNumber === "01" || index === 0) {
+      add("text", { x: x + slot * 0.32, y: height - 6, "text-anchor": "middle" }, year);
+    }
+    if (index % 3 === 0) {
+      add("text", { x: x + slot * 0.32, y: height - 20, "text-anchor": "middle" }, monthNumber);
+    }
+  });
+  container.replaceChildren(svg);
+}
+
+function renderKinds(postsByKind) {
+  const labels = {
+    model_pelicans: "posts with model pelicans",
+    sighting: "sightings",
+    other: "benchmark talk",
+    unclassified: "waiting to be catalogued",
+  };
+  byId("kinds").replaceChildren(
+    ...Object.entries(postsByKind).map(([kind, count]) =>
+      element("span", { class: "kind-chip" }, element("b", { text: count }), ` ${labels[kind] ?? kind}`),
+    ),
+  );
+}
+
+const leaderboard = { models: [], selectedSlug: "" };
+
+const MODEL_ORDER = {
+  count: (a, b) => b.pelican_count - a.pelican_count || b.last_seen_at.localeCompare(a.last_seen_at),
+  recent: (a, b) => b.last_seen_at.localeCompare(a.last_seen_at),
+  first: (a, b) => a.first_seen_at.localeCompare(b.first_seen_at),
+  name: (a, b) => a.model_name.localeCompare(b.model_name, undefined, { numeric: true }),
+};
+
+function renderLeaderboard() {
+  const search = byId("model-search").value.trim().toLowerCase();
+  const order = MODEL_ORDER[byId("model-sort").value];
+  const rows = leaderboard.models
+    .filter((model) => `${model.model_name} ${model.vendor ?? ""}`.toLowerCase().includes(search))
+    .toSorted(order)
+    .map((model) =>
+      element(
+        "tr",
+        {
+          class: model.model_slug === leaderboard.selectedSlug ? "selected" : "",
+          title: `Show ${model.model_name} pelicans in the explorer`,
+          onclick: () => filterExplorer({ model: model.model_slug }),
+        },
+        element("td", { text: model.model_name }),
+        element("td", { class: "mono soft", text: vendorLabel(model.vendor) }),
+        element("td", { class: "num", text: model.pelican_count }),
+        element("td", { class: "num soft", text: shortDate(model.last_seen_at) }),
+      ),
+    );
+  byId("models").replaceChildren(
+    ...(rows.length ? rows : [element("tr", {}, element("td", { colspan: 4, class: "soft", text: "No model matches that search." }))]),
+  );
+}
+
+function fillFilterOptions(models, vendors) {
+  const vendorSelect = byId("filter-vendor");
+  vendorSelect.append(
+    ...vendors.filter((row) => row.vendor !== null).map((row) => element("option", { value: row.vendor, text: `${row.vendor} (${row.pelican_count})` })),
+  );
+  const modelSelect = byId("filter-model");
+  modelSelect.append(
+    ...models
+      .toSorted(MODEL_ORDER.name)
+      .map((model) => element("option", { value: model.model_slug, text: model.model_name })),
+  );
+}
+
+const explorer = { cursor: null, shown: 0 };
+
+function explorerQuery(cursor) {
+  const params = new URLSearchParams({ limit: String(PAGE_SIZE) });
+  const filters = { vendor: byId("filter-vendor").value, model: byId("filter-model").value, since: byId("filter-since").value, until: byId("filter-until").value };
+  for (const [name, value] of Object.entries(filters)) if (value) params.set(name, value);
+  if (cursor) params.set("cursor", cursor);
+  return `/pelicans?${params}`;
+}
+
+function pelicanItem(pelican) {
+  return element(
+    "li",
+    {},
+    element("span", { class: "date", text: shortDate(pelican.published_at) }),
+    element("span", {}, element("span", { class: "name", text: pelican.model_name }), element("span", { class: "vendor", text: vendorLabel(pelican.vendor) })),
+    postLink(pelican, "Post ↗"),
+  );
+}
+
+async function loadPelicans({ append }) {
+  const path = explorerQuery(append ? explorer.cursor : null);
+  const list = byId("pelicans");
+  const more = byId("load-more");
+  more.disabled = true;
+  try {
+    const page = await getJson(path);
+    if (!append) {
+      list.replaceChildren();
+      explorer.shown = 0;
+      const query = byId("query");
+      query.replaceChildren("GET ", element("a", { href: API + path, target: "_blank", rel: "noopener", text: path }));
+    }
+    list.append(...page.data.map(pelicanItem));
+    explorer.shown += page.data.length;
+    explorer.cursor = page.next_cursor;
+    if (explorer.shown === 0) list.replaceChildren(element("li", { class: "empty", text: "No pelicans match these filters." }));
+    byId("pelican-count").textContent = explorer.shown ? `Showing ${explorer.shown}${page.next_cursor ? "+" : ""}` : "";
+    more.hidden = !page.next_cursor;
+  } catch (error) {
+    showError(error);
+  } finally {
+    more.disabled = false;
+  }
+}
+
+function filterExplorer({ vendor, model }) {
+  if (vendor !== undefined) { byId("filter-vendor").value = vendor; byId("filter-model").value = ""; }
+  if (model !== undefined) { byId("filter-model").value = model; byId("filter-vendor").value = ""; }
+  leaderboard.selectedSlug = byId("filter-model").value;
+  renderLeaderboard();
+  loadPelicans({ append: false });
+  byId("explorer-heading").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+}
+
+function wireControls() {
+  byId("random-button").addEventListener("click", showRandomPelican);
+  byId("model-search").addEventListener("input", renderLeaderboard);
+  byId("model-sort").addEventListener("change", renderLeaderboard);
+  byId("filters").addEventListener("submit", (event) => {
+    event.preventDefault();
+    leaderboard.selectedSlug = byId("filter-model").value;
+    renderLeaderboard();
+    loadPelicans({ append: false });
+  });
+  byId("filter-reset").addEventListener("click", () => {
+    byId("filters").reset();
+    leaderboard.selectedSlug = "";
+    renderLeaderboard();
+    loadPelicans({ append: false });
+  });
+  byId("load-more").addEventListener("click", () => loadPelicans({ append: true }));
+}
+
+async function start() {
+  wireControls();
+  try {
+    const [stats, latest, models, vendors] = await Promise.all([
+      getJson("/stats"),
+      getJson("/pelicans/latest"),
+      getJson("/models"),
+      getJson("/vendors"),
+    ]);
+    renderStatus(stats);
+    renderPelicanCard("latest-card", "Latest pelican", latest);
+    renderVendors(vendors.data);
+    renderMonths(stats.pelicans_per_month);
+    renderKinds(stats.posts_by_kind);
+    leaderboard.models = models.data;
+    renderLeaderboard();
+    fillFilterOptions(models.data, vendors.data);
+  } catch (error) {
+    byId("status-dot").className = "dot down";
+    byId("status-text").textContent = "API unreachable";
+    showError(error);
+  }
+  showRandomPelican();
+  loadPelicans({ append: false });
+}
+
+start();
+</script>
+</body>
+</html>

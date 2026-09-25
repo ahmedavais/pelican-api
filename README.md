@@ -30,6 +30,10 @@ npm run dev
 
 Then `curl "http://localhost:8787/__scheduled?cron=17+6+*+*+*"` runs the daily refresh once. It fetches Simon's live feed, so keep that to about once a day.
 
+## See it in action
+
+Open [ui/index.html](ui/index.html) straight from disk in a browser. It reads the live API: latest and random pelicans, vendors, pelicans per month, the model leaderboard and a filterable explorer. It is not deployed anywhere.
+
 ## Curate a new post
 
 New posts arrive as `unclassified`. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. The next daily run applies the change after deploy.
