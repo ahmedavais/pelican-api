@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "pelican-api",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "fcd0cd0f-edcc-4113-8db0-94c9458474a1",
       "migrations_dir": "migrations"
     }
   ],
