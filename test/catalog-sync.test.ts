@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { applyCatalog } from "../src/catalog-sync";
 import type { Catalog, Post } from "../src/domain";
 import { storeNewPosts } from "../src/post-store";
+import { countingQueries } from "./query-counter";
+import { catalogGiving, samplePosts } from "./sample-posts";
 
 const opusPost: Post = {
   id: "2026-09-22-opus-and-sol-and-luna",
@@ -103,5 +105,41 @@ describe("applyCatalog", () => {
   it("reports how many posts changed, and none on a repeat with the same catalog", async () => {
     expect(await applyCatalog(env.DB, fullCatalog)).toBe(2);
     expect(await applyCatalog(env.DB, fullCatalog)).toBe(0);
+  });
+
+  it("stores all of a post's pelicans, even more than fit in one statement", async () => {
+    await applyCatalog(env.DB, catalogGiving([opusPost], 20));
+
+    expect(await pelicanIdsOf(opusPost)).toHaveLength(20);
+  });
+});
+
+describe("applyCatalog within the free plan's query budget", () => {
+  it("rewrites at most 12 posts per run and catches up on later runs", async () => {
+    const posts = samplePosts(20);
+    await storeNewPosts(env.DB, posts, "2026-09-25T06:17:00.000Z");
+    const catalog = catalogGiving(posts, 1);
+
+    expect(await applyCatalog(env.DB, catalog)).toBe(12);
+    expect(await applyCatalog(env.DB, catalog)).toBe(8);
+    expect(await applyCatalog(env.DB, catalog)).toBe(0);
+  });
+
+  it("rewrites newest posts first", async () => {
+    const posts = samplePosts(20);
+    await storeNewPosts(env.DB, posts, "2026-09-25T06:17:00.000Z");
+
+    await applyCatalog(env.DB, catalogGiving(posts, 1));
+
+    const { results } = await env.DB.prepare("SELECT id FROM posts WHERE kind = 'model_pelicans' ORDER BY id").all();
+    expect(results.map((row) => row.id)).toEqual(posts.slice(8).map((post) => post.id));
+  });
+
+  it("uses three statements per rewritten post plus two reads", async () => {
+    const counted = countingQueries(env.DB);
+
+    await applyCatalog(counted.db, catalogGiving([opusPost, filmPost], 5));
+
+    expect(counted.queriesExecuted()).toBe(2 + 2 * 3);
   });
 });

@@ -2,7 +2,10 @@ import { env } from "cloudflare:workers";
 import { describe, expect, it } from "vitest";
 import type { Catalog } from "../src/domain";
 import { runIngest } from "../src/ingest";
+import { readFeed } from "../src/feed";
 import savedFeed from "./fixtures/pelican-tag-feed.atom?raw";
+import { countingQueries } from "./query-counter";
+import { catalogGiving } from "./sample-posts";
 
 const opusPostUrl = "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/";
 
@@ -85,5 +88,17 @@ describe("runIngest", () => {
         error: "Feed responded 503",
       },
     ]);
+  });
+
+  it("stays within 50 queries even when the whole feed is new and catalogued", async () => {
+    const counted = countingQueries(env.DB);
+
+    await runIngest(counted.db, {
+      latestFeed: async () => savedFeed,
+      catalog: catalogGiving(readFeed(savedFeed).posts, 3),
+      now: () => new Date("2026-09-25T06:17:00.000Z"),
+    });
+
+    expect(counted.queriesExecuted()).toBeLessThanOrEqual(50);
   });
 });

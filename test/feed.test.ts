@@ -60,6 +60,17 @@ describe("readFeed", () => {
     expect(readFeed(feed)).toEqual({ posts: [], skippedEntries: 1 });
   });
 
+  it("reads the same posts whether or not entries carry their post bodies", () => {
+    const entryWith = (body: string) =>
+      `<entry><title>T &amp; U</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T00:00:00+00:00</published>${body}<category term="llm"/></entry>`;
+    const bodies = [
+      `<summary type="html">&lt;p&gt;A &lt;category term="fake"/&gt; pelican&lt;/p&gt;</summary>`,
+      `<content type="html"><![CDATA[<p>More <b>pelicans</b></p>]]></content>`,
+    ];
+
+    expect(readFeed(feedWithEntries(entryWith(bodies.join(""))))).toEqual(readFeed(feedWithEntries(entryWith(""))));
+  });
+
   it("reads a feed with no entries as no posts", () => {
     expect(readFeed(feedWithEntries())).toEqual({ posts: [], skippedEntries: 0 });
   });

@@ -10,6 +10,8 @@ type FeedEntry = {
   category?: { term: string }[];
 };
 
+const POST_BODIES = /<(summary|content)\b[^>]*>[\s\S]*?<\/\1>/g;
+
 const REPEATABLE_ELEMENTS = new Set(["entry", "link", "category"]);
 
 const atomParser = new XMLParser({
@@ -26,9 +28,13 @@ export type FeedReading = {
 };
 
 export function readFeed(atomXml: string): FeedReading {
-  const entries: FeedEntry[] = atomParser.parse(atomXml).feed?.entry ?? [];
+  const entries: FeedEntry[] = atomParser.parse(withoutPostBodies(atomXml)).feed?.entry ?? [];
   const posts = entries.map(postFromEntry).filter((post): post is Post => post !== null);
   return { posts, skippedEntries: entries.length - posts.length };
+}
+
+function withoutPostBodies(atomXml: string): string {
+  return atomXml.replace(POST_BODIES, "");
 }
 
 function postFromEntry(entry: FeedEntry): Post | null {

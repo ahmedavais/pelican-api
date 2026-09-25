@@ -2,6 +2,8 @@ import { env } from "cloudflare:workers";
 import { describe, expect, it } from "vitest";
 import type { Post } from "../src/domain";
 import { storeNewPosts } from "../src/post-store";
+import { countingQueries } from "./query-counter";
+import { samplePosts } from "./sample-posts";
 
 const opusPost: Post = {
   id: "2026-09-22-opus-and-sol-and-luna",
@@ -54,5 +56,24 @@ describe("storeNewPosts", () => {
 
   it("adds nothing when given no posts", async () => {
     expect(await storeNewPosts(env.DB, [], "2026-09-25T06:17:00.000Z")).toBe(0);
+  });
+
+  it("only looks up stored urls when every post is already stored", async () => {
+    const posts = samplePosts(30);
+    await storeNewPosts(env.DB, posts, "2026-09-25T06:17:00.000Z");
+    const counted = countingQueries(env.DB);
+
+    await storeNewPosts(counted.db, posts, "2026-09-26T06:17:00.000Z");
+
+    expect(counted.queriesExecuted()).toBe(1);
+  });
+
+  it("inserts many new posts in a few multi-row statements", async () => {
+    const counted = countingQueries(env.DB);
+
+    const added = await storeNewPosts(counted.db, samplePosts(30), "2026-09-25T06:17:00.000Z");
+
+    expect(added).toBe(30);
+    expect(counted.queriesExecuted()).toBe(1 + 3);
   });
 });

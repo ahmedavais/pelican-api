@@ -1,4 +1,5 @@
 import { attributePost } from "./attribution";
+import { inChunksOf, multiRowInsert, rowsPerInsert } from "./d1-limits";
 import type { Attribution, Catalog, Pelican, Post, PostKind } from "./domain";
 
 type PostRow = {
@@ -20,6 +21,10 @@ type PelicanRow = {
   published_at: string;
 };
 
+const PELICAN_COLUMNS = ["id", "post_id", "model_name", "model_slug", "vendor", "post_url", "published_at"];
+
+const REWRITE_STATEMENTS_PER_RUN = 36;
+
 type StoredPost = {
   post: Post;
   attribution: Attribution;
@@ -30,10 +35,28 @@ export async function applyCatalog(db: D1Database, catalog: Catalog): Promise<nu
     const catalogued = attributePost(post, catalog);
     return sameAttribution(stored, catalogued) ? [] : [{ post, attribution: catalogued }];
   });
-  if (changedPosts.length > 0) {
-    await db.batch(changedPosts.flatMap((changed) => rewriteAttribution(db, changed)));
+  const rewrites = withinRewriteBudget(newestFirst(changedPosts).map((changed) => rewriteAttribution(db, changed)));
+  if (rewrites.length > 0) {
+    await db.batch(rewrites.flat());
   }
-  return changedPosts.length;
+  return rewrites.length;
+}
+
+function newestFirst(posts: StoredPost[]): StoredPost[] {
+  return posts.toSorted((a, b) => b.post.publishedAt.localeCompare(a.post.publishedAt));
+}
+
+function withinRewriteBudget(rewrites: D1PreparedStatement[][]): D1PreparedStatement[][] {
+  const accepted: D1PreparedStatement[][] = [];
+  let statementsUsed = 0;
+  for (const statements of rewrites) {
+    if (accepted.length > 0 && statementsUsed + statements.length > REWRITE_STATEMENTS_PER_RUN) {
+      break;
+    }
+    accepted.push(statements);
+    statementsUsed += statements.length;
+  }
+  return accepted;
 }
 
 async function storedPosts(db: D1Database): Promise<StoredPost[]> {
@@ -60,16 +83,14 @@ function rewriteAttribution(db: D1Database, { post, attribution }: StoredPost): 
   return [
     db.prepare("UPDATE posts SET kind = ? WHERE id = ?").bind(attribution.kind, post.id),
     db.prepare("DELETE FROM pelicans WHERE post_id = ?").bind(post.id),
-    ...attribution.pelicans.map((pelican) => insertPelican(db, pelican)),
+    ...inChunksOf(rowsPerInsert(PELICAN_COLUMNS.length), attribution.pelicans).map((chunk) =>
+      db.prepare(multiRowInsert("pelicans", PELICAN_COLUMNS, chunk.length)).bind(...chunk.flatMap(pelicanRow)),
+    ),
   ];
 }
 
-function insertPelican(db: D1Database, pelican: Pelican): D1PreparedStatement {
-  return db
-    .prepare(
-      "INSERT INTO pelicans (id, post_id, model_name, model_slug, vendor, post_url, published_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    )
-    .bind(pelican.id, pelican.postId, pelican.modelName, pelican.modelSlug, pelican.vendor, pelican.postUrl, pelican.publishedAt);
+function pelicanRow(pelican: Pelican): unknown[] {
+  return [pelican.id, pelican.postId, pelican.modelName, pelican.modelSlug, pelican.vendor, pelican.postUrl, pelican.publishedAt];
 }
 
 function postFromRow(row: PostRow): Post {
