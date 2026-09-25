@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { nearDuplicateModelNames } from "../src/catalog-spelling";
-import type { Catalog } from "../src/domain";
+import { type Catalog, VENDORS } from "../src/domain";
+import { postIdFromUrl } from "../src/post-id";
 import { pelicanCatalog } from "../src/pelican-catalog";
 
 function catalogWithModels(...modelNames: string[]): Catalog {
@@ -35,5 +36,25 @@ describe("nearDuplicateModelNames", () => {
 describe("the pelican catalog", () => {
   it("spells every model one way only", () => {
     expect(nearDuplicateModelNames(pelicanCatalog)).toEqual([]);
+  });
+
+  it("lists at least one pelican for every model_pelicans post", () => {
+    const emptyEntries = Object.entries(pelicanCatalog).filter(
+      ([, entry]) => entry.kind === "model_pelicans" && entry.pelicans.length === 0,
+    );
+
+    expect(emptyEntries.map(([url]) => url)).toEqual([]);
+  });
+
+  it("names only known vendors", () => {
+    const vendors = Object.values(pelicanCatalog).flatMap((entry) =>
+      entry.kind === "model_pelicans" ? entry.pelicans.map((pelican) => pelican.vendor) : [],
+    );
+
+    expect(vendors.filter((vendor) => vendor !== null && !VENDORS.includes(vendor))).toEqual([]);
+  });
+
+  it("only catalogues dated post urls", () => {
+    expect(() => Object.keys(pelicanCatalog).forEach(postIdFromUrl)).not.toThrow();
   });
 });

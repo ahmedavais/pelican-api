@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
+import type { CatalogedModel } from "../src/domain";
 import { getJson } from "./api-client";
 import { postOn, seed } from "./seed";
 
-const claude = { modelName: "Claude Opus 5.5", vendor: "anthropic" };
-const sol = { modelName: "GPT-6 Sol", vendor: "openai" };
+const claude: CatalogedModel = { modelName: "Claude Opus 5.5", vendor: "anthropic" };
+const sol: CatalogedModel = { modelName: "GPT-6 Sol", vendor: "openai" };
 
 async function seedTwoPosts() {
   await seed(

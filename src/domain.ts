@@ -18,9 +18,38 @@ export type Pelican = {
   publishedAt: string;
 };
 
+export const VENDORS = [
+  "anthropic",
+  "openai",
+  "google",
+  "meta",
+  "xai",
+  "mistral",
+  "deepseek",
+  "alibaba",
+  "moonshot",
+  "zai",
+  "tencent",
+  "xiaomi",
+  "nvidia",
+  "microsoft",
+  "amazon",
+  "ibm",
+  "ai2",
+  "minimax",
+  "cursor",
+  "windsurf",
+  "thinkingmachines",
+  "deepreinforce",
+  "metastone",
+  "recraft",
+] as const;
+
+export type Vendor = (typeof VENDORS)[number];
+
 export type CatalogedModel = {
   modelName: string;
-  vendor: string | null;
+  vendor: Vendor | null;
 };
 
 export type CatalogEntry =

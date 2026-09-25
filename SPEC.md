@@ -39,9 +39,9 @@ A post and a pelican are different things. One post can contain several pelicans
 
 - `id` (text): `{post_id}-{model_slug}`, with `-2`, `-3` appended for true duplicates within one post, in order of appearance
 - `post_id` (text): FK → posts
-- `model_name` (text): canonical name from the catalog, spelled consistently across posts, variant included, e.g. "Claude Opus 5.5" or "GPT-5 (high)"
+- `model_name` (text): canonical name from the catalog, spelled consistently across posts, e.g. "Claude Opus 5.5" or "GPT-6 Sol"
 - `model_slug` (text): normalized, e.g. `claude-opus-5-5`
-- `vendor` (text, nullable): e.g. `anthropic`, `openai`, `google`
+- `vendor` (text, nullable): the company that made the model, from a fixed list, e.g. `anthropic`, `openai`, `google`
 - `post_url` (text): copied from the post, for convenience
 - `published_at` (datetime): copied from the post
 
@@ -112,18 +112,28 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Post bodies are stripped from the feed before parsing, to stay well inside the free plan's 10 ms CPU limit.
 - Model attribution comes from a curated, checked-in catalog instead of the Claude API, to keep the project free. The trade-off: new posts appear automatically but stay `unclassified` until catalogued.
 - No retries or attempt counters, since there is no extraction step that can fail.
-- Pelican IDs are `{post_id}-{model_slug}`; variants stay in `model_name`, so "GPT-5 (high)" and "GPT-5 (low)" are separate models. True duplicates get `-2`, `-3`.
+- Pelican IDs are `{post_id}-{model_slug}`. True duplicates get `-2`, `-3` as a safety net.
 - Post IDs include the date, because slugs repeat across dates.
 - `model_name` is the catalog's canonical spelling, not the post's wording, because Simon spells the same family differently across posts ("Qwen3.8" vs "Qwen 3.8"). Normalization stays a plain lowercase-and-hyphenate step; a catalog test guards against near-duplicate spellings.
 - Rate limiting uses the Workers rate-limit binding; approximate counts are acceptable.
 - Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
 
+## Catalog rules
+
+- A pelican counts when the post shows it, or when Simon generated it himself and links to it. Pelicans only mentioned, or drawn by someone else and linked, do not count.
+- A pelican belongs to the post where it first appeared. An older model's pelican shown again (re-embedded, linked back, in a recap talk or a reused comparison grid) does not count; a pelican freshly generated for the post does, even for a model seen before.
+- One pelican per model per post. Effort levels and comparison-grid cells are not separate pelicans or separate model names; genuinely distinct models (GPT-6 Sol vs GPT-6 Luna) are.
+- `model_pelicans`: at least one pelican made by an identifiable AI model, in any medium and whoever ran it. `sighting`: a pelican on a bicycle made by people or found in the world. `other`: about the benchmark, with no identifiable model pelican. A `model_pelicans` entry always lists at least one pelican.
+- Each distinct dated or versioned release is its own model (Claude 3.5 Sonnet (2024-06-20) vs (2024-10-22), a preview vs its GA release). Only spelling differences are merged, using the vendor's official name as Simon writes it. Suspected aliases stay separate unless the post says they are the same.
+- Vendor is the company that released the model, never the host; fine-tunes get their maker's name. One lowercase slug from the `VENDORS` list in `src/domain.ts` (24 as of the backfill), extended only by editing that list. `null` when the maker is not an organisation or is unknown.
+- Drafting: four agents draft entries with evidence quotes (kept in `playground/`, never committed), Claude reconciles one canonical spelling per model, Ahmed spot-checks.
+
 ## Definition of done
 
 - [ ] Deployed to a public URL
 - [ ] `/docs` loads and documents every endpoint
-- [ ] Backfill completed, with every post either catalogued or visibly `unclassified`
+- [ ] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
 - [ ] Daily refresh has run successfully on its own for 7 days
 - [ ] Told Simon about it
 
