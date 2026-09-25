@@ -10,7 +10,7 @@ Ship a working public API. Success means it's live on a public URL, has browsabl
 
 Primary source: the `pelican-riding-a-bicycle` tag on simonwillison.net (`https://simonwillison.net/tags/pelican-riding-a-bicycle/`), currently ~144 posts.
 
-- Backfill: paginated HTML tag pages (the whole history).
+- Backfill: Simon's Datasette mirror of the blog (`datasette.simonwillison.net/simonwillisonblog`), one SQL query for every tagged entry, blogmark, beat, note and quotation. Verified 2026-09-25: 144 posts, and for all 30 posts it shares with the feed, identical URL, title, timestamp and tags.
 - Daily refresh: the tag's Atom feed, `/tags/pelican-riding-a-bicycle.atom` (latest 30 entries, verified 2026-09-25).
 
 Do not use the `simonw/pelican-bicycle` GitHub repo. It stopped updating in late 2024 and has no stated license.
@@ -47,7 +47,7 @@ A post and a pelican are different things. One post can contain several pelicans
 
 ### ingest_runs
 
-- `id`, `started_at`, `finished_at`, `status`, `posts_added`, `error`
+- `id`, `started_at`, `finished_at`, `status` (`succeeded` or `failed`), `posts_added`, `entries_skipped`, `error`
 
 ## Endpoints
 
@@ -70,16 +70,16 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 ## Ingestion
 
 ```
- backfill (once, local script) ──► HTML tag pages ──┐
-                                                    ├──► store post (idempotent on URL)
- daily cron (Worker)           ──► Atom feed      ──┘         │
-                                                               ▼
-                                       pelican catalog applied (checked-in file)
-                                         entry exists ──► kind + pelicans
-                                         no entry     ──► kind = unclassified
+ backfill (once, local script) ──► Datasette mirror ──┐
+                                                      ├──► store post (idempotent on URL)
+ daily cron (Worker)           ──► Atom feed        ──┘              │
+                                                                     ▼
+                                          pelican catalog applied (checked-in file)
+                                            entry exists ──► kind + pelicans
+                                            no entry     ──► kind = unclassified
 ```
 
-- Backfill (one-time). Crawl the whole tag history and store every post.
+- Backfill (one-time). `npm run backfill:remote` queries the mirror once, generates SQL that stores every post and applies the full catalog, and runs it with `wrangler d1 execute`. Safe to re-run.
 - Daily refresh. A scheduled Worker reads the feed once a day and stores any post URLs not already stored.
 - Pelican catalog. `pelican-catalog.ts` is a checked-in file keyed by post URL, giving each post's `kind` and its pelicans (`model_name`, `vendor`). Every run re-applies the whole catalog to stored posts, idempotently. It is the only source of model attribution.
 - Uncatalogued posts stay `kind = unclassified` and are visible in `/posts?kind=unclassified` until a catalog entry is added.
@@ -107,7 +107,9 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 
 ## Decisions
 
-- Backfill reads the HTML tag pages; the daily refresh reads the Atom feed. The feed holds only the latest 30 entries.
+- Backfill reads Simon's Datasette mirror instead of the HTML tag pages: one request, exact timestamps matching the feed, and no scraping of several markup layouts. The daily refresh reads the Atom feed, which holds only the latest 30 entries.
+- Each daily run stays within the free plan's 50 D1 queries per invocation: multi-row inserts, and at most 36 catalog rewrite statements per run, newest first; the rest is applied on later runs. Large catalog changes can instead be applied by re-running the backfill.
+- Post bodies are stripped from the feed before parsing, to stay well inside the free plan's 10 ms CPU limit.
 - Model attribution comes from a curated, checked-in catalog instead of the Claude API, to keep the project free. The trade-off: new posts appear automatically but stay `unclassified` until catalogued.
 - No retries or attempt counters, since there is no extraction step that can fail.
 - Pelican IDs are `{post_id}-{model_slug}`; variants stay in `model_name`, so "GPT-5 (high)" and "GPT-5 (low)" are separate models. True duplicates get `-2`, `-3`.

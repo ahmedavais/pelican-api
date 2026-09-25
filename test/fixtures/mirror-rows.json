@@ -1,0 +1,1010 @@
+[
+ {
+  "type": "entry",
+  "slug": "opus-and-sol-and-luna",
+  "created": "2026-09-22T23:46:41+00:00",
+  "title": "Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, and a new price war",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "the-creative-spirit-of-who-framed-roger-rabbit",
+  "created": "2026-09-18T14:36:41+00:00",
+  "title": "The Creative Spirit of Who Framed Roger Rabbit",
+  "tags": "[\"animation\",\"film\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "introducing-gpt-6-astra-for-developers",
+  "created": "2026-09-05T23:27:48+00:00",
+  "title": "Introducing GPT-6 Astra for developers",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"gpt-6-astra\"]"
+ },
+ {
+  "type": "beat",
+  "slug": "blender-coding-agents-macos",
+  "created": "2026-09-05T15:51:09+00:00",
+  "title": "Using Blender with coding agents on macOS",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"blender\",\"pelican-riding-a-bicycle\",\"coding-agents\",\"gpt-6-astra\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "astra-pelicans",
+  "created": "2026-09-04T23:59:05+00:00",
+  "title": "The Pelican comparison grid for Astra is pretty interesting",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"gpt-6-astra\"]"
+ },
+ {
+  "type": "beat",
+  "slug": "llm-gemini",
+  "created": "2026-09-02T16:39:38+00:00",
+  "title": "llm-gemini 0.34",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "claude-fable-5-1",
+  "created": "2026-09-01T23:57:28+00:00",
+  "title": "Claude Fable 5.1 made me a really nice animated pelican",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "hy4",
+  "created": "2026-08-29T23:53:13+00:00",
+  "title": "Introducing Hy4 Preview",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen38-flash-next",
+  "created": "2026-08-26T23:52:58+00:00",
+  "title": "Qwen3.8-Flash-Next",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"nvidia-spark\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "qwen-38-27b",
+  "created": "2026-08-16T22:00:39+00:00",
+  "title": "Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llama-cpp\",\"llm-release\",\"coding-agents\",\"lm-studio\",\"ai-in-china\",\"nvidia-spark\",\"pi\"]"
+ },
+ {
+  "type": "beat",
+  "slug": "llm-gemini",
+  "created": "2026-08-13T19:37:34+00:00",
+  "title": "llm-gemini 0.33",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "deepseek-v4-pro-0813",
+  "created": "2026-08-12T23:59:23+00:00",
+  "title": "DeepSeek V4 Pro 0813 (on OpenRouter)",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"deepseek\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "introducing-muse-glimmer",
+  "created": "2026-08-10T23:56:03+00:00",
+  "title": "Introducing Muse Glimmer",
+  "tags": "[\"ai\",\"generative-ai\",\"llama\",\"local-llms\",\"llms\",\"llm\",\"vision-llms\",\"meta\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "muse-code-and-muse-spark-12",
+  "created": "2026-08-05T23:58:35+00:00",
+  "title": "Introducing Muse Code and Muse Spark 1.2",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"meta\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"coding-agents\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "deepseek-v4-flash-0731",
+  "created": "2026-07-31T23:59:44+00:00",
+  "title": "deepseek-ai/DeepSeek-V4-Flash-0731",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"deepseek\",\"llm-release\",\"openrouter\",\"ai-in-china\",\"artificial-analysis\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "are-ai-labs-pelicanmaxxing",
+  "created": "2026-07-22T23:01:00+00:00",
+  "title": "Are AI labs pelicanmaxxing?",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"evals\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "afraid-of-chinese-models",
+  "created": "2026-07-20T17:09:19+00:00",
+  "title": "Who’s Afraid of Chinese Models?",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"training-data\",\"qwen\",\"pelican-riding-a-bicycle\",\"ai-ethics\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "kimi-k3",
+  "created": "2026-07-16T20:19:30+00:00",
+  "title": "Kimi K3, and what we can still learn from the pelican benchmark",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"artificial-analysis\",\"moonshot\",\"kimi\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "inkling",
+  "created": "2026-07-16T15:35:25+00:00",
+  "title": "Inkling: Our open-weights model",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"training-data\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "pedalican",
+  "created": "2026-07-14T22:29:45+00:00",
+  "title": "simonw/pedalican",
+  "tags": "[\"ai\",\"prompt-engineering\",\"generative-ai\",\"llms\",\"text-to-image\",\"pelican-riding-a-bicycle\",\"codex\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-5-6",
+  "created": "2026-07-09T19:46:38+00:00",
+  "title": "The new GPT-5.6 family: Luna, Terra, Sol",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm-tool-use\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"gpt-5\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "muse-spark-1-1",
+  "created": "2026-07-09T16:24:09+00:00",
+  "title": "Introducing Muse Spark 1.1",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"meta\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "hy3",
+  "created": "2026-07-06T23:57:35+00:00",
+  "title": "tencent/Hy3",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "claude-sonnet-5",
+  "created": "2026-06-30T21:23:02+00:00",
+  "title": "What's new in Claude Sonnet 5",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "ornith",
+  "created": "2026-06-29T16:17:59+00:00",
+  "title": "Ornith-1.0: Self-Scaffolding LLMs for Agentic Coding",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"gemma\",\"llm-release\",\"lm-studio\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "glm-52",
+  "created": "2026-06-17T23:58:39+00:00",
+  "title": "GLM-5.2 is probably the most powerful text-only open weights LLM",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-release\",\"openrouter\",\"ai-in-china\",\"glm\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "diffusiongemma",
+  "created": "2026-06-10T20:00:54+00:00",
+  "title": "DiffusionGemma",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"nvidia\",\"pelican-riding-a-bicycle\",\"gemma\",\"llm-release\",\"llm-performance\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "claude-fable-5",
+  "created": "2026-06-09T23:59:54+00:00",
+  "title": "Initial impressions of Claude Fable 5",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"claude-mythos-fable\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "claude-opus-4-8",
+  "created": "2026-05-28T23:59:50+00:00",
+  "title": "Claude Opus 4.8: \"a modest but tangible improvement\"",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemini-35-flash",
+  "created": "2026-05-19T22:40:25+00:00",
+  "title": "Gemini 3.5 Flash: more expensive, but Google plan to use it for everything",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "5-minute-llms",
+  "created": "2026-05-19T01:09:44+00:00",
+  "title": "The last six months in LLMs in five minutes",
+  "tags": "[\"lightning-talks\",\"pycon\",\"speaking\",\"my-talks\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"annotated-talks\",\"pelican-riding-a-bicycle\",\"coding-agents\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "granite-41-3b-svg-pelican-gallery",
+  "created": "2026-05-04T23:49:24+00:00",
+  "title": "Granite 4.1 3B SVG Pelican Gallery",
+  "tags": "[\"ibm\",\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "note",
+  "slug": "why-are-you-like-this",
+  "created": "2026-04-25T16:44:01+00:00",
+  "title": "WHY ARE YOU LIKE THIS",
+  "tags": "[\"ai\",\"generative-ai\",\"chatgpt\",\"slop\",\"text-to-image\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "deepseek-v4",
+  "created": "2026-04-24T06:01:04+00:00",
+  "title": "DeepSeek V4 - almost on the frontier, a fraction of the price",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"deepseek\",\"llm-release\",\"openrouter\",\"ai-in-china\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-5-5",
+  "created": "2026-04-23T19:59:47+00:00",
+  "title": "A pelican for GPT-5.5 via the semi-official Codex backdoor API",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"chatgpt\",\"llms\",\"llm\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"codex\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen36-27b",
+  "created": "2026-04-22T16:45:23+00:00",
+  "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llama-cpp\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "scosman",
+  "created": "2026-04-21T15:54:43+00:00",
+  "title": "scosman/pelicans_riding_bicycles",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"training-data\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "beat",
+  "slug": "llm-openrouter",
+  "created": "2026-04-20T18:00:26+00:00",
+  "title": "llm-openrouter 0.6",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"pelican-riding-a-bicycle\",\"llm-release\",\"openrouter\",\"ai-in-china\",\"kimi\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "qwen-beats-opus",
+  "created": "2026-04-16T17:16:52+00:00",
+  "title": "Qwen3.6-35B-A3B on my laptop drew me a better pelican than Claude Opus 4.7",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"anthropic\",\"claude\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-release\",\"lm-studio\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "muse-spark",
+  "created": "2026-04-08T23:07:44+00:00",
+  "title": "Meta's new model is Muse Spark, and meta.ai chat has some interesting tools",
+  "tags": "[\"facebook\",\"ai\",\"generative-ai\",\"llms\",\"code-interpreter\",\"llm-tool-use\",\"meta\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "glm-51",
+  "created": "2026-04-07T21:25:14+00:00",
+  "title": "GLM-5.1: Towards Long-Horizon Tasks",
+  "tags": "[\"css\",\"svg\",\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"glm\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemma-4",
+  "created": "2026-04-02T18:28:54+00:00",
+  "title": "Gemma 4: Byte for byte, the most capable open models",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"vision-llms\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"gemma\",\"llm-release\",\"lm-studio\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "mini-and-nano",
+  "created": "2026-03-17T19:39:17+00:00",
+  "title": "GPT-5.4 mini and GPT-5.4 nano, which can describe 76,000 photos for $52",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm\",\"vision-llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "mistral-small-4",
+  "created": "2026-03-16T23:41:17+00:00",
+  "title": "Introducing Mistral Small 4",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"mistral\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "introducing-gpt54",
+  "created": "2026-03-05T23:56:09+00:00",
+  "title": "Introducing GPT‑5.4",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-31-flash-lite",
+  "created": "2026-03-03T21:53:54+00:00",
+  "title": "Gemini 3.1 Flash-Lite",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-31-pro",
+  "created": "2026-02-19T17:58:37+00:00",
+  "title": "Gemini 3.1 Pro",
+  "tags": "[\"google\",\"svg\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "claude-sonnet-46",
+  "created": "2026-02-17T23:58:58+00:00",
+  "title": "Introducing Claude Sonnet 4.6",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"anthropic\",\"claude\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"claude-code\"]"
+ },
+ {
+  "type": "quotation",
+  "slug": "elon-musk",
+  "created": "2026-02-17T22:28:57+00:00",
+  "title": "Elon Musk",
+  "tags": "[\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen35",
+  "created": "2026-02-17T04:30:57+00:00",
+  "title": "Qwen3.5: Towards Native Multimodal Agents",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"vision-llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-release\",\"openrouter\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "codex-spark",
+  "created": "2026-02-12T21:16:07+00:00",
+  "title": "Introducing GPT‑5.3‑Codex‑Spark",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"cerebras\",\"pelican-riding-a-bicycle\",\"llm-release\",\"codex\",\"llm-performance\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-3-deep-think",
+  "created": "2026-02-12T18:12:17+00:00",
+  "title": "Gemini 3 Deep Think",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "glm-5",
+  "created": "2026-02-11T18:56:14+00:00",
+  "title": "GLM-5: From Vibe Coding to Agentic Engineering",
+  "tags": "[\"definitions\",\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"pelican-riding-a-bicycle\",\"llm-release\",\"vibe-coding\",\"openrouter\",\"ai-in-china\",\"glm\",\"agentic-engineering\"]"
+ },
+ {
+  "type": "note",
+  "slug": "two-new-models",
+  "created": "2026-02-05T20:29:20+00:00",
+  "title": "Opus 4.6 and Codex 5.3",
+  "tags": "[\"c\",\"ai\",\"openai\",\"generative-ai\",\"llms\",\"anthropic\",\"nicholas-carlini\",\"pelican-riding-a-bicycle\",\"llm-release\",\"codex\",\"parallel-agents\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "kimi-k25",
+  "created": "2026-01-27T15:07:41+00:00",
+  "title": "Kimi K2.5: Visual Agentic Intelligence",
+  "tags": "[\"ai\",\"llms\",\"hugging-face\",\"vision-llms\",\"llm-tool-use\",\"ai-agents\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"moonshot\",\"parallel-agents\",\"kimi\",\"janky-licenses\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "the-year-in-llms",
+  "created": "2025-12-31T23:50:40+00:00",
+  "title": "2025: The year in LLMs",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"anthropic\",\"gemini\",\"ai-agents\",\"pelican-riding-a-bicycle\",\"vibe-coding\",\"coding-agents\",\"ai-in-china\",\"conformance-suites\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "introducing-gpt-52-codex",
+  "created": "2025-12-19T05:21:17+00:00",
+  "title": "Introducing GPT-5.2-Codex",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-release\",\"codex\",\"gpt-codex\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemini-3-flash",
+  "created": "2025-12-17T22:44:52+00:00",
+  "title": "Gemini 3 Flash",
+  "tags": "[\"google\",\"ai\",\"web-components\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-52",
+  "created": "2025-12-11T23:58:04+00:00",
+  "title": "GPT-5.2",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm\",\"pelican-riding-a-bicycle\",\"llm-release\",\"gpt-5\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "devstral-2",
+  "created": "2025-12-09T23:58:27+00:00",
+  "title": "Devstral 2",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"mistral\",\"pelican-riding-a-bicycle\",\"llm-release\",\"janky-licenses\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "deepseek-v32",
+  "created": "2025-12-01T23:56:19+00:00",
+  "title": "DeepSeek-V3.2",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"deepseek\",\"llm-release\",\"openrouter\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "llm-svg-generation-benchmark",
+  "created": "2025-11-25T04:02:25+00:00",
+  "title": "LLM SVG Generation Benchmark",
+  "tags": "[\"benchmarks\",\"svg\",\"ai\",\"generative-ai\",\"llms\",\"evals\",\"pelican-riding-a-bicycle\",\"tom-gally\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "claude-opus",
+  "created": "2025-11-24T19:37:07+00:00",
+  "title": "Claude Opus 4.5, and why evaluating new LLMs is increasingly difficult",
+  "tags": "[\"prompt-injection\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"evals\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"november-2025-inflection\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "olmo-3",
+  "created": "2025-11-22T23:59:46+00:00",
+  "title": "Olmo 3 is a fully open LLM",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"interpretability\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"ai2\",\"ai-ethics\",\"llm-release\",\"lm-studio\",\"nathan-lambert\",\"olmo\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gpt-51-codex-max",
+  "created": "2025-11-19T23:15:10+00:00",
+  "title": "Building more with GPT-5.1-Codex-Max",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"evals\",\"pelican-riding-a-bicycle\",\"llm-release\",\"gpt-5\",\"codex\",\"gpt-codex\",\"november-2025-inflection\",\"gpt\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemini-3",
+  "created": "2025-11-18T19:00:48+00:00",
+  "title": "Trying out Gemini 3 Pro with audio transcription and a new pelican benchmark",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gpt-51",
+  "created": "2025-11-13T23:59:35+00:00",
+  "title": "Introducing GPT-5.1 for developers",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"gpt-5\",\"gpt-codex\",\"november-2025-inflection\",\"gpt\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "training-for-pelicans-riding-bicycles",
+  "created": "2025-11-13T16:03:38+00:00",
+  "title": "What happens if AI labs train for pelicans riding bicycles?",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "agentic-pelican-on-a-bicycle",
+  "created": "2025-11-11T23:23:18+00:00",
+  "title": "Agentic Pelican on a Bicycle",
+  "tags": "[\"svg\",\"ai\",\"generative-ai\",\"llms\",\"ai-agents\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "pelican-on-a-bike-raytracer-edition",
+  "created": "2025-11-09T16:51:42+00:00",
+  "title": "Pelican on a Bike - Raytracer Edition",
+  "tags": "[\"3d\",\"ray-tracing\",\"ai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"gpt-5\",\"gpt\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-5-codex-mini",
+  "created": "2025-11-09T03:31:34+00:00",
+  "title": "Reverse engineering Codex CLI to get GPT-5-Codex-Mini to draw me a pelican",
+  "tags": "[\"reverse-engineering\",\"ai\",\"rust\",\"openai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"pelican-riding-a-bicycle\",\"llm-release\",\"vibe-coding\",\"coding-agents\",\"gpt-5\",\"codex\",\"gpt-codex\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "kimi-k2-thinking",
+  "created": "2025-11-06T23:53:06+00:00",
+  "title": "Kimi K2 Thinking",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"mlx\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"openrouter\",\"ai-in-china\",\"artificial-analysis\",\"moonshot\",\"kimi\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "swe-15",
+  "created": "2025-10-29T23:59:20+00:00",
+  "title": "Introducing SWE-1.5: Our Fast Agent Model",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"pelican-riding-a-bicycle\",\"llm-release\",\"coding-agents\",\"glm\",\"llm-performance\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "minimax-m2",
+  "created": "2025-10-29T22:49:47+00:00",
+  "title": "MiniMax M2 & Agent: Ingenious in Simplicity",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"minimax\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "cursor-composer",
+  "created": "2025-10-29T20:45:53+00:00",
+  "title": "Composer: Building a fast frontier model with RL",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"pelican-riding-a-bicycle\",\"llm-release\",\"coding-agents\",\"cursor\",\"parallel-agents\",\"llm-performance\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "visual-features-across-modalities",
+  "created": "2025-10-25T03:08:31+00:00",
+  "title": "Visual Features Across Modalities: SVG and ASCII Art Reveal Cross-Modal Understanding",
+  "tags": "[\"svg\",\"ai\",\"generative-ai\",\"llms\",\"anthropic\",\"interpretability\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "claude-haiku-45",
+  "created": "2025-10-15T19:36:34+00:00",
+  "title": "Introducing Claude Haiku 4.5",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"anthropic\",\"claude\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gpt-image-1-mini",
+  "created": "2025-10-06T22:54:32+00:00",
+  "title": "gpt-image-1-mini",
+  "tags": "[\"python\",\"tools\",\"ai\",\"openai\",\"generative-ai\",\"uv\",\"text-to-image\",\"pelican-riding-a-bicycle\",\"vibe-coding\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gpt-5-pro",
+  "created": "2025-10-06T19:48:45+00:00",
+  "title": "GPT-5 pro",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"gpt-5\",\"gpt\"]"
+ },
+ {
+  "type": "note",
+  "slug": "two-pelicans",
+  "created": "2025-10-01T23:39:07+00:00",
+  "title": "Two more Chinese pelicans",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"pelican-riding-a-bicycle\",\"deepseek\",\"llm-release\",\"openrouter\",\"ai-in-china\",\"glm\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "claude-sonnet-4-5",
+  "created": "2025-09-29T18:11:39+00:00",
+  "title": "Claude Sonnet 4.5 is probably the \"best coding model in the world\" (at least for now)",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"anthropic\",\"claude\",\"code-interpreter\",\"llm-tool-use\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "improved-gemini-25-flash-and-flash-lite",
+  "created": "2025-09-25T19:27:43+00:00",
+  "title": "Improved Gemini 2.5 Flash and Flash-Lite",
+  "tags": "[\"google\",\"llms\",\"llm\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"artificial-analysis\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gpt-5-codex",
+  "created": "2025-09-23T23:59:20+00:00",
+  "title": "GPT-5-Codex",
+  "tags": "[\"ai\",\"openai\",\"prompt-engineering\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"gpt-5\",\"codex\",\"gpt-codex\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "grok-4-fast",
+  "created": "2025-09-20T23:59:33+00:00",
+  "title": "Grok 4 Fast",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"vision-llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"grok\",\"llm-release\",\"openrouter\",\"xai\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gpt-5-codex",
+  "created": "2025-09-15T18:55:35+00:00",
+  "title": "GPT‑5-Codex and upgrades to Codex",
+  "tags": "[\"code-review\",\"ai\",\"openai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"pelican-riding-a-bicycle\",\"llm-release\",\"coding-agents\",\"async-coding-agents\",\"gpt-5\",\"codex\",\"theo-browne\",\"gpt-codex\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen3-next",
+  "created": "2025-09-12T04:07:32+00:00",
+  "title": "Qwen3-Next-80B-A3B: 🐧🦩 Who needs legs?!",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"openrouter\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "kimi-k2-instruct-0905",
+  "created": "2025-09-06T16:59:25+00:00",
+  "title": "Kimi-K2-Instruct-0905",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"groq\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"moonshot\",\"kimi\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "deepseek-31",
+  "created": "2025-08-22T22:07:25+00:00",
+  "title": "DeepSeek 3.1",
+  "tags": "[\"ai\",\"prompt-engineering\",\"generative-ai\",\"llms\",\"drew-breunig\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"deepseek\",\"llm-release\",\"openrouter\",\"coding-agents\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "a-pelican-tried-to-eat-my-bike",
+  "created": "2025-08-20T15:35:05+00:00",
+  "title": "David Ho on BlueSky: A pelican tried to eat my bike",
+  "tags": "[\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemma-3-270m",
+  "created": "2025-08-14T17:22:36+00:00",
+  "title": "Introducing Gemma 3 270M: The compact model for hyper-efficient AI",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"gemini\",\"pelican-riding-a-bicycle\",\"gemma\",\"llm-release\",\"lm-studio\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "qwen3-4b",
+  "created": "2025-08-10T23:59:12+00:00",
+  "title": "Qwen3-4B-Thinking: \"This is art - pelicans don't ride bikes!\"",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-release\",\"lm-studio\",\"ai-in-china\"]"
+ },
+ {
+  "type": "note",
+  "slug": "previewing-gpt-5",
+  "created": "2025-08-07T19:11:19+00:00",
+  "title": "Previewing GPT-5 at OpenAI's office",
+  "tags": "[\"youtube\",\"ai\",\"openai\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"gpt-5\",\"disclosures\",\"theo-browne\",\"gpt\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-5",
+  "created": "2025-08-07T17:36:12+00:00",
+  "title": "GPT-5: Key characteristics, pricing and model card",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"chatgpt\",\"llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"gpt-5\",\"gpt\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-oss",
+  "created": "2025-08-05T20:33:13+00:00",
+  "title": "OpenAI's new open weight (Apache 2) models are really good",
+  "tags": "[\"open-source\",\"ai\",\"openai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"llm-tool-use\",\"cerebras\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"lm-studio\",\"space-invaders\",\"gpt-oss\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "claude-opus-41",
+  "created": "2025-08-05T17:17:37+00:00",
+  "title": "Claude Opus 4.1",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"anthropic\",\"claude\",\"evals\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "xbai-o4",
+  "created": "2025-08-03T22:21:17+00:00",
+  "title": "XBai o4",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"mlx\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"lm-studio\",\"ai-in-china\",\"space-invaders\",\"ivan-fioravanti\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "deep-think-in-the-gemini-app",
+  "created": "2025-08-01T17:09:32+00:00",
+  "title": "Deep Think in the Gemini app",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "qwen3-coder-flash",
+  "created": "2025-07-31T19:45:36+00:00",
+  "title": "Trying out Qwen3 Coder Flash using LM Studio and Open WebUI and LLM",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"llm\",\"uv\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-release\",\"lm-studio\",\"ai-in-china\",\"space-invaders\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen3-30b-a3b-thinking-2507",
+  "created": "2025-07-30T15:36:54+00:00",
+  "title": "Qwen3-30B-A3B-Thinking-2507",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"ai-in-china\",\"space-invaders\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "space-invaders",
+  "created": "2025-07-29T13:02:39+00:00",
+  "title": "My 2.5 year old laptop can write Space Invaders in JavaScript now, using GLM-4.5 Air and MLX",
+  "tags": "[\"python\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"ai-assisted-programming\",\"uv\",\"mlx\",\"pelican-riding-a-bicycle\",\"ai-in-china\",\"space-invaders\",\"ivan-fioravanti\",\"glm\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "glm-45",
+  "created": "2025-07-28T16:56:42+00:00",
+  "title": "GLM-4.5: Reasoning, Coding, and Agentic Abililties",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"mlx\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"ai-in-china\",\"ivan-fioravanti\",\"glm\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen3-235b-a22b-thinking-2507",
+  "created": "2025-07-25T22:52:14+00:00",
+  "title": "Qwen3-235B-A22B-Thinking-2507",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "instagram-reel-veo-3-paid-preview",
+  "created": "2025-07-23T19:08:32+00:00",
+  "title": "Instagram Reel: Veo 3 paid preview",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"gemini\",\"pelican-riding-a-bicycle\",\"text-to-video\",\"video-models\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen3-coder",
+  "created": "2025-07-22T22:52:02+00:00",
+  "title": "Qwen3-Coder: Agentic Coding in the World",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"qwen\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"openrouter\",\"coding-agents\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwen3-235b-a22b-instruct-2507",
+  "created": "2025-07-22T22:07:12+00:00",
+  "title": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"qwen\",\"pelican-riding-a-bicycle\",\"llm-release\",\"openrouter\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "kimi-k2",
+  "created": "2025-07-11T18:33:54+00:00",
+  "title": "moonshotai/Kimi-K2-Instruct",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"llm\",\"mlx\",\"pelican-riding-a-bicycle\",\"llm-release\",\"ai-in-china\",\"moonshot\",\"kimi\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "grok-4",
+  "created": "2025-07-10T19:36:03+00:00",
+  "title": "Grok 4",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"vision-llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"grok\",\"ai-ethics\",\"llm-release\",\"openrouter\",\"system-prompts\",\"artificial-analysis\",\"xai\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "infinite-monkey",
+  "created": "2025-07-09T19:07:45+00:00",
+  "title": "Infinite Monkey",
+  "tags": "[\"macos\",\"mihai-parparita\",\"ai\",\"webassembly\",\"generative-ai\",\"llms\",\"ai-agents\",\"pelican-riding-a-bicycle\",\"computer-use\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemma-3n",
+  "created": "2025-06-26T21:08:36+00:00",
+  "title": "Introducing Gemma 3n: The developer guide",
+  "tags": "[\"audio\",\"google\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"vision-llms\",\"mlx\",\"ollama\",\"pelican-riding-a-bicycle\",\"gemma\",\"llm-release\",\"prince-canuma\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "mistral-small-32",
+  "created": "2025-06-20T19:12:42+00:00",
+  "title": "Mistral-Small 3.2",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"hugging-face\",\"mistral\",\"vision-llms\",\"llm-tool-use\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-release\",\"lm-studio\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemini-2-5",
+  "created": "2025-06-17T22:00:00+00:00",
+  "title": "Trying out the new Gemini 2.5 model family",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "o3-pro",
+  "created": "2025-06-10T20:46:00+00:00",
+  "title": "o3-pro",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"o3\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "magistral",
+  "created": "2025-06-10T16:13:22+00:00",
+  "title": "Magistral — the first reasoning model by Mistral AI",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"mistral\",\"cerebras\",\"llm-pricing\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "six-months-in-llms",
+  "created": "2025-06-06T20:42:26+00:00",
+  "title": "The last six months in LLMs, illustrated by pelicans on bicycles",
+  "tags": "[\"speaking\",\"my-talks\",\"ai\",\"openai\",\"generative-ai\",\"llms\",\"anthropic\",\"annotated-talks\",\"mistral\",\"gemini\",\"pelican-riding-a-bicycle\",\"deepseek\",\"lethal-trifecta\",\"ai-in-china\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "code-with-claude-live-blog",
+  "created": "2025-05-22T16:32:02+00:00",
+  "title": "Live blog: Claude 4 launch at Code with Claude",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"anthropic\",\"claude\",\"pelican-riding-a-bicycle\",\"llm-release\",\"claude-4\",\"live-blog\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-25",
+  "created": "2025-05-20T20:34:30+00:00",
+  "title": "Gemini 2.5: Our most intelligent models are getting even better",
+  "tags": "[\"google\",\"google-io\",\"ai\",\"generative-ai\",\"llm\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "note",
+  "slug": "google-io-pelican",
+  "created": "2025-05-20T19:24:03+00:00",
+  "title": "Google I/O Pelican",
+  "tags": "[\"google\",\"google-io\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "note",
+  "slug": "pycon-poster",
+  "created": "2025-05-17T20:34:39+00:00",
+  "title": "Datasette ecosystem poster for PyCon US",
+  "tags": "[\"museums\",\"pycon\",\"datasette\",\"sqlite-utils\",\"llm\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-25-pro-preview",
+  "created": "2025-05-06T18:09:40+00:00",
+  "title": "Gemini 2.5 Pro Preview: even better coding performance",
+  "tags": "[\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"gemini\",\"vision-llms\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "qwen-3",
+  "created": "2025-04-29T00:37:03+00:00",
+  "title": "Qwen 3 offers a case study in how to effectively release a model",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"llm-tool-use\",\"qwen\",\"mlx\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"model-context-protocol\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "start-building-with-gemini-25-flash",
+  "created": "2025-04-17T20:56:16+00:00",
+  "title": "Start building with Gemini 2.5 Flash",
+  "tags": "[\"google\",\"svg\",\"llms\",\"llm\",\"gemini\",\"llm-pricing\",\"logan-kilpatrick\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"chatbot-arena\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gpt-4-1",
+  "created": "2025-04-14T18:12:12+00:00",
+  "title": "GPT-4.1: Three new million token input models from OpenAI, including their cheapest model yet",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm\",\"vision-llms\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"long-context\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemini",
+  "created": "2025-03-25T20:45:58+00:00",
+  "title": "Putting Gemini 2.5 Pro through its paces",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"gemini\",\"vision-llms\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"files-to-prompt\",\"chatbot-arena\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "deepseek",
+  "created": "2025-03-24T15:04:04+00:00",
+  "title": "deepseek-ai/DeepSeek-V3-0324",
+  "tags": "[\"tools\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"ai-assisted-programming\",\"hugging-face\",\"llm\",\"mlx\",\"pelican-riding-a-bicycle\",\"deepseek\",\"llm-release\",\"openrouter\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "o1-pro",
+  "created": "2025-03-19T23:54:16+00:00",
+  "title": "OpenAI platform: o1-pro",
+  "tags": "[\"ai\",\"openai\",\"generative-ai\",\"llms\",\"llm\",\"o1\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "olmo2",
+  "created": "2025-03-16T03:30:41+00:00",
+  "title": "mlx-community/OLMo-2-0325-32B-Instruct-4bit",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"mlx\",\"pelican-riding-a-bicycle\",\"ai2\",\"olmo\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemma-3",
+  "created": "2025-03-12T16:15:19+00:00",
+  "title": "Notes on Google's Gemma 3",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"gemini\",\"vision-llms\",\"mlx\",\"ollama\",\"pelican-riding-a-bicycle\",\"gemma\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "introducing-gpt-45",
+  "created": "2025-02-27T22:02:59+00:00",
+  "title": "Initial impressions of GPT-4.5",
+  "tags": "[\"ai\",\"openai\",\"andrej-karpathy\",\"generative-ai\",\"llms\",\"evals\",\"uv\",\"pelican-riding-a-bicycle\",\"paul-gauthier\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "claude-37-sonnet-and-claude-code",
+  "created": "2025-02-24T20:25:39+00:00",
+  "title": "Claude 3.7 Sonnet and Claude Code",
+  "tags": "[\"cli\",\"oauth\",\"ai\",\"generative-ai\",\"llms\",\"ai-assisted-programming\",\"llm\",\"anthropic\",\"claude\",\"ai-agents\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"coding-agents\",\"claude-code\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "andrej-karpathy-grok-3",
+  "created": "2025-02-18T16:46:25+00:00",
+  "title": "Andrej Karpathy's initial impressions of Grok 3",
+  "tags": "[\"ai\",\"andrej-karpathy\",\"generative-ai\",\"llms\",\"pelican-riding-a-bicycle\",\"grok\",\"llm-release\",\"chatbot-arena\",\"xai\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-2",
+  "created": "2025-02-05T16:37:29+00:00",
+  "title": "Gemini 2.0 is now available to everyone",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"llm-pricing\",\"pelican-riding-a-bicycle\",\"llm-release\",\"files-to-prompt\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "deepseek-r1",
+  "created": "2025-01-20T15:20:23+00:00",
+  "title": "DeepSeek-R1 and exploring DeepSeek-R1-Distill-Llama-8B",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"deepseek\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "phi-4",
+  "created": "2025-01-08T17:57:18+00:00",
+  "title": "microsoft/phi-4",
+  "tags": "[\"microsoft\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"phi\",\"uv\",\"mlx\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-release\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "gemini-thinking-mode",
+  "created": "2024-12-19T23:59:54+00:00",
+  "title": "Gemini 2.0 Flash \"Thinking mode\"",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"o1\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "veo-2",
+  "created": "2024-12-16T23:31:59+00:00",
+  "title": "Veo 2",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"pelican-riding-a-bicycle\",\"text-to-video\",\"video-models\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "model-viewer",
+  "created": "2024-12-13T18:46:13+00:00",
+  "title": "<model-viewer> Web Component by Google",
+  "tags": "[\"3d\",\"google\",\"microsoft\",\"ai\",\"web-components\",\"generative-ai\",\"claude\",\"blender\",\"pelican-riding-a-bicycle\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "sora",
+  "created": "2024-12-09T18:35:36+00:00",
+  "title": "Sora",
+  "tags": "[\"video\",\"ai\",\"openai\",\"generative-ai\",\"pelican-riding-a-bicycle\",\"text-to-video\",\"video-models\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "llama-33-70b",
+  "created": "2024-12-09T15:08:40+00:00",
+  "title": "I can now run a GPT-4 class model on my laptop",
+  "tags": "[\"python\",\"ai\",\"generative-ai\",\"llama\",\"gpt-4\",\"local-llms\",\"llms\",\"ai-assisted-programming\",\"llm\",\"meta\",\"uv\",\"mlx\",\"ollama\",\"pelican-riding-a-bicycle\",\"gpt\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-exp-1206",
+  "created": "2024-12-06T18:05:30+00:00",
+  "title": "New Gemini model: gemini-exp-1206",
+  "tags": "[\"google\",\"releases\",\"svg\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"pelican-riding-a-bicycle\",\"llm-release\",\"chatbot-arena\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "qwq",
+  "created": "2024-11-27T23:59:19+00:00",
+  "title": "QwQ: Reflect Deeply on the Boundaries of the Unknown",
+  "tags": "[\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"llm\",\"qwen\",\"ollama\",\"pelican-riding-a-bicycle\",\"llm-reasoning\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "gemini-exp-1121",
+  "created": "2024-11-22T06:14:26+00:00",
+  "title": "Say hello to gemini-exp-1121",
+  "tags": "[\"google\",\"ai\",\"generative-ai\",\"llms\",\"llm\",\"gemini\",\"vision-llms\",\"logan-kilpatrick\",\"pelican-riding-a-bicycle\",\"llm-release\",\"chatbot-arena\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "recraft-v3",
+  "created": "2024-11-15T04:24:09+00:00",
+  "title": "Recraft V3",
+  "tags": "[\"svg\",\"ai\",\"generative-ai\",\"text-to-image\",\"pelican-riding-a-bicycle\",\"artificial-analysis\"]"
+ },
+ {
+  "type": "entry",
+  "slug": "qwen25-coder",
+  "created": "2024-11-12T23:37:36+00:00",
+  "title": "Qwen2.5-Coder-32B is an LLM that can code well that runs on my Mac",
+  "tags": "[\"mandelbrot\",\"open-source\",\"ai\",\"generative-ai\",\"local-llms\",\"llms\",\"ai-assisted-programming\",\"llm\",\"uv\",\"qwen\",\"mlx\",\"ollama\",\"pelican-riding-a-bicycle\",\"paul-gauthier\",\"llm-release\",\"ai-in-china\"]"
+ },
+ {
+  "type": "blogmark",
+  "slug": "pelicans-on-a-bicycle",
+  "created": "2024-10-25T23:56:50+00:00",
+  "title": "Pelicans on a bicycle",
+  "tags": "[\"svg\",\"ai\",\"openai\",\"generative-ai\",\"llama\",\"llms\",\"llm\",\"anthropic\",\"gemini\",\"cerebras\",\"pelican-riding-a-bicycle\"]"
+ }
+]
