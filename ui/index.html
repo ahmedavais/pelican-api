@@ -162,23 +162,25 @@ button[disabled] { opacity: 0.55; cursor: default; }
   padding: 18px;
 }
 
-.vendors { display: grid; gap: 7px; }
+.vendors { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); column-gap: 36px; row-gap: 6px; }
 .vendor-row {
   display: grid;
-  grid-template-columns: 108px 1fr 34px;
+  width: 100%;
+  grid-template-columns: 128px 1fr 36px;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 13px;
   background: none;
   border: 0;
-  padding: 2px 0;
+  padding: 5px 4px;
   text-align: left;
   font-weight: 400;
   border-radius: 4px;
 }
+.vendor-row:hover { background: var(--beak-soft); }
 .vendor-row:hover .bar { background: var(--beak); }
 .vendor-row .name { font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.vendor-row .track { height: 10px; background: var(--sky); border-radius: 3px; overflow: hidden; }
+.vendor-row .track { height: 12px; background: var(--sky); border-radius: 3px; overflow: hidden; }
 .vendor-row .bar { height: 100%; background: var(--water); border-radius: 3px; }
 .vendor-row .count { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
 
@@ -251,7 +253,7 @@ tr.selected td { background: var(--beak-soft); }
     <div class="error" id="error" hidden></div>
   </header>
 
-  <section class="top" aria-label="Featured pelicans and vendors">
+  <section class="top" aria-label="Featured pelicans">
     <article class="pelican-card" id="latest-card" aria-live="polite">
       <div class="label"><h2>Latest pelican</h2></div>
       <p class="soft">Loading…</p>
@@ -260,10 +262,11 @@ tr.selected td { background: var(--beak-soft); }
       <div class="label"><h2>Random pelican</h2><button type="button" id="random-button">Another one</button></div>
       <p class="soft">Loading…</p>
     </article>
-    <section class="panel" aria-labelledby="vendors-heading">
-      <h2 id="vendors-heading">Pelicans by vendor</h2>
-      <div class="vendors" id="vendors"><p class="soft">Loading…</p></div>
-    </section>
+  </section>
+
+  <section class="panel" aria-labelledby="vendors-heading">
+    <h2 id="vendors-heading">Pelicans by vendor</h2>
+    <div class="vendors" id="vendors"><p class="soft">Loading…</p></div>
   </section>
 
   <section class="panel" aria-labelledby="months-heading">
