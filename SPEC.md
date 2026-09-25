@@ -135,7 +135,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - [x] `/docs` loads and documents every endpoint
 - [x] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
 - [ ] Daily refresh has run successfully on its own for 7 days
-- [ ] Told Simon about it
+- Private hobby project; not announced. Tell Simon later only if it becomes public.
 
 ## Open decisions (Ahmed's)
 
