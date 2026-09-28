@@ -69,6 +69,7 @@ body {
   padding-inline: 20px;
   padding-block: 28px 64px;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
 }
 a { color: var(--water); }
@@ -181,7 +182,7 @@ button[disabled] { opacity: 0.55; cursor: default; }
 .vendor-row:hover .bar { background: var(--beak); }
 .vendor-row .name { font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .vendor-row .track { height: 12px; background: var(--sky); border-radius: 3px; overflow: hidden; }
-.vendor-row .bar { height: 100%; background: var(--water); border-radius: 3px; }
+.vendor-row .bar { display: block; height: 100%; background: var(--water); border-radius: 3px; }
 .vendor-row .count { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
 
 .months { overflow-x: auto; }
