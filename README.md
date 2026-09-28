@@ -67,4 +67,4 @@ npx wrangler d1 execute pelican-api --remote --command "SELECT started_at, statu
 
 - At most 50 D1 queries per invocation: multi-row inserts, and catalog rewrites capped at 36 statements per run, newest first. A large catalog change can also be applied at once with `npm run backfill:remote`.
 - 10 ms CPU per invocation: post bodies are stripped from the feed before parsing.
-- 60 requests per minute per IP via the Workers rate-limit binding (approximate, counted per Cloudflare location).
+- A limit of 60 requests per minute per IP is configured via the Workers rate-limit binding, but it has not enforced on this account in live tests (see SPEC.md Decisions). Heavy use would hit free-plan quota errors, never a bill.

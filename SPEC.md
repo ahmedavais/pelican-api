@@ -91,7 +91,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 - Cloudflare D1 for storage, with schema managed by migrations
 - Cron Trigger for the daily refresh
 - `@hono/zod-openapi` so the spec and docs are generated from route definitions
-- Rate limiting: 60 requests per minute per IP, via the Workers rate-limit binding (per-location, approximate)
+- Rate limiting: 60 requests per minute per IP configured via the Workers rate-limit binding (per-location, approximate); not enforced on this account (see Decisions)
 - CORS open (`*`), since the API is open and read-only
 - No Claude API, no secrets
 
@@ -115,7 +115,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Pelican IDs are `{post_id}-{model_slug}`. True duplicates get `-2`, `-3` as a safety net.
 - Post IDs include the date, because slugs repeat across dates.
 - `model_name` is the catalog's canonical spelling, not the post's wording, because Simon spells the same family differently across posts ("Qwen3.8" vs "Qwen 3.8"). Normalization stays a plain lowercase-and-hyphenate step; a catalog test guards against near-duplicate spellings.
-- Rate limiting uses the Workers rate-limit binding; approximate counts are acceptable. Live check on 2026-09-25: `limit()` returned success for 80 of 80 requests from one IP (77 in one location), so the binding did not enforce on this free-plan account. Retest after the first cron run; if still permissive, choose between a Durable Object limiter and documenting the limit as unenforced.
+- Rate limiting uses the Workers rate-limit binding; approximate counts are acceptable. Live check on 2026-09-25: `limit()` returned success for 80 of 80 requests from one IP (77 in one location), so the binding did not enforce on this free-plan account. Retest on 2026-09-28 gave the same result: 80 of 80 requests returned 200. Decision: document the limit as unenforced rather than build a Durable Object limiter. On the free plan the worst case of heavy use is a day of quota errors, never a bill. The binding and its 429 handling stay in the code in case Cloudflare starts enforcing it.
 - Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
 - The API stays open but unlisted rather than behind Cloudflare Access or an API key. On the free plan the worst case of someone finding it is a day of quota errors, never a bill, and the data is public-derived metadata.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
