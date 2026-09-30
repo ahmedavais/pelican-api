@@ -54,8 +54,19 @@ describe("storeNewPosts", () => {
     ]);
   });
 
-  it("adds nothing when given no posts", async () => {
-    expect(await storeNewPosts(env.DB, [], "2026-09-25T06:17:00.000Z")).toBe(0);
+  it("adds nothing when given no posts, without querying", async () => {
+    const counted = countingQueries(env.DB);
+
+    expect(await storeNewPosts(counted.db, [], "2026-09-25T06:17:00.000Z")).toBe(0);
+    expect(counted.queriesExecuted()).toBe(0);
+  });
+
+  it("skips a post whose id is already stored under another form of its url", async () => {
+    await storeNewPosts(env.DB, [opusPost], "2026-09-25T06:17:00.000Z");
+    const withoutTrailingSlash = { ...opusPost, url: opusPost.url.replace(/\/$/, "") };
+
+    expect(await storeNewPosts(env.DB, [withoutTrailingSlash], "2026-09-26T06:17:00.000Z")).toBe(0);
+    expect(await env.DB.prepare("SELECT url FROM posts").all()).toMatchObject({ results: [{ url: opusPost.url }] });
   });
 
   it("only looks up stored urls when every post is already stored", async () => {
