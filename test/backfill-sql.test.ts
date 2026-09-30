@@ -51,6 +51,20 @@ describe("backfillSql", () => {
     expect(await applyCatalog(env.DB, catalog)).toBe(0);
   });
 
+  it("replaces a post's pelicans when run again with a changed catalog", async () => {
+    const pelicansFor = (...modelNames: string[]): Catalog => ({
+      [quotedPost.url]: { kind: "model_pelicans", pelicans: modelNames.map((modelName) => ({ modelName, vendor: "anthropic" })) },
+    });
+    await execute(backfillSql([quotedPost], pelicansFor("Claude Opus 4.8", "Claude Sonnet 5"), "2026-09-25T20:00:00.000Z"));
+    expect(await count("pelicans")).toBe(2);
+
+    await execute(backfillSql([quotedPost], pelicansFor("Claude Haiku 4.5"), "2026-09-26T20:00:00.000Z"));
+
+    expect(await env.DB.prepare("SELECT model_name FROM pelicans").all()).toMatchObject({
+      results: [{ model_name: "Claude Haiku 4.5" }],
+    });
+  });
+
   it("can run again without duplicating anything or changing the first ingest time", async () => {
     await execute(backfillSql(posts, {}, "2026-09-25T20:00:00.000Z"));
 
