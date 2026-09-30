@@ -13,5 +13,5 @@ export function inChunksOf<T>(size: number, items: T[]): T[][] {
 export function multiRowInsert(table: string, columns: string[], rowCount: number, conflictClause = ""): string {
   const rowPlaceholders = `(${columns.map(() => "?").join(", ")})`;
   const values = Array.from({ length: rowCount }, () => rowPlaceholders).join(", ");
-  return `INSERT INTO ${table} (${columns.join(", ")}) VALUES ${values} ${conflictClause}`.trim();
+  return `INSERT INTO ${table} (${columns.join(", ")}) VALUES ${values} ${conflictClause}`;
 }
