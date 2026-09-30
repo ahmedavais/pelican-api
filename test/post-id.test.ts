@@ -22,9 +22,12 @@ describe("postIdFromUrl", () => {
     expect(postIdFromUrl("https://simonwillison.net/2026/Sep/2/llm-gemini")).toBe("2026-09-02-llm-gemini");
   });
 
-  it("rejects a url that is not a dated post", () => {
-    expect(() => postIdFromUrl("https://simonwillison.net/tags/pelican-riding-a-bicycle/")).toThrow(
-      "Not a dated post URL",
-    );
+  it.each([
+    "https://simonwillison.net/tags/pelican-riding-a-bicycle/",
+    "https://simonwillison.net/blog/2026/Sep/2/llm-gemini/",
+    "https://simonwillison.net/2026/Sep/2/llm-gemini/comments/",
+    "https://simonwillison.net/2026/Foo/2/llm-gemini/",
+  ])("rejects %s as not a dated post", (url) => {
+    expect(() => postIdFromUrl(url)).toThrow("Not a dated post URL");
   });
 });
