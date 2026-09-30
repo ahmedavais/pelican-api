@@ -107,6 +107,12 @@ describe("GET /pelicans", () => {
     expect(body).toEqual({ error: { code, message: expect.any(String) } });
   });
 
+  it("explains a rejected cursor", async () => {
+    const { body } = await getJson("/pelicans?cursor=nonsense");
+
+    expect(body.error.message).toBe("The cursor is not one this API issued");
+  });
+
   it("allows any origin", async () => {
     const response = await get("/pelicans");
 

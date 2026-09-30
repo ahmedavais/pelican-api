@@ -43,6 +43,15 @@ describe("GET /posts", () => {
     expect(body.data.map((post: { id: string }) => post.id)).toEqual(["2026-09-05-not-yet-catalogued"]);
   });
 
+  it("offers no next page when the last page is exactly full", async () => {
+    await seedMixedPosts();
+
+    const { body } = await getJson("/posts?limit=4");
+
+    expect(body.data).toHaveLength(4);
+    expect(body.next_cursor).toBeNull();
+  });
+
   it("pages with a cursor", async () => {
     await seedMixedPosts();
 

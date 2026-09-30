@@ -38,6 +38,7 @@ export function pagePosition(cursor: string | undefined): PagePosition | null {
 export function pageFrom<Row extends NewestFirstRow>(rowsWithOneExtra: Row[], limit: number): Page<Row> {
   const data = rowsWithOneExtra.slice(0, limit);
   const last = data.at(-1);
+  // Stryker disable next-line ConditionalExpression: limit is at least 1, so extra rows mean a last row; this narrows the type
   const hasMore = rowsWithOneExtra.length > limit && last !== undefined;
   return {
     data,
