@@ -107,7 +107,10 @@ describe("rate limiting", () => {
     expect(statuses.slice(0, 60).every((status) => status === 200)).toBe(true);
     const limited = await get("/openapi.json", "203.0.113.7");
     expect(limited.status).toBe(429);
-    expect(await limited.json()).toEqual({ error: { code: "rate_limited", message: expect.any(String) } });
+    expect(limited.headers.get("Retry-After")).toBe("60");
+    expect(await limited.json()).toEqual({
+      error: { code: "rate_limited", message: "Too many requests; the limit is 60 per minute" },
+    });
   });
 
   it("counts each IP separately", async () => {

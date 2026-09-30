@@ -3,6 +3,7 @@ import { errorBody } from "./api-errors";
 
 export function limitRequestsPerIp(): MiddlewareHandler<{ Bindings: Env }> {
   return async (c, next) => {
+    // Stryker disable next-line StringLiteral: any fixed key gives requests without an IP one shared bucket
     const clientIp = c.req.header("CF-Connecting-IP") ?? "unknown";
     const { success } = await c.env.RATE_LIMITER.limit({ key: clientIp });
     if (!success) {
