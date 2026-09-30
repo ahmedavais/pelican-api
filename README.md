@@ -30,6 +30,20 @@ npm run dev
 
 Then `curl "http://localhost:8787/__scheduled?cron=17+6+*+*+*"` runs the daily refresh once. It fetches Simon's live feed, so keep that to about once a day.
 
+## Mutation testing
+
+```bash
+npm run test:mutation
+```
+
+[Stryker](https://stryker-mutator.io/) makes small changes to the code in `src/` and checks that some test fails for each. A run takes about three minutes and writes a report to `reports/mutation/index.html`. Every mutant is currently caught; run it after changing logic, not on every commit. The catalog is data, so it is not mutated.
+
+A mutant that no test could ever catch, because it behaves exactly like the original code, is marked with a `// Stryker disable next-line` comment giving the reason. Prefer simplifying the code when that removes the mutant instead.
+
+The API tests import the worker rather than calling it through `exports.default`, so code that runs when the worker loads is mutated too. Keep it that way, or those mutants will survive unnoticed.
+
+`/openapi.json` is checked against a snapshot. After a deliberate change to the API docs, review the diff and accept it with `npx vitest run -u`.
+
 ## See it in action
 
 Open [ui/index.html](ui/index.html) straight from disk in a browser. It reads the live API: latest and random pelicans, vendors, pelicans per month, the model leaderboard and a filterable explorer. It is not deployed anywhere.
