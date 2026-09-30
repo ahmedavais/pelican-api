@@ -33,12 +33,14 @@ export function readFeed(atomXml: string): FeedReading {
   return { posts, skippedEntries: entries.length - posts.length };
 }
 
-function withoutPostBodies(atomXml: string): string {
+export function withoutPostBodies(atomXml: string): string {
+  // Stryker disable next-line StringLiteral: text left between elements never reaches a post
   return atomXml.replace(POST_BODIES, "");
 }
 
 function postFromEntry(entry: FeedEntry): Post | null {
   const url = alternateLink(entry);
+  // Stryker disable next-line all: without the guard postIdFromUrl throws and the catch skips the entry anyway
   if (!url) {
     return null;
   }
@@ -56,6 +58,7 @@ function postFromEntry(entry: FeedEntry): Post | null {
 }
 
 function alternateLink(entry: FeedEntry): string | undefined {
+  // Stryker disable next-line ArrayDeclaration: any stand-in value still yields no href
   const links = entry.link ?? [];
   return (links.find((link) => link.rel === "alternate") ?? links[0])?.href;
 }

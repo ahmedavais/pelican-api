@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFeed } from "../src/feed";
+import { readFeed, withoutPostBodies } from "../src/feed";
 import savedFeed from "./fixtures/pelican-tag-feed.atom?raw";
 
 function feedWithEntries(...entries: string[]): string {
@@ -71,7 +71,57 @@ describe("readFeed", () => {
     expect(readFeed(feedWithEntries(entryWith(bodies.join(""))))).toEqual(readFeed(feedWithEntries(entryWith(""))));
   });
 
+  it("keeps numeric titles and tags as text", () => {
+    const feed = feedWithEntries(
+      `<entry><title>1984</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T00:00:00+00:00</published><category term="2024"/></entry>`,
+    );
+
+    expect(readFeed(feed).posts[0]).toMatchObject({ title: "1984", tags: ["2024"] });
+  });
+
+  it("gives an entry without categories no tags", () => {
+    const feed = feedWithEntries(
+      `<entry><title>T</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T00:00:00+00:00</published></entry>`,
+    );
+
+    expect(readFeed(feed).posts[0].tags).toEqual([]);
+  });
+
+  it("takes the post url from the alternate link, wherever it sits", () => {
+    const feed = feedWithEntries(
+      `<entry><title>T</title><link href="https://example.com/comments/1" rel="replies"/><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/" rel="alternate"/><published>2026-09-02T00:00:00+00:00</published></entry>`,
+    );
+
+    expect(readFeed(feed).posts[0].url).toBe("https://simonwillison.net/2026/Sep/2/llm-gemini/");
+  });
+
+  it("falls back to the first link when none is marked alternate", () => {
+    const feed = feedWithEntries(
+      `<entry><title>T</title><link href="https://simonwillison.net/2026/Sep/2/llm-gemini/"/><published>2026-09-02T00:00:00+00:00</published></entry>`,
+    );
+
+    expect(readFeed(feed).posts[0].url).toBe("https://simonwillison.net/2026/Sep/2/llm-gemini/");
+  });
+
+  it("skips entries with no link", () => {
+    const feed = feedWithEntries(`<entry><title>T</title><published>2026-09-02T00:00:00+00:00</published></entry>`);
+
+    expect(readFeed(feed)).toEqual({ posts: [], skippedEntries: 1 });
+  });
+
   it("reads a feed with no entries as no posts", () => {
     expect(readFeed(feedWithEntries())).toEqual({ posts: [], skippedEntries: 0 });
+  });
+
+  it("reads a document that is not an Atom feed as no posts", () => {
+    expect(readFeed("<html><body>Not found</body></html>")).toEqual({ posts: [], skippedEntries: 0 });
+  });
+});
+
+describe("withoutPostBodies", () => {
+  it("drops summaries and contents, with or without attributes and across lines", () => {
+    const entry = `<entry><title>T</title><summary type="html">&lt;p&gt;Hi&lt;/p&gt;</summary><content>\n  <p>Two lines</p>\n</content></entry>`;
+
+    expect(withoutPostBodies(entry)).toBe("<entry><title>T</title></entry>");
   });
 });
