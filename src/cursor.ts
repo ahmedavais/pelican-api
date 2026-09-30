@@ -7,7 +7,7 @@ export function encodeCursor(position: PagePosition): string {
   return btoa(JSON.stringify([position.publishedAt, position.id]))
     .replaceAll("+", "-")
     .replaceAll("/", "_")
-    .replace(/=+$/, "");
+    .replaceAll("=", "");
 }
 
 export function decodeCursor(cursor: string): PagePosition | null {
