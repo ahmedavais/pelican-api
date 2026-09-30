@@ -7,10 +7,13 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
     "dev": "wrangler dev --test-scheduled",
     "backfill:local": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --local --file .wrangler/backfill.sql",
-    "backfill:remote": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --remote --file .wrangler/backfill.sql"
+    "backfill:remote": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --remote --file .wrangler/backfill.sql",
+    "test:mutation": "stryker run"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.22.0",
+    "@stryker-mutator/core": "^10.0.0",
+    "@stryker-mutator/vitest-runner": "^10.0.0",
     "@types/node": "^26.6.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",

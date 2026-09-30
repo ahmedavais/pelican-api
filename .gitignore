@@ -5,3 +5,5 @@ playground/
 .vitest/
 .idea/
 .DS_Store
+.stryker-tmp/
+reports/
