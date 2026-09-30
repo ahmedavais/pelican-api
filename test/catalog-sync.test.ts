@@ -107,6 +107,23 @@ describe("applyCatalog", () => {
     expect(await applyCatalog(env.DB, fullCatalog)).toBe(0);
   });
 
+  it("does not rewrite a post when only the order of its pelicans changes", async () => {
+    await applyCatalog(env.DB, fullCatalog);
+
+    const reordered: Catalog = {
+      ...fullCatalog,
+      [opusPost.url]: {
+        kind: "model_pelicans",
+        pelicans: [
+          { modelName: "GPT-6 Sol", vendor: "openai" },
+          { modelName: "Claude Opus 5.5", vendor: "anthropic" },
+        ],
+      },
+    };
+
+    expect(await applyCatalog(env.DB, reordered)).toBe(0);
+  });
+
   it("stores all of a post's pelicans, even more than fit in one statement", async () => {
     await applyCatalog(env.DB, catalogGiving([opusPost], 20));
 
@@ -123,6 +140,12 @@ describe("applyCatalog within the free plan's query budget", () => {
     expect(await applyCatalog(env.DB, catalog)).toBe(12);
     expect(await applyCatalog(env.DB, catalog)).toBe(8);
     expect(await applyCatalog(env.DB, catalog)).toBe(0);
+  });
+
+  it("still rewrites a post whose pelicans alone exceed the budget, so the catalog never stalls", async () => {
+    // 490 pelicans need 35 inserts at 14 rows each, plus the update and delete: 37 statements.
+    expect(await applyCatalog(env.DB, catalogGiving([opusPost], 490))).toBe(1);
+    expect(await pelicanIdsOf(opusPost)).toHaveLength(490);
   });
 
   it("rewrites newest posts first", async () => {
