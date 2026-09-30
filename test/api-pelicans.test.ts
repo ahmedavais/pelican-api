@@ -86,6 +86,7 @@ describe("GET /pelicans", () => {
     ["/pelicans?since=2026-08-20", ["2026-09-22-opus-and-sol-gpt-6-sol", "2026-09-22-opus-and-sol-claude-opus-5-5", "2026-08-20-sol-gpt-6-sol"]],
     ["/pelicans?until=2026-08-20", ["2026-07-10-gemini-flash-gemini-3-5-flash"]],
     ["/pelicans?model=gpt-6-sol&since=2026-09-01T00:00:00Z", ["2026-09-22-opus-and-sol-gpt-6-sol"]],
+    ["/pelicans?since=2026-08-20T06:00:00-07:00", ["2026-09-22-opus-and-sol-gpt-6-sol", "2026-09-22-opus-and-sol-claude-opus-5-5"]],
   ])("filters %s", async (path, expectedIds) => {
     await seedThreePosts();
 
