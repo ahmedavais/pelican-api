@@ -2,9 +2,7 @@
 /** @type {import('@stryker-mutator/api/core').PartialStrykerOptions} */
 export default {
   testRunner: "vitest",
-  // API tests reach src/ through the worker entry (exports.default), not imports,
-  // so the import graph cannot tell which test files cover a mutant.
-  vitest: { configFile: "vitest.config.ts", related: false },
+  vitest: { configFile: "vitest.config.ts" },
   // The catalog is curated data, not logic; mutating it only produces noise.
   mutate: ["src/**/*.ts", "!src/pelican-catalog.ts"],
   ignorePatterns: [".wrangler", ".vitest", "reports", "ui", "playground"],
