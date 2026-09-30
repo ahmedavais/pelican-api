@@ -16,6 +16,7 @@ export function nearDuplicateModelNames(catalog: Catalog): string[][] {
 
 function catalogedModelNames(catalog: Catalog): string[] {
   return Object.values(catalog).flatMap((entry) =>
+    // Stryker disable next-line ArrayDeclaration: a stand-in name repeats identically, so it is never a near-duplicate
     entry.kind === "model_pelicans" ? entry.pelicans.map((pelican) => pelican.modelName) : [],
   );
 }
