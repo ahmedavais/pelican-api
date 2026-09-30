@@ -27,7 +27,7 @@ describe("GET /pelicans/latest", () => {
     const { status, body } = await getJson("/pelicans/latest");
 
     expect(status).toBe(404);
-    expect(body.error.code).toBe("not_found");
+    expect(body).toEqual({ error: { code: "not_found", message: "There are no pelicans yet" } });
   });
 });
 
@@ -42,9 +42,10 @@ describe("GET /pelicans/random", () => {
   });
 
   it("is a 404 when there are no pelicans yet", async () => {
-    const { status } = await getJson("/pelicans/random");
+    const { status, body } = await getJson("/pelicans/random");
 
     expect(status).toBe(404);
+    expect(body).toEqual({ error: { code: "not_found", message: "There are no pelicans yet" } });
   });
 });
 

@@ -1,0 +1,692 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GET /openapi.json snapshot > matches the reviewed spec 1`] = `
+{
+  "components": {
+    "parameters": {},
+    "schemas": {
+      "Error": {
+        "properties": {
+          "error": {
+            "properties": {
+              "code": {
+                "example": "not_found",
+                "type": "string",
+              },
+              "message": {
+                "example": "No pelican with id 'x'",
+                "type": "string",
+              },
+            },
+            "required": [
+              "code",
+              "message",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "error",
+        ],
+        "type": "object",
+      },
+      "Model": {
+        "properties": {
+          "first_seen_at": {
+            "example": "2026-09-22T23:46:41.000Z",
+            "type": "string",
+          },
+          "last_seen_at": {
+            "example": "2026-09-22T23:46:41.000Z",
+            "type": "string",
+          },
+          "model_name": {
+            "example": "Claude Opus 5.5",
+            "type": "string",
+          },
+          "model_slug": {
+            "example": "claude-opus-5-5",
+            "type": "string",
+          },
+          "pelican_count": {
+            "example": 1,
+            "type": "integer",
+          },
+          "vendor": {
+            "example": "anthropic",
+            "type": [
+              "string",
+              "null",
+            ],
+          },
+        },
+        "required": [
+          "model_slug",
+          "model_name",
+          "vendor",
+          "pelican_count",
+          "first_seen_at",
+          "last_seen_at",
+        ],
+        "type": "object",
+      },
+      "ModelList": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Model",
+            },
+            "type": "array",
+          },
+          "next_cursor": {
+            "description": "Always null; this list fits one page",
+            "type": "null",
+          },
+        },
+        "required": [
+          "data",
+          "next_cursor",
+        ],
+        "type": "object",
+      },
+      "Pelican": {
+        "properties": {
+          "id": {
+            "example": "2026-09-22-opus-and-sol-and-luna-claude-opus-5-5",
+            "type": "string",
+          },
+          "model_name": {
+            "example": "Claude Opus 5.5",
+            "type": "string",
+          },
+          "model_slug": {
+            "example": "claude-opus-5-5",
+            "type": "string",
+          },
+          "post_id": {
+            "example": "2026-09-22-opus-and-sol-and-luna",
+            "type": "string",
+          },
+          "post_url": {
+            "example": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/",
+            "format": "uri",
+            "type": "string",
+          },
+          "published_at": {
+            "example": "2026-09-22T23:46:41.000Z",
+            "type": "string",
+          },
+          "vendor": {
+            "example": "anthropic",
+            "type": [
+              "string",
+              "null",
+            ],
+          },
+        },
+        "required": [
+          "id",
+          "post_id",
+          "model_name",
+          "model_slug",
+          "vendor",
+          "post_url",
+          "published_at",
+        ],
+        "type": "object",
+      },
+      "PelicanPage": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Pelican",
+            },
+            "type": "array",
+          },
+          "next_cursor": {
+            "description": "Pass as cursor to get the next page; null on the last page",
+            "type": [
+              "string",
+              "null",
+            ],
+          },
+        },
+        "required": [
+          "data",
+          "next_cursor",
+        ],
+        "type": "object",
+      },
+      "Post": {
+        "properties": {
+          "id": {
+            "example": "2026-09-22-opus-and-sol-and-luna",
+            "type": "string",
+          },
+          "ingested_at": {
+            "example": "2026-09-25T06:17:00.000Z",
+            "type": "string",
+          },
+          "kind": {
+            "description": "model_pelicans: contains model-drawn pelicans. sighting: a pelican seen elsewhere. other: related but no model pelicans. unclassified: not yet catalogued.",
+            "enum": [
+              "model_pelicans",
+              "sighting",
+              "other",
+              "unclassified",
+            ],
+            "type": "string",
+          },
+          "published_at": {
+            "example": "2026-09-22T23:46:41.000Z",
+            "type": "string",
+          },
+          "tags": {
+            "example": [
+              "ai",
+              "anthropic",
+              "pelican-riding-a-bicycle",
+            ],
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "title": {
+            "example": "Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, and a new price war",
+            "type": "string",
+          },
+          "url": {
+            "example": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/",
+            "format": "uri",
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "url",
+          "title",
+          "published_at",
+          "tags",
+          "kind",
+          "ingested_at",
+        ],
+        "type": "object",
+      },
+      "PostPage": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Post",
+            },
+            "type": "array",
+          },
+          "next_cursor": {
+            "description": "Pass as cursor to get the next page; null on the last page",
+            "type": [
+              "string",
+              "null",
+            ],
+          },
+        },
+        "required": [
+          "data",
+          "next_cursor",
+        ],
+        "type": "object",
+      },
+      "Stats": {
+        "properties": {
+          "last_ingest_at": {
+            "description": "When the last successful daily refresh finished",
+            "type": [
+              "string",
+              "null",
+            ],
+          },
+          "model_count": {
+            "type": "integer",
+          },
+          "pelican_count": {
+            "type": "integer",
+          },
+          "pelicans_per_month": {
+            "items": {
+              "properties": {
+                "month": {
+                  "example": "2026-09",
+                  "type": "string",
+                },
+                "pelican_count": {
+                  "type": "integer",
+                },
+              },
+              "required": [
+                "month",
+                "pelican_count",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "post_count": {
+            "type": "integer",
+          },
+          "posts_by_kind": {
+            "properties": {
+              "model_pelicans": {
+                "type": "integer",
+              },
+              "other": {
+                "type": "integer",
+              },
+              "sighting": {
+                "type": "integer",
+              },
+              "unclassified": {
+                "type": "integer",
+              },
+            },
+            "required": [
+              "model_pelicans",
+              "sighting",
+              "other",
+              "unclassified",
+            ],
+            "type": "object",
+          },
+          "vendor_count": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "pelican_count",
+          "model_count",
+          "vendor_count",
+          "post_count",
+          "posts_by_kind",
+          "pelicans_per_month",
+          "last_ingest_at",
+        ],
+        "type": "object",
+      },
+      "Vendor": {
+        "properties": {
+          "pelican_count": {
+            "example": 12,
+            "type": "integer",
+          },
+          "vendor": {
+            "description": "null for pelicans whose vendor is unknown",
+            "example": "anthropic",
+            "type": [
+              "string",
+              "null",
+            ],
+          },
+        },
+        "required": [
+          "vendor",
+          "pelican_count",
+        ],
+        "type": "object",
+      },
+      "VendorList": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Vendor",
+            },
+            "type": "array",
+          },
+          "next_cursor": {
+            "description": "Always null; this list fits one page",
+            "type": "null",
+          },
+        },
+        "required": [
+          "data",
+          "next_cursor",
+        ],
+        "type": "object",
+      },
+    },
+  },
+  "info": {
+    "description": "Every pelican riding a bicycle that Simon Willison has posted on simonwillison.net, and which AI model drew it. Metadata only: every record links back to the original post.",
+    "title": "Pelican API",
+    "version": "1.0.0",
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/models": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelList",
+                },
+              },
+            },
+            "description": "All models",
+          },
+        },
+        "summary": "Every model with its pelican count and first and last appearance, most recent first",
+      },
+    },
+    "/pelicans": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Page size, 1 to 100",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "description": "Page size, 1 to 100",
+              "example": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+            },
+          },
+          {
+            "description": "The next_cursor from the previous page",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "description": "The next_cursor from the previous page",
+              "type": "string",
+            },
+          },
+          {
+            "description": "Model slug, as listed by /models",
+            "in": "query",
+            "name": "model",
+            "required": false,
+            "schema": {
+              "description": "Model slug, as listed by /models",
+              "example": "claude-opus-5-5",
+              "type": "string",
+            },
+          },
+          {
+            "description": "Vendor, as listed by /vendors",
+            "in": "query",
+            "name": "vendor",
+            "required": false,
+            "schema": {
+              "description": "Vendor, as listed by /vendors",
+              "example": "anthropic",
+              "type": "string",
+            },
+          },
+          {
+            "description": "Only pelicans published at or after this date or time",
+            "in": "query",
+            "name": "since",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string",
+                },
+                {
+                  "format": "date-time",
+                  "type": "string",
+                },
+              ],
+              "description": "Only pelicans published at or after this date or time",
+              "example": "2026-09-01",
+            },
+          },
+          {
+            "description": "Only pelicans published before this date or time",
+            "in": "query",
+            "name": "until",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string",
+                },
+                {
+                  "format": "date-time",
+                  "type": "string",
+                },
+              ],
+              "description": "Only pelicans published before this date or time",
+              "example": "2026-09-01",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PelicanPage",
+                },
+              },
+            },
+            "description": "A page of pelicans",
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                },
+              },
+            },
+            "description": "Invalid filters or cursor",
+          },
+        },
+        "summary": "List pelicans, newest first",
+      },
+    },
+    "/pelicans/latest": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pelican",
+                },
+              },
+            },
+            "description": "A pelican",
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                },
+              },
+            },
+            "description": "There are no pelicans yet",
+          },
+        },
+        "summary": "The most recent pelican",
+      },
+    },
+    "/pelicans/random": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pelican",
+                },
+              },
+            },
+            "description": "A pelican",
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                },
+              },
+            },
+            "description": "There are no pelicans yet",
+          },
+        },
+        "summary": "One pelican, chosen at random",
+      },
+    },
+    "/pelicans/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "2026-09-22-opus-and-sol-and-luna-claude-opus-5-5",
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pelican",
+                },
+              },
+            },
+            "description": "A pelican",
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                },
+              },
+            },
+            "description": "No pelican has this id",
+          },
+        },
+        "summary": "A single pelican",
+      },
+    },
+    "/posts": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Page size, 1 to 100",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "description": "Page size, 1 to 100",
+              "example": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+            },
+          },
+          {
+            "description": "The next_cursor from the previous page",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "description": "The next_cursor from the previous page",
+              "type": "string",
+            },
+          },
+          {
+            "description": "Only posts of this kind",
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "description": "Only posts of this kind",
+              "enum": [
+                "model_pelicans",
+                "sighting",
+                "other",
+                "unclassified",
+              ],
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostPage",
+                },
+              },
+            },
+            "description": "A page of posts",
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error",
+                },
+              },
+            },
+            "description": "Invalid filters or cursor",
+          },
+        },
+        "summary": "List tagged posts, newest first",
+      },
+    },
+    "/stats": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats",
+                },
+              },
+            },
+            "description": "Statistics",
+          },
+        },
+        "summary": "Totals, pelicans per month, and the last successful ingest",
+      },
+    },
+    "/vendors": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorList",
+                },
+              },
+            },
+            "description": "All vendors",
+          },
+        },
+        "summary": "Every vendor with its pelican count, largest first",
+      },
+    },
+  },
+  "webhooks": {},
+}
+`;

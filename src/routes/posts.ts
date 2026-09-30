@@ -22,6 +22,7 @@ const PostSchema = z
 
 type StoredPostRow = Omit<z.infer<typeof PostSchema>, "tags"> & { tags: string };
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const listPosts = createRoute({
   method: "get",
   path: "/posts",

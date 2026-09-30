@@ -26,6 +26,15 @@ describe("GET /openapi.json", () => {
   });
 });
 
+describe("GET /openapi.json snapshot", () => {
+  // Any change to the published spec, deliberate or not, shows up here for review.
+  it("matches the reviewed spec", async () => {
+    const { body } = await getJson("/openapi.json");
+
+    expect(body).toMatchSnapshot();
+  });
+});
+
 describe("GET /docs", () => {
   it("serves a docs page built from the OpenAPI spec", async () => {
     const response = await get("/docs");

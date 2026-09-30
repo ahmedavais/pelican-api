@@ -25,6 +25,7 @@ const PelicanFiltersSchema = PageQuerySchema.extend({
   until: instantParameter("Only pelicans published before this date or time"),
 });
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const listPelicans = createRoute({
   method: "get",
   path: "/pelicans",
@@ -44,6 +45,7 @@ const onePelican = {
   content: { "application/json": { schema: PelicanSchema } },
 };
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const latestPelican = createRoute({
   method: "get",
   path: "/pelicans/latest",
@@ -51,6 +53,7 @@ const latestPelican = createRoute({
   responses: { 200: onePelican, 404: errorResponse("There are no pelicans yet") },
 });
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const randomPelican = createRoute({
   method: "get",
   path: "/pelicans/random",
@@ -58,6 +61,7 @@ const randomPelican = createRoute({
   responses: { 200: onePelican, 404: errorResponse("There are no pelicans yet") },
 });
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const pelicanById = createRoute({
   method: "get",
   path: "/pelicans/{id}",

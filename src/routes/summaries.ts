@@ -43,6 +43,7 @@ function completeList<Item extends z.ZodType>(item: Item, name: string) {
     .openapi(name);
 }
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const listModels = createRoute({
   method: "get",
   path: "/models",
@@ -52,6 +53,7 @@ const listModels = createRoute({
   },
 });
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const listVendors = createRoute({
   method: "get",
   path: "/vendors",
@@ -61,6 +63,7 @@ const listVendors = createRoute({
   },
 });
 
+// Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const stats = createRoute({
   method: "get",
   path: "/stats",
