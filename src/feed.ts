@@ -29,7 +29,6 @@ export type FeedReading = {
 
 export function readFeed(atomXml: string): FeedReading {
   const feed = atomParser.parse(withoutPostBodies(atomXml)).feed;
-  // An error page answering 200 must fail the run, not look like a quiet day.
   if (feed === undefined) {
     throw new Error("The response is not an Atom feed");
   }

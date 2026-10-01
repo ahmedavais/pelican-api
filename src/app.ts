@@ -48,7 +48,6 @@ export function createApp(): OpenAPIHono<{ Bindings: Env }> {
   return app;
 }
 
-// Every route validates an object of named fields, so each issue has a path.
 function describeIssue(issue: { path: PropertyKey[]; message: string }): string {
   // Stryker disable next-line StringLiteral: no query field is nested, so paths have one segment
   return `${issue.path.join(".")}: ${issue.message}`;
