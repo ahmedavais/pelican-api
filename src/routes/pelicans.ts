@@ -1,4 +1,5 @@
 import { createRoute, type OpenAPIHono, z } from "@hono/zod-openapi";
+import type { Context } from "hono";
 import { errorBody, errorResponse } from "../api-errors";
 import { instantParameter } from "../instants";
 import { NewestFirstQuery } from "../newest-first-query";
@@ -90,17 +91,21 @@ export function registerPelicanRoutes(app: OpenAPIHono<{ Bindings: Env }>): void
 
   app.openapi(latestPelican, async (c) => {
     const pelican = await c.env.DB.prepare("SELECT * FROM pelicans ORDER BY published_at DESC, id DESC LIMIT 1").first<PelicanRow>();
-    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", NO_PELICANS_YET), 404);
+    return pelicanOrNotFound(c, pelican, NO_PELICANS_YET);
   });
 
   app.openapi(randomPelican, async (c) => {
     const pelican = await c.env.DB.prepare("SELECT * FROM pelicans ORDER BY RANDOM() LIMIT 1").first<PelicanRow>();
-    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", NO_PELICANS_YET), 404);
+    return pelicanOrNotFound(c, pelican, NO_PELICANS_YET);
   });
 
   app.openapi(pelicanById, async (c) => {
     const { id } = c.req.valid("param");
     const pelican = await c.env.DB.prepare("SELECT * FROM pelicans WHERE id = ?").bind(id).first<PelicanRow>();
-    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", `No pelican with id '${id}'`), 404);
+    return pelicanOrNotFound(c, pelican, `No pelican with id '${id}'`);
   });
+}
+
+function pelicanOrNotFound(c: Context, pelican: PelicanRow | null, notFoundMessage: string) {
+  return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", notFoundMessage), 404);
 }
