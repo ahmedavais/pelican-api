@@ -1,6 +1,6 @@
 import { attributePost } from "./attribution";
-import type { Catalog, Pelican, Post } from "./domain";
-import { newPostRow, POST_COLUMNS } from "./stored-rows";
+import type { Catalog, Post } from "./domain";
+import { newPostRow, PELICAN_COLUMNS, pelicanRow, POST_COLUMNS } from "./stored-rows";
 
 type SqlValue = string | null;
 
@@ -21,14 +21,10 @@ function attributionStatements(post: Post, catalog: Catalog): string[] {
   ];
   if (pelicans.length > 0) {
     statements.push(
-      `INSERT INTO pelicans (id, post_id, model_name, model_slug, vendor, post_url, published_at) VALUES ${pelicans.map(pelicanRow).join(", ")};`,
+      `INSERT INTO pelicans (${PELICAN_COLUMNS.join(", ")}) VALUES ${pelicans.map((pelican) => row(pelicanRow(pelican))).join(", ")};`,
     );
   }
   return statements;
-}
-
-function pelicanRow(pelican: Pelican): string {
-  return row([pelican.id, pelican.postId, pelican.modelName, pelican.modelSlug, pelican.vendor, pelican.postUrl, pelican.publishedAt]);
 }
 
 function row(values: SqlValue[]): string {
