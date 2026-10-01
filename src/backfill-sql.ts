@@ -10,7 +10,7 @@ export function backfillSql(posts: Post[], catalog: Catalog, ingestedAt: string)
 }
 
 function insertPostIfNew(post: Post, ingestedAt: string): string {
-  return `INSERT INTO posts (${POST_COLUMNS.join(", ")}) VALUES ${row(newPostRow(post, ingestedAt))} ON CONFLICT DO NOTHING;`;
+  return `INSERT INTO posts (${POST_COLUMNS.join(", ")}) VALUES ${rowLiteral(newPostRow(post, ingestedAt))} ON CONFLICT DO NOTHING;`;
 }
 
 function attributionStatements(post: Post, catalog: Catalog): string[] {
@@ -21,13 +21,13 @@ function attributionStatements(post: Post, catalog: Catalog): string[] {
   ];
   if (pelicans.length > 0) {
     statements.push(
-      `INSERT INTO pelicans (${PELICAN_COLUMNS.join(", ")}) VALUES ${pelicans.map((pelican) => row(pelicanRow(pelican))).join(", ")};`,
+      `INSERT INTO pelicans (${PELICAN_COLUMNS.join(", ")}) VALUES ${pelicans.map((pelican) => rowLiteral(pelicanRow(pelican))).join(", ")};`,
     );
   }
   return statements;
 }
 
-function row(values: SqlValue[]): string {
+function rowLiteral(values: SqlValue[]): string {
   return `(${values.map(literal).join(", ")})`;
 }
 
