@@ -31,15 +31,19 @@ type StoredPost = {
 };
 
 export async function applyCatalog(db: D1Database, catalog: Catalog): Promise<number> {
-  const changedPosts = (await storedPosts(db)).flatMap(({ post, attribution: stored }) => {
-    const catalogued = attributePost(post, catalog);
-    return sameAttribution(stored, catalogued) ? [] : [{ post, attribution: catalogued }];
-  });
+  const changedPosts = postsWithChangedAttribution(await storedPosts(db), catalog);
   const rewrites = withinRewriteBudget(newestFirst(changedPosts).map((changed) => rewriteAttribution(db, changed)));
   if (rewrites.length > 0) {
     await db.batch(rewrites.flat());
   }
   return rewrites.length;
+}
+
+function postsWithChangedAttribution(posts: StoredPost[], catalog: Catalog): StoredPost[] {
+  return posts.flatMap(({ post, attribution: stored }) => {
+    const catalogued = attributePost(post, catalog);
+    return sameAttribution(stored, catalogued) ? [] : [{ post, attribution: catalogued }];
+  });
 }
 
 function newestFirst(posts: StoredPost[]): StoredPost[] {
