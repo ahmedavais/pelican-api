@@ -4,7 +4,7 @@ export const POST_COLUMNS = ["id", "url", "title", "published_at", "tags", "kind
 
 export const PELICAN_COLUMNS = ["id", "post_id", "model_name", "model_slug", "vendor", "post_url", "published_at"];
 
-export function newPostRow(post: Post, ingestedAt: string): string[] {
+export function newPostValues(post: Post, ingestedAt: string): string[] {
   return [post.id, post.url, post.title, post.publishedAt, JSON.stringify(post.tags), "unclassified", ingestedAt];
 }
 

@@ -1,6 +1,6 @@
 import { inChunksOf, multiRowInsert, rowsPerInsert } from "./d1-limits";
 import type { Post } from "./domain";
-import { newPostRow, POST_COLUMNS } from "./stored-rows";
+import { newPostValues, POST_COLUMNS } from "./stored-rows";
 
 export async function storeNewPosts(db: D1Database, posts: Post[], ingestedAt: string): Promise<number> {
   if (posts.length === 0) {
@@ -13,7 +13,7 @@ export async function storeNewPosts(db: D1Database, posts: Post[], ingestedAt: s
   const inserts = inChunksOf(rowsPerInsert(POST_COLUMNS.length), newPosts).map((chunk) =>
     db
       .prepare(multiRowInsert("posts", POST_COLUMNS, chunk.length, "ON CONFLICT DO NOTHING"))
-      .bind(...chunk.flatMap((post) => newPostRow(post, ingestedAt))),
+      .bind(...chunk.flatMap((post) => newPostValues(post, ingestedAt))),
   );
   const results = await db.batch(inserts);
   return results.reduce((added, result) => added + result.meta.changes, 0);
