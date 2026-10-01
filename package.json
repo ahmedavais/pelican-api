@@ -19,7 +19,7 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11",
-    "wrangler": "^4.140.0"
+    "wrangler": "^4.146.0"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.6.1",
