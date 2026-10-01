@@ -43,6 +43,10 @@ function completeList<Item extends z.ZodType>(item: Item, name: string) {
     .openapi(name);
 }
 
+function completeListOf<Item>(data: Item[]) {
+  return { data, next_cursor: null };
+}
+
 // Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
 const listModels = createRoute({
   method: "get",
@@ -89,12 +93,12 @@ const VENDORS_QUERY = `
 export function registerSummaryRoutes(app: OpenAPIHono<{ Bindings: Env }>): void {
   app.openapi(listModels, async (c) => {
     const { results } = await c.env.DB.prepare(MODELS_QUERY).all<z.infer<typeof ModelSchema>>();
-    return c.json({ data: results, next_cursor: null }, 200);
+    return c.json(completeListOf(results), 200);
   });
 
   app.openapi(listVendors, async (c) => {
     const { results } = await c.env.DB.prepare(VENDORS_QUERY).all<z.infer<typeof VendorSchema>>();
-    return c.json({ data: results, next_cursor: null }, 200);
+    return c.json(completeListOf(results), 200);
   });
 
   app.openapi(stats, async (c) => c.json(await currentStats(c.env.DB), 200));
