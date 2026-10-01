@@ -90,6 +90,16 @@ describe("runIngest", () => {
     ]);
   });
 
+  it("records a failed run when the feed answers with a page that is not a feed", async () => {
+    await runIngest(env.DB, {
+      latestFeed: async () => "<html><body>Down for maintenance</body></html>",
+      catalog,
+      now: clockTicking("2026-09-25T06:17:00.000Z"),
+    });
+
+    expect(await recordedRuns()).toMatchObject([{ status: "failed", error: "The response is not an Atom feed" }]);
+  });
+
   it("stays within 50 queries even when the whole feed is new and catalogued", async () => {
     const counted = countingQueries(env.DB);
 

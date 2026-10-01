@@ -113,8 +113,12 @@ describe("readFeed", () => {
     expect(readFeed(feedWithEntries())).toEqual({ posts: [], skippedEntries: 0 });
   });
 
-  it("reads a document that is not an Atom feed as no posts", () => {
-    expect(readFeed("<html><body>Not found</body></html>")).toEqual({ posts: [], skippedEntries: 0 });
+  it("rejects a document that is not an Atom feed", () => {
+    expect(() => readFeed("<html><body>Not found</body></html>")).toThrow("The response is not an Atom feed");
+  });
+
+  it("reads an empty feed element as no posts", () => {
+    expect(readFeed("<feed/>")).toEqual({ posts: [], skippedEntries: 0 });
   });
 });
 

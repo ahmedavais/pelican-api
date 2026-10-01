@@ -28,7 +28,12 @@ export type FeedReading = {
 };
 
 export function readFeed(atomXml: string): FeedReading {
-  const entries: FeedEntry[] = atomParser.parse(withoutPostBodies(atomXml)).feed?.entry ?? [];
+  const feed = atomParser.parse(withoutPostBodies(atomXml)).feed;
+  // An error page answering 200 must fail the run, not look like a quiet day.
+  if (feed === undefined) {
+    throw new Error("The response is not an Atom feed");
+  }
+  const entries: FeedEntry[] = feed.entry ?? [];
   const posts = entries.map(postFromEntry).filter((post): post is Post => post !== null);
   return { posts, skippedEntries: entries.length - posts.length };
 }
