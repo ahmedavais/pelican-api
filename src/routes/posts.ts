@@ -47,6 +47,10 @@ export function registerPostRoutes(app: OpenAPIHono<{ Bindings: Env }>): void {
       .statement(c.env.DB, limit + 1)
       .all<StoredPostRow>();
     const page = pageFrom(results, limit);
-    return c.json({ ...page, data: page.data.map((row) => ({ ...row, tags: JSON.parse(row.tags) as string[] })) }, 200);
+    return c.json({ ...page, data: page.data.map(postFromRow) }, 200);
   });
+}
+
+function postFromRow(row: StoredPostRow): z.infer<typeof PostSchema> {
+  return { ...row, tags: JSON.parse(row.tags) as string[] };
 }
