@@ -1,6 +1,7 @@
 import { attributePost } from "./attribution";
 import { inChunksOf, multiRowInsert, rowsPerInsert } from "./d1-limits";
 import type { Attribution, Catalog, Pelican, Post, PostKind } from "./domain";
+import { PELICAN_COLUMNS, pelicanRow } from "./stored-rows";
 
 type PostRow = {
   id: string;
@@ -20,8 +21,6 @@ type PelicanRow = {
   post_url: string;
   published_at: string;
 };
-
-const PELICAN_COLUMNS = ["id", "post_id", "model_name", "model_slug", "vendor", "post_url", "published_at"];
 
 const REWRITE_STATEMENTS_PER_RUN = 36;
 
@@ -91,10 +90,6 @@ function rewriteAttribution(db: D1Database, { post, attribution }: StoredPost): 
       db.prepare(multiRowInsert("pelicans", PELICAN_COLUMNS, chunk.length)).bind(...chunk.flatMap(pelicanRow)),
     ),
   ];
-}
-
-function pelicanRow(pelican: Pelican): unknown[] {
-  return [pelican.id, pelican.postId, pelican.modelName, pelican.modelSlug, pelican.vendor, pelican.postUrl, pelican.publishedAt];
 }
 
 function postFromRow(row: PostRow): Post {
