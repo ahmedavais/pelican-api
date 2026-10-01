@@ -74,6 +74,19 @@ npx wrangler deploy
 The definition of done asks for seven unattended days. This lists the latest runs:
 
 ```bash
+npm run ingest:status
+```
+
+It authenticates with a read-only Cloudflare API token kept in the macOS Keychain, so it keeps working after a `wrangler login` session stops working. The account ID is kept there too, so it stays out of the repo. One-time setup: create a custom token with Account → D1 → Read on your account, then store it and your account ID:
+
+```bash
+security add-generic-password -a "$USER" -s pelican-api-d1-read -w
+security add-generic-password -a "$USER" -s pelican-api-cloudflare-account -w
+```
+
+Paste the token, then the account ID, at the prompts. The token is used only for this command; deploys still use `wrangler login`. Without the Keychain item, run the query with your login instead:
+
+```bash
 npx wrangler d1 execute pelican-api --remote --command "SELECT started_at, status, posts_added, entries_skipped, error FROM ingest_runs ORDER BY started_at DESC LIMIT 7"
 ```
 

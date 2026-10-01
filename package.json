@@ -8,7 +8,8 @@
     "dev": "wrangler dev --test-scheduled",
     "backfill:local": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --local --file .wrangler/backfill.sql",
     "backfill:remote": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --remote --file .wrangler/backfill.sql",
-    "test:mutation": "stryker run"
+    "test:mutation": "stryker run",
+    "ingest:status": "CLOUDFLARE_API_TOKEN=$(security find-generic-password -s pelican-api-d1-read -w) CLOUDFLARE_ACCOUNT_ID=$(security find-generic-password -s pelican-api-cloudflare-account -w) wrangler d1 execute pelican-api --remote --command \"SELECT started_at, status, posts_added, entries_skipped, error FROM ingest_runs ORDER BY started_at DESC LIMIT 7\""
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.22.0",
