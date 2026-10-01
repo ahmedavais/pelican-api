@@ -40,6 +40,8 @@ const listPelicans = createRoute({
   },
 });
 
+const NO_PELICANS_YET = "There are no pelicans yet";
+
 const onePelican = {
   description: "A pelican",
   content: { "application/json": { schema: PelicanSchema } },
@@ -50,7 +52,7 @@ const latestPelican = createRoute({
   method: "get",
   path: "/pelicans/latest",
   summary: "The most recent pelican",
-  responses: { 200: onePelican, 404: errorResponse("There are no pelicans yet") },
+  responses: { 200: onePelican, 404: errorResponse(NO_PELICANS_YET) },
 });
 
 // Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
@@ -58,7 +60,7 @@ const randomPelican = createRoute({
   method: "get",
   path: "/pelicans/random",
   summary: "One pelican, chosen at random",
-  responses: { 200: onePelican, 404: errorResponse("There are no pelicans yet") },
+  responses: { 200: onePelican, 404: errorResponse(NO_PELICANS_YET) },
 });
 
 // Stryker disable next-line ObjectLiteral: an empty route stops the app loading, which Stryker does not count as failing
@@ -88,12 +90,12 @@ export function registerPelicanRoutes(app: OpenAPIHono<{ Bindings: Env }>): void
 
   app.openapi(latestPelican, async (c) => {
     const pelican = await c.env.DB.prepare("SELECT * FROM pelicans ORDER BY published_at DESC, id DESC LIMIT 1").first<PelicanRow>();
-    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", "There are no pelicans yet"), 404);
+    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", NO_PELICANS_YET), 404);
   });
 
   app.openapi(randomPelican, async (c) => {
     const pelican = await c.env.DB.prepare("SELECT * FROM pelicans ORDER BY RANDOM() LIMIT 1").first<PelicanRow>();
-    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", "There are no pelicans yet"), 404);
+    return pelican ? c.json(pelican, 200) : c.json(errorBody("not_found", NO_PELICANS_YET), 404);
   });
 
   app.openapi(pelicanById, async (c) => {
