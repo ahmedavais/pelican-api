@@ -1,5 +1,5 @@
 import type { Post } from "./domain";
-import { postIdFromUrl } from "./post-id";
+import { MONTH_ABBREVIATIONS, postIdFromUrl } from "./post-id";
 
 export type MirrorRow = {
   type: "entry" | "blogmark" | "beat" | "note" | "quotation";
@@ -8,8 +8,6 @@ export type MirrorRow = {
   title: string;
   tags: string;
 };
-
-const MONTH_ABBREVIATIONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 export function postsFromMirrorRows(rows: MirrorRow[]): Post[] {
   return rows.map((row) => {
