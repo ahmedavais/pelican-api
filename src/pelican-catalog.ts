@@ -1,6 +1,18 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Sep/29/hn-49898129/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "GPT-6.1 Sol", vendor: "openai" },
+    ],
+  },
+  "https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Claude Sonnet 5.5", vendor: "anthropic" },
+    ],
+  },
   "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/": {
     kind: "model_pelicans",
     pelicans: [
