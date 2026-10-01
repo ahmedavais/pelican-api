@@ -116,10 +116,7 @@ async function currentStats(db: D1Database): Promise<z.infer<typeof StatsSchema>
     model_count: number;
     vendor_count: number;
   };
-  const postsByKind = { model_pelicans: 0, sighting: 0, other: 0, unclassified: 0 };
-  for (const { kind, post_count } of kinds.results as { kind: keyof typeof postsByKind; post_count: number }[]) {
-    postsByKind[kind] = post_count;
-  }
+  const postsByKind = tallyPostsByKind(kinds.results as PostCountOfKind[]);
   return {
     pelican_count,
     model_count,
@@ -129,4 +126,16 @@ async function currentStats(db: D1Database): Promise<z.infer<typeof StatsSchema>
     pelicans_per_month: months.results as { month: string; pelican_count: number }[],
     last_ingest_at: (lastRun.results[0] as { last_ingest_at: string | null }).last_ingest_at,
   };
+}
+
+type PostsByKind = z.infer<typeof StatsSchema>["posts_by_kind"];
+
+type PostCountOfKind = { kind: keyof PostsByKind; post_count: number };
+
+function tallyPostsByKind(counts: PostCountOfKind[]): PostsByKind {
+  const postsByKind = { model_pelicans: 0, sighting: 0, other: 0, unclassified: 0 };
+  for (const { kind, post_count } of counts) {
+    postsByKind[kind] = post_count;
+  }
+  return postsByKind;
 }
