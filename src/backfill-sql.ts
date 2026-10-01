@@ -1,5 +1,6 @@
 import { attributePost } from "./attribution";
 import type { Catalog, Pelican, Post } from "./domain";
+import { newPostRow, POST_COLUMNS } from "./stored-rows";
 
 type SqlValue = string | null;
 
@@ -9,8 +10,7 @@ export function backfillSql(posts: Post[], catalog: Catalog, ingestedAt: string)
 }
 
 function insertPostIfNew(post: Post, ingestedAt: string): string {
-  const values = [post.id, post.url, post.title, post.publishedAt, JSON.stringify(post.tags), "unclassified", ingestedAt];
-  return `INSERT INTO posts (id, url, title, published_at, tags, kind, ingested_at) VALUES ${row(values)} ON CONFLICT DO NOTHING;`;
+  return `INSERT INTO posts (${POST_COLUMNS.join(", ")}) VALUES ${row(newPostRow(post, ingestedAt))} ON CONFLICT DO NOTHING;`;
 }
 
 function attributionStatements(post: Post, catalog: Catalog): string[] {
