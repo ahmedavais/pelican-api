@@ -37,7 +37,7 @@ const StatsSchema = z
   })
   .openapi("Stats");
 
-function completeList<Item extends z.ZodType>(item: Item, name: string) {
+function completeListSchema<Item extends z.ZodType>(item: Item, name: string) {
   return z
     .object({ data: z.array(item), next_cursor: z.null().openapi({ description: "Always null; this list fits one page" }) })
     .openapi(name);
@@ -53,7 +53,7 @@ const listModels = createRoute({
   path: "/models",
   summary: "Every model with its pelican count and first and last appearance, most recent first",
   responses: {
-    200: { description: "All models", content: { "application/json": { schema: completeList(ModelSchema, "ModelList") } } },
+    200: { description: "All models", content: { "application/json": { schema: completeListSchema(ModelSchema, "ModelList") } } },
   },
 });
 
@@ -63,7 +63,7 @@ const listVendors = createRoute({
   path: "/vendors",
   summary: "Every vendor with its pelican count, largest first",
   responses: {
-    200: { description: "All vendors", content: { "application/json": { schema: completeList(VendorSchema, "VendorList") } } },
+    200: { description: "All vendors", content: { "application/json": { schema: completeListSchema(VendorSchema, "VendorList") } } },
   },
 });
 
