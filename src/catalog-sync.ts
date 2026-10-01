@@ -1,7 +1,7 @@
 import { attributePost } from "./attribution";
 import { inChunksOf, multiRowInsert, rowsPerInsert } from "./d1-limits";
 import type { Attribution, Catalog, Pelican, Post, PostKind } from "./domain";
-import { PELICAN_COLUMNS, pelicanRow } from "./stored-rows";
+import { PELICAN_COLUMNS, pelicanValues } from "./stored-rows";
 
 type PostRow = {
   id: string;
@@ -87,7 +87,7 @@ function rewriteAttribution(db: D1Database, { post, attribution }: StoredPost): 
     db.prepare("UPDATE posts SET kind = ? WHERE id = ?").bind(attribution.kind, post.id),
     db.prepare("DELETE FROM pelicans WHERE post_id = ?").bind(post.id),
     ...inChunksOf(rowsPerInsert(PELICAN_COLUMNS.length), attribution.pelicans).map((chunk) =>
-      db.prepare(multiRowInsert("pelicans", PELICAN_COLUMNS, chunk.length)).bind(...chunk.flatMap(pelicanRow)),
+      db.prepare(multiRowInsert("pelicans", PELICAN_COLUMNS, chunk.length)).bind(...chunk.flatMap(pelicanValues)),
     ),
   ];
 }

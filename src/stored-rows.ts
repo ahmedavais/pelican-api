@@ -8,6 +8,6 @@ export function newPostRow(post: Post, ingestedAt: string): string[] {
   return [post.id, post.url, post.title, post.publishedAt, JSON.stringify(post.tags), "unclassified", ingestedAt];
 }
 
-export function pelicanRow(pelican: Pelican): (string | null)[] {
+export function pelicanValues(pelican: Pelican): (string | null)[] {
   return [pelican.id, pelican.postId, pelican.modelName, pelican.modelSlug, pelican.vendor, pelican.postUrl, pelican.publishedAt];
 }
