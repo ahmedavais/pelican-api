@@ -84,7 +84,7 @@ security add-generic-password -a "$USER" -s pelican-api-d1-read -w
 security add-generic-password -a "$USER" -s pelican-api-cloudflare-account -w
 ```
 
-Paste the token, then the account ID, at the prompts. The token is used only for this command; deploys still use `wrangler login`. Without the Keychain item, run the query with your login instead:
+Paste the token, then the account ID, at the prompts. The token is used only for this command; deploys still use `wrangler login`. Without the Keychain items, run the query with your login instead:
 
 ```bash
 npx wrangler d1 execute pelican-api --remote --command "SELECT started_at, status, posts_added, entries_skipped, error FROM ingest_runs ORDER BY started_at DESC LIMIT 7"
