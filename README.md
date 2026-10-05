@@ -1,6 +1,6 @@
 # Pelican API
 
-An open but unlisted, read-only hobby API of every "pelican riding a bicycle" Simon Willison posts on [simonwillison.net](https://simonwillison.net/tags/pelican-riding-a-bicycle/), and which AI model drew it. Metadata only: every record links back to Simon's original post.
+An open, read-only hobby API of every "pelican riding a bicycle" Simon Willison posts on [simonwillison.net](https://simonwillison.net/tags/pelican-riding-a-bicycle/), and which AI model drew it. Metadata only: every record links back to Simon's original post.
 
 Live at https://pelican-api.dynamicalchange.workers.dev. Browse the endpoints at [/docs](https://pelican-api.dynamicalchange.workers.dev/docs). The full design and its decisions are in [SPEC.md](SPEC.md).
 

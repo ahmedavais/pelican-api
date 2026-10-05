@@ -4,7 +4,7 @@ A small, read-only hobby API that tracks every "pelican riding a bicycle" that S
 
 ## Goal
 
-Ship a working API that is open but unlisted: anyone with the URL can use it, and it is not announced or shared. Success means it's live on a public URL, has browsable docs, and picks up new posts daily without anyone touching it. Model attribution for new posts comes from a curated catalog (see Decisions).
+Ship a working API that is open and public: anyone can use it, and it is linked from https://ahmedavais.com/p/pelican-api. Success means it's live on a public URL, has browsable docs, and picks up new posts daily without anyone touching it. Model attribution for new posts comes from a curated catalog (see Decisions).
 
 ## Source data
 
@@ -118,7 +118,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - `model_name` is the catalog's canonical spelling, not the post's wording, because Simon spells the same family differently across posts ("Qwen3.8" vs "Qwen 3.8"). Normalization stays a plain lowercase-and-hyphenate step; a catalog test guards against near-duplicate spellings.
 - Rate limiting uses the Workers rate-limit binding; approximate counts are acceptable. Live check on 2026-09-25: `limit()` returned success for 80 of 80 requests from one IP (77 in one location), so the binding did not enforce on this free-plan account. Retest on 2026-09-28 gave the same result: 80 of 80 requests returned 200. Decision: document the limit as unenforced rather than build a Durable Object limiter. On the free plan the worst case of heavy use is a day of quota errors, never a bill. The binding and its 429 handling stay in the code in case Cloudflare starts enforcing it.
 - Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
-- The API stays open but unlisted rather than behind Cloudflare Access or an API key. On the free plan the worst case of someone finding it is a day of quota errors, never a bill, and the data is public-derived metadata.
+- The API is open and public, linked from ahmedavais.com, rather than behind Cloudflare Access or an API key. It started out unlisted; linking it from the project page made it public. On the free plan the worst case of heavy use is a day of quota errors, never a bill, and the data is public-derived metadata.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
 - The scoreboard is served from the Worker's static assets at `/`, so the page deploys together with the API it reads, and ahmedavais.com can embed it. Static files take priority over the Worker, and serving them runs no Worker code. The `ASSETS` binding is there only so tests can check what the asset layer serves.
 
@@ -138,8 +138,9 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - [x] `/docs` loads and documents every endpoint
 - [x] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
 - [x] Daily refresh has run successfully on its own for 7 days (2026-09-26 to 2026-10-02)
-- Private hobby project; not announced. Tell Simon later only if it becomes public.
+- Hobby project, public and linked from ahmedavais.com.
 
 ## Open decisions (Ahmed's)
 
 - Whether to later add a "pelican of the day" endpoint
+- Whether and how to tell Simon, now that the API is public
