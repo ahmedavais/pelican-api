@@ -138,9 +138,8 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - [x] `/docs` loads and documents every endpoint
 - [x] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
 - [x] Daily refresh has run successfully on its own for 7 days (2026-09-26 to 2026-10-02)
-- Hobby project, public and linked from ahmedavais.com.
+- Hobby project, public and linked from ahmedavais.com. Ahmed told Simon in a Mastodon direct message on 2026-10-05.
 
 ## Open decisions (Ahmed's)
 
 - Whether to later add a "pelican of the day" endpoint
-- Whether and how to tell Simon, now that the API is public
