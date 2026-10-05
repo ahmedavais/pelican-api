@@ -93,6 +93,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 - `@hono/zod-openapi` so the spec and docs are generated from route definitions
 - Rate limiting: 60 requests per minute per IP configured via the Workers rate-limit binding (per-location, approximate); not enforced on this account (see Decisions)
 - CORS open (`*`), since the API is open and read-only
+- Workers static assets serve the scoreboard (`ui/`) at `/`
 - No Claude API, no secrets
 
 ## Testing
@@ -103,7 +104,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 
 ## Non-goals (v1)
 
-No write endpoints, no user accounts, no API keys, no image hosting, no frontend beyond the docs page and a local `ui/index.html` client (opened from disk, not deployed), no other data sources, and no AI extraction.
+No write endpoints, no user accounts, no API keys, no image hosting, no frontend beyond the docs page and the scoreboard at `/`, no other data sources, and no AI extraction.
 
 ## Decisions
 
@@ -119,6 +120,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
 - The API stays open but unlisted rather than behind Cloudflare Access or an API key. On the free plan the worst case of someone finding it is a day of quota errors, never a bill, and the data is public-derived metadata.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
+- The scoreboard is served from the Worker's static assets at `/`, so the page deploys together with the API it reads, and ahmedavais.com can embed it. Static files take priority over the Worker, and serving them runs no Worker code. The `ASSETS` binding is there only so tests can check what the asset layer serves.
 
 ## Catalog rules
 

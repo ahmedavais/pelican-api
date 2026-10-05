@@ -3,6 +3,10 @@
   "name": "pelican-api",
   "main": "src/index.ts",
   "compatibility_date": "2026-08-15",
+  "assets": {
+    "directory": "./ui",
+    "binding": "ASSETS"
+  },
   "vars": {
     "CONTACT_EMAIL": "dynamicalchange@gmail.com"
   },

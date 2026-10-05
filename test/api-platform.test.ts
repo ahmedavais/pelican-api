@@ -45,6 +45,18 @@ describe("GET /docs", () => {
   });
 });
 
+describe("GET /", () => {
+  it("serves the scoreboard as a static page", async () => {
+    const request = new Request("https://pelicans.test/");
+
+    const response = await env.ASSETS.fetch(request);
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("Content-Type")).toContain("text/html");
+    expect(await response.text()).toContain("<title>Pelican Scoreboard</title>");
+  });
+});
+
 describe("unknown paths", () => {
   it("answer with a 404 in the error shape", async () => {
     const { status, body } = await getJson("/pelicanz");

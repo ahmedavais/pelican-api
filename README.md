@@ -46,7 +46,7 @@ The API tests import the worker rather than calling it through `exports.default`
 
 ## See it in action
 
-Open [ui/index.html](ui/index.html) straight from disk in a browser. It reads the live API: latest and random pelicans, vendors, pelicans per month, the model leaderboard and a filterable explorer. It is not deployed anywhere.
+The scoreboard at https://pelican-api.dynamicalchange.workers.dev/ reads the live API: latest and random pelicans, vendors, pelicans per month, the model leaderboard and a filterable explorer. It is [ui/index.html](ui/index.html), served as static assets by the same Worker. To try a change before deploying, open the file straight from disk.
 
 ## Curate a new post
 
