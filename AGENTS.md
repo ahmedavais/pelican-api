@@ -21,6 +21,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - A daily cron at 06:17 UTC reads the Atom feed and re-applies the catalog.
 - Workers static assets serve the scoreboard (`ui/index.html`) at `/`.
 - Live at https://pelican-api.dynamicalchange.workers.dev.
+- CI: `.github/workflows/ci.yml` runs `npm run verify` on every PR and every push to main. Deploys are still manual.
 
 ## Commands
 
