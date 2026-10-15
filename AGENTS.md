@@ -27,7 +27,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 
 ## Commands
 
-- `npm run verify`: typecheck + tests. Run before calling any change done.
+- `npm run verify`: typecheck, American English check, tests. Run before calling any change done.
 - `npm test`: vitest in the Workers runtime against a local D1, emptied before each test.
 - `npm run typecheck`: the Worker and the scripts.
 - `npm run test:mutation`: Stryker, about three minutes. Run after changing logic in `src/`, not on every commit.
@@ -58,5 +58,5 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - Tests are sociable and state-based against a real local D1. No mocks.
 - `/openapi.json` is snapshot-tested. Review the diff before accepting it with `npx vitest run -u`.
 - After changing the scoreboard, look at it in the browser at desktop and 375px widths.
-- Write in American English: catalog, behavior, color.
+- Write in American English: catalog, behavior, color. `npm run check:american-english` (part of verify) names the US spelling for each British one it knows.
 - `playground/` is for throwaway experiments and is gitignored.
