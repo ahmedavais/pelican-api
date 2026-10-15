@@ -5,7 +5,7 @@ export default {
   vitest: { configFile: "vitest.config.ts" },
   // The catalog is curated data, not logic; mutating it only produces noise.
   mutate: ["src/**/*.ts", "!src/pelican-catalog.ts"],
-  ignorePatterns: [".wrangler", ".vitest", "reports", "ui", "playground"],
+  ignorePatterns: [".wrangler", ".vitest", "reports", "playground"],
   coverageAnalysis: "perTest",
   reporters: ["html", "clear-text", "progress"],
   htmlReporter: { fileName: "reports/mutation/index.html" },
