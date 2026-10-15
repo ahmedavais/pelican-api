@@ -49,7 +49,7 @@ The scoreboard at https://pelican-api.dynamicalchange.workers.dev/ reads the liv
 
 ## Curate a new post
 
-New posts arrive as `unclassified`. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. Once it's on main, CI deploys it and the next daily run applies it.
+New posts arrive as `unclassified`, and the daily production watch fails until they're cataloged. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. Once it's on main, CI deploys it and the next daily run applies it.
 
 ## Deploy
 
@@ -72,6 +72,14 @@ After that, [CI](.github/workflows/ci.yml) deploys every push to main once `npm 
 
 - `CLOUDFLARE_API_TOKEN`: a custom token with Account → Workers Scripts → Edit and Account → D1 → Edit
 - `CLOUDFLARE_ACCOUNT_ID`: your account ID
+
+## Watch production
+
+```bash
+npm run watch-production
+```
+
+Checks the live API: the scoreboard, docs and API answer, the daily refresh succeeded within the last 26 hours, and no post is waiting to be cataloged. [A workflow](.github/workflows/watch-production.yml) runs it after every deploy and daily at 07:23 UTC, an hour after the refresh. A failed run is the alarm; GitHub emails it.
 
 ## Check the daily refresh
 

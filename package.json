@@ -4,13 +4,14 @@
   "type": "module",
   "scripts": {
     "test": "vitest run",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts && tsc --noEmit -p sensors",
     "dev": "wrangler dev --test-scheduled",
     "backfill:local": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --local --file .wrangler/backfill.sql",
     "backfill:remote": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --remote --file .wrangler/backfill.sql",
     "test:mutation": "stryker run",
     "ingest:status": "CLOUDFLARE_API_TOKEN=$(security find-generic-password -s pelican-api-d1-read -w) CLOUDFLARE_ACCOUNT_ID=$(security find-generic-password -s pelican-api-cloudflare-account -w) wrangler d1 execute pelican-api --remote --command \"SELECT started_at, status, posts_added, entries_skipped, error FROM ingest_runs ORDER BY started_at DESC LIMIT 7\"",
-    "verify": "npm run typecheck && npm test"
+    "verify": "npm run typecheck && npm test",
+    "watch-production": "vitest run --config vitest.live.config.ts"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.22.0",

@@ -10,6 +10,6 @@ export default defineConfig(async () => {
         miniflare: { bindings: { TEST_MIGRATIONS: migrations } },
       }),
     ],
-    test: { setupFiles: ["./test/database-setup.ts"] },
+    test: { include: ["test/**/*.test.ts"], setupFiles: ["./test/database-setup.ts"] },
   };
 });

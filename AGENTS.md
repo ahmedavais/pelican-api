@@ -22,6 +22,8 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - Workers static assets serve the scoreboard (`ui/index.html`) at `/`.
 - Live at https://pelican-api.dynamicalchange.workers.dev.
 - CI: `.github/workflows/ci.yml` runs `npm run verify` on every PR and every push to main. A push to main then applies pending D1 migrations and deploys, through the `production` environment.
+- Watch production: `.github/workflows/watch-production.yml` runs the live checks in `sensors/live/` after every deploy,
+  daily at 07:23 UTC and on demand. A failed run is the alarm (GitHub emails it), including when a new post needs cataloging.
 
 ## Commands
 
@@ -31,6 +33,8 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - `npm run test:mutation`: Stryker, about three minutes. Run after changing logic in `src/`, not on every commit.
 - `npm run dev`: local Worker at http://localhost:8787. Needs `npx wrangler d1 migrations apply pelican-api --local`
   and `npm run backfill:local` once.
+- `npm run watch-production`: live checks against production (`API_URL` overrides it): the scoreboard, docs and API answer,
+  the daily refresh succeeded within 26 hours, and no post is unclassified.
 - `npm run ingest:status`: the latest seven daily runs, read with a read-only token from the macOS Keychain.
 
 ## Layout
@@ -42,6 +46,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - `src/domain.ts`: post kinds and the `VENDORS` list.
 - `scripts/backfill.ts`: one-time load from Simon's Datasette mirror into SQL for `wrangler d1 execute`.
 - `ui/index.html`: the scoreboard, one static file reading the live API.
+- `sensors/live/`: checks against the live API, run by `npm run watch-production`, never by `npm test`.
 - `test/`: one test file per module or route group. `test/fixtures/` holds a saved feed and mirror rows; never fetch live data in tests.
 
 ## Conventions
