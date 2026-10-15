@@ -16,8 +16,7 @@ Live at https://pelican-api.dynamicalchange.workers.dev. Browse the endpoints at
 
 ```bash
 npm install
-npm test
-npm run typecheck
+npm run verify
 ```
 
 Run it locally with the daily refresh triggerable by hand:
