@@ -3,8 +3,8 @@
 export default {
   testRunner: "vitest",
   vitest: { configFile: "vitest.config.ts" },
-  // The catalog is curated data, not logic; mutating it only produces noise.
-  mutate: ["src/**/*.ts", "!src/pelican-catalog.ts"],
+  // The catalog and the spelling table are curated data, not logic; mutating them only produces noise.
+  mutate: ["src/**/*.ts", "!src/pelican-catalog.ts", "!src/american-spellings.ts"],
   ignorePatterns: [".wrangler", ".vitest", "reports", "playground"],
   coverageAnalysis: "perTest",
   reporters: ["html", "clear-text", "progress"],

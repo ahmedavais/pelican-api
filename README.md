@@ -35,7 +35,7 @@ Then `curl "http://localhost:8787/__scheduled?cron=17+6+*+*+*"` runs the daily r
 npm run test:mutation
 ```
 
-[Stryker](https://stryker-mutator.io/) makes small changes to the code in `src/` and checks that some test fails for each. A run takes about three minutes and writes a report to `reports/mutation/index.html`. Run it after changing logic, not on every commit. The catalog is data, so it is not mutated.
+[Stryker](https://stryker-mutator.io/) makes small changes to the code in `src/` and checks that some test fails for each. A run takes about three minutes and writes a report to `reports/mutation/index.html`. Run it after changing logic, not on every commit. The catalog and the British-to-American spelling table are data, so they are not mutated.
 
 A mutant that no test could ever catch, because it behaves exactly like the original code, is marked with a `// Stryker disable next-line` comment giving the reason. Prefer simplifying the code when that removes the mutant instead.
 
