@@ -100,7 +100,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 
 - Unit tests for URL-to-post-id conversion and model-name normalization.
 - Catalog tests against saved sample posts: one with a single pelican, one with multiple pelicans, one sighting with no model, and one uncatalogued post.
-- An end-to-end smoke test that runs locally with `wrangler dev` before any deploy.
+- An end-to-end smoke test that runs locally with `wrangler dev` before a change reaches main, since main deploys.
 
 ## Non-goals (v1)
 
@@ -117,7 +117,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Post IDs include the date, because slugs repeat across dates.
 - `model_name` is the catalog's canonical spelling, not the post's wording, because Simon spells the same family differently across posts ("Qwen3.8" vs "Qwen 3.8"). Normalization stays a plain lowercase-and-hyphenate step; a catalog test guards against near-duplicate spellings.
 - Rate limiting uses the Workers rate-limit binding rather than a Durable Object limiter; approximate, per-location counts are acceptable. On the free plan the worst case of heavy use is a day of quota errors, never a bill.
-- Deploying is gated on Ahmed's approval. Ahmed owns `wrangler login`. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
+- CI deploys every push to main after verify passes, applying pending D1 migrations first so code never goes live ahead of its schema. Pushing or merging to main is Ahmed's deploy approval. The Cloudflare token can edit only Workers scripts and D1, and lives in the `production` environment's secrets, which only main can use. Deploys used to run from Ahmed's laptop, which depended on a `wrangler login` that expires. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
 - The API is open and public, linked from ahmedavais.com, rather than behind Cloudflare Access or an API key. It started out unlisted; linking it from the project page made it public. On the free plan the worst case of heavy use is a day of quota errors, never a bill, and the data is public-derived metadata.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
 - The scoreboard is served from the Worker's static assets at `/`, so the page deploys together with the API it reads, and ahmedavais.com can embed it. Static files take priority over the Worker, and serving them runs no Worker code. The `ASSETS` binding is there only so tests can check what the asset layer serves.

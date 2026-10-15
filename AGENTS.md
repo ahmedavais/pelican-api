@@ -21,7 +21,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - A daily cron at 06:17 UTC reads the Atom feed and re-applies the catalog.
 - Workers static assets serve the scoreboard (`ui/index.html`) at `/`.
 - Live at https://pelican-api.dynamicalchange.workers.dev.
-- CI: `.github/workflows/ci.yml` runs `npm run verify` on every PR and every push to main. Deploys are still manual.
+- CI: `.github/workflows/ci.yml` runs `npm run verify` on every PR and every push to main. A push to main then applies pending D1 migrations and deploys, through the `production` environment.
 
 ## Commands
 
@@ -46,7 +46,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 
 ## Conventions
 
-- Ask Ahmed before every commit, push and deploy. Ahmed owns `wrangler login`.
+- Ask Ahmed before every commit and push. Pushing or merging to main deploys, so it is the deploy approval.
 - Never print or commit tokens or the Cloudflare account ID. Both live in the macOS Keychain.
 - Keep rate-limit enforcement details out of public text.
 - Each run stays under the free plan's 50 D1 queries and 10 ms CPU; see SPEC.md's Decisions before adding queries to the cron.

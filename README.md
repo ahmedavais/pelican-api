@@ -49,7 +49,7 @@ The scoreboard at https://pelican-api.dynamicalchange.workers.dev/ reads the liv
 
 ## Curate a new post
 
-New posts arrive as `unclassified`. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. The next daily run applies the change after deploy.
+New posts arrive as `unclassified`. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. Once it's on main, CI deploys it and the next daily run applies it.
 
 ## Deploy
 
@@ -67,6 +67,11 @@ npx wrangler d1 migrations apply pelican-api --remote
 npm run backfill:remote
 npx wrangler deploy
 ```
+
+After that, [CI](.github/workflows/ci.yml) deploys every push to main once `npm run verify` passes, applying any pending migrations first. It needs a GitHub environment named `production`, limited to the `main` branch, with two secrets:
+
+- `CLOUDFLARE_API_TOKEN`: a custom token with Account → Workers Scripts → Edit and Account → D1 → Edit
+- `CLOUDFLARE_ACCOUNT_ID`: your account ID
 
 ## Check the daily refresh
 
