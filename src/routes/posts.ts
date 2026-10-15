@@ -14,7 +14,7 @@ const PostSchema = z
     tags: z.array(z.string()).openapi({ example: ["ai", "anthropic", "pelican-riding-a-bicycle"] }),
     kind: z.enum(POST_KINDS).openapi({
       description:
-        "model_pelicans: contains model-drawn pelicans. sighting: a pelican seen elsewhere. other: related but no model pelicans. unclassified: not yet catalogued.",
+        "model_pelicans: contains model-drawn pelicans. sighting: a pelican seen elsewhere. other: related but no model pelicans. unclassified: not yet cataloged.",
     }),
     ingested_at: z.string().openapi({ example: "2026-09-25T06:17:00.000Z" }),
   })

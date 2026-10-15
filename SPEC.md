@@ -82,7 +82,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 - Backfill (one-time). `npm run backfill:remote` queries the mirror once, generates SQL that stores every post and applies the full catalog, and runs it with `wrangler d1 execute`. Safe to re-run.
 - Daily refresh. A scheduled Worker reads the feed once a day and stores any post URLs not already stored.
 - Pelican catalog. `pelican-catalog.ts` is a checked-in file keyed by post URL, giving each post's `kind` and its pelicans (`model_name`, `vendor`). Every run re-applies the whole catalog to stored posts, idempotently. It is the only source of model attribution.
-- Uncatalogued posts stay `kind = unclassified` and are visible in `/posts?kind=unclassified` until a catalog entry is added.
+- Uncataloged posts stay `kind = unclassified` and are visible in `/posts?kind=unclassified` until a catalog entry is added.
 - Each run's outcome is recorded in `ingest_runs`, which feeds `last_ingest_at` in `/stats`.
 
 ## Stack
@@ -99,7 +99,7 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
 ## Testing
 
 - Unit tests for URL-to-post-id conversion and model-name normalization.
-- Catalog tests against saved sample posts: one with a single pelican, one with multiple pelicans, one sighting with no model, and one uncatalogued post.
+- Catalog tests against saved sample posts: one with a single pelican, one with multiple pelicans, one sighting with no model, and one uncataloged post.
 - An end-to-end smoke test that runs locally with `wrangler dev` before a change reaches main, since main deploys.
 
 ## Non-goals (v1)
@@ -111,7 +111,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Backfill reads Simon's Datasette mirror instead of the HTML tag pages: one request, exact timestamps matching the feed, and no scraping of several markup layouts. The daily refresh reads the Atom feed, which holds only the latest 30 entries.
 - Each daily run stays within the free plan's 50 D1 queries per invocation: multi-row inserts, and at most 36 catalog rewrite statements per run, newest first; the rest is applied on later runs. Large catalog changes can instead be applied by re-running the backfill.
 - Post bodies are stripped from the feed before parsing, to stay well inside the free plan's 10 ms CPU limit.
-- Model attribution comes from a curated, checked-in catalog instead of the Claude API, to keep the project free. The trade-off: new posts appear automatically but stay `unclassified` until catalogued.
+- Model attribution comes from a curated, checked-in catalog instead of the Claude API, to keep the project free. The trade-off: new posts appear automatically but stay `unclassified` until cataloged.
 - No retries or attempt counters, since there is no extraction step that can fail.
 - Pelican IDs are `{post_id}-{model_slug}`. True duplicates get `-2`, `-3` as a safety net.
 - Post IDs include the date, because slugs repeat across dates.
@@ -137,7 +137,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 
 - [x] Deployed to a public URL: https://pelican-api.dynamicalchange.workers.dev
 - [x] `/docs` loads and documents every endpoint
-- [x] Backfill completed, with every post either catalogued or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
+- [x] Backfill completed, with every post either cataloged or visibly `unclassified` (catalog covers all 144 posts as of 2026-09-25)
 - [x] Daily refresh has run successfully on its own for 7 days (2026-09-26 to 2026-10-02)
 - Hobby project, public and linked from ahmedavais.com. Ahmed told Simon in a Mastodon direct message on 2026-10-05.
 

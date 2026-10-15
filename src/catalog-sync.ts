@@ -40,8 +40,8 @@ export async function applyCatalog(db: D1Database, catalog: Catalog): Promise<nu
 
 function postsWithChangedAttribution(posts: StoredPost[], catalog: Catalog): StoredPost[] {
   return posts.flatMap(({ post, attribution: stored }) => {
-    const catalogued = attributePost(post, catalog);
-    return sameAttribution(stored, catalogued) ? [] : [{ post, attribution: catalogued }];
+    const cataloged = attributePost(post, catalog);
+    return sameAttribution(stored, cataloged) ? [] : [{ post, attribution: cataloged }];
   });
 }
 
@@ -74,8 +74,8 @@ async function storedPosts(db: D1Database): Promise<StoredPost[]> {
   }));
 }
 
-function sameAttribution(stored: Attribution, catalogued: Attribution): boolean {
-  return stored.kind === catalogued.kind && canonicalPelicans(stored) === canonicalPelicans(catalogued);
+function sameAttribution(stored: Attribution, cataloged: Attribution): boolean {
+  return stored.kind === cataloged.kind && canonicalPelicans(stored) === canonicalPelicans(cataloged);
 }
 
 function canonicalPelicans({ pelicans }: Attribution): string {

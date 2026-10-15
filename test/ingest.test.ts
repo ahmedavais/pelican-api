@@ -100,7 +100,7 @@ describe("runIngest", () => {
     expect(await recordedRuns()).toMatchObject([{ status: "failed", error: "The response is not an Atom feed" }]);
   });
 
-  it("stays within 50 queries even when the whole feed is new and catalogued", async () => {
+  it("stays within 50 queries even when the whole feed is new and cataloged", async () => {
     const counted = countingQueries(env.DB);
 
     await runIngest(counted.db, {

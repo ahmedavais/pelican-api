@@ -168,7 +168,7 @@ exports[`GET /openapi.json snapshot > matches the reviewed spec 1`] = `
             "type": "string",
           },
           "kind": {
-            "description": "model_pelicans: contains model-drawn pelicans. sighting: a pelican seen elsewhere. other: related but no model pelicans. unclassified: not yet catalogued.",
+            "description": "model_pelicans: contains model-drawn pelicans. sighting: a pelican seen elsewhere. other: related but no model pelicans. unclassified: not yet cataloged.",
             "enum": [
               "model_pelicans",
               "sighting",

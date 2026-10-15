@@ -54,7 +54,7 @@ describe("the pelican catalog", () => {
     expect(vendors.filter((vendor) => vendor !== null && !VENDORS.includes(vendor))).toEqual([]);
   });
 
-  it("only catalogues dated post urls", () => {
+  it("only catalogs dated post urls", () => {
     expect(() => Object.keys(pelicanCatalog).forEach(postIdFromUrl)).not.toThrow();
   });
 });

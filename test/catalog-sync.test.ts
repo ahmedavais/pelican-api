@@ -47,7 +47,7 @@ beforeEach(async () => {
 });
 
 describe("applyCatalog", () => {
-  it("gives catalogued posts their kind and pelicans", async () => {
+  it("gives cataloged posts their kind and pelicans", async () => {
     await applyCatalog(env.DB, fullCatalog);
 
     expect(await kindOf(opusPost)).toBe("model_pelicans");
@@ -76,7 +76,7 @@ describe("applyCatalog", () => {
     });
   });
 
-  it("leaves uncatalogued posts unclassified", async () => {
+  it("leaves uncataloged posts unclassified", async () => {
     await applyCatalog(env.DB, {});
 
     expect(await kindOf(opusPost)).toBe("unclassified");

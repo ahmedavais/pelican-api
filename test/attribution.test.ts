@@ -84,7 +84,7 @@ describe("attributePost", () => {
     expect(attributePost(filmPost, catalog)).toEqual({ kind: "sighting", pelicans: [] });
   });
 
-  it("leaves an uncatalogued post unclassified with no pelicans", () => {
+  it("leaves an uncataloged post unclassified with no pelicans", () => {
     expect(attributePost(opusPost, {})).toEqual({ kind: "unclassified", pelicans: [] });
   });
 });

@@ -14,7 +14,7 @@ async function seedPosts() {
     { ...postOn("2026-08-20T12:00:00Z", "hy4"), models: [mystery] },
     { ...postOn("2026-09-22T12:00:00Z", "opus-and-sol"), models: [claude, sol] },
     { ...postOn("2026-09-18T12:00:00Z", "roger-rabbit"), kind: "sighting" },
-    { ...postOn("2026-09-19T12:00:00Z", "not-yet-catalogued") },
+    { ...postOn("2026-09-19T12:00:00Z", "not-yet-cataloged") },
   );
 }
 

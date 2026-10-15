@@ -7,7 +7,7 @@ async function seedMixedPosts() {
     { ...postOn("2026-09-22T12:00:00Z", "opus"), models: [{ modelName: "Claude Opus 5.5", vendor: "anthropic" }] },
     { ...postOn("2026-09-18T12:00:00Z", "roger-rabbit"), kind: "sighting" },
     { ...postOn("2026-09-10T12:00:00Z", "pelicanmaxxing"), kind: "other" },
-    { ...postOn("2026-09-05T12:00:00Z", "not-yet-catalogued") },
+    { ...postOn("2026-09-05T12:00:00Z", "not-yet-cataloged") },
   );
 }
 
@@ -40,7 +40,7 @@ describe("GET /posts", () => {
 
     const { body } = await getJson("/posts?kind=unclassified");
 
-    expect(body.data.map((post: { id: string }) => post.id)).toEqual(["2026-09-05-not-yet-catalogued"]);
+    expect(body.data.map((post: { id: string }) => post.id)).toEqual(["2026-09-05-not-yet-cataloged"]);
   });
 
   it("offers no next page when the last page is exactly full", async () => {
@@ -59,7 +59,7 @@ describe("GET /posts", () => {
     const second = await getJson(`/posts?limit=3&cursor=${first.body.next_cursor}`);
 
     expect(first.body.data).toHaveLength(3);
-    expect(second.body).toMatchObject({ data: [{ id: "2026-09-05-not-yet-catalogued" }], next_cursor: null });
+    expect(second.body).toMatchObject({ data: [{ id: "2026-09-05-not-yet-cataloged" }], next_cursor: null });
   });
 
   it("rejects an unknown kind", async () => {
