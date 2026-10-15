@@ -6,7 +6,7 @@ const ALLOWED_BRITISH = [
   "package-lock.json",
   "worker-configuration.d.ts",
   "test/fixtures/",
-  "src/american-english.ts",
+  "src/american-spellings.ts",
   "test/american-english.test.ts",
 ];
 

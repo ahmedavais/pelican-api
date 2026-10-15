@@ -1,17 +1,6 @@
-export type BritishSpelling = { line: number; british: string; american: string };
+import { americanSpellingByBritish } from "./american-spellings";
 
-const AMERICAN_BY_BRITISH = new Map([
-  ["catalogue", "catalog"],
-  ["catalogues", "catalogs"],
-  ["catalogued", "cataloged"],
-  ["cataloguing", "cataloging"],
-  ["uncatalogued", "uncataloged"],
-  ["behaviour", "behavior"],
-  ["behaviours", "behaviors"],
-  ["colour", "color"],
-  ["colours", "colors"],
-  ["coloured", "colored"],
-]);
+export type BritishSpelling = { line: number; british: string; american: string };
 
 const WORD = /[A-Z]?[a-z]+/g;
 
@@ -21,7 +10,7 @@ export function britishSpellings(text: string): BritishSpelling[] {
 
 function britishSpellingsOnLine(lineText: string, line: number): BritishSpelling[] {
   return [...lineText.matchAll(WORD)].flatMap(([british]) => {
-    const american = AMERICAN_BY_BRITISH.get(british.toLowerCase());
+    const american = americanSpellingByBritish.get(british.toLowerCase());
     return american ? [{ line, british, american }] : [];
   });
 }
