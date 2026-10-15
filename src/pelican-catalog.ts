@@ -1,6 +1,31 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Oct/13/llm-gemini/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Gemini 4 Argon", vendor: "google" },
+    ],
+  },
+  "https://simonwillison.net/2026/Oct/12/llm-meta-ai/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Muse Wonder", vendor: "meta" },
+      { modelName: "Muse Spark 1.3", vendor: "meta" },
+    ],
+  },
+  "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Claude Haiku 5.5", vendor: "anthropic" },
+    ],
+  },
+  "https://simonwillison.net/2026/Oct/6/le-chonk/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Mistral Large 4 Preview", vendor: "mistral" },
+    ],
+  },
   "https://simonwillison.net/2026/Sep/29/hn-49898129/": {
     kind: "model_pelicans",
     pelicans: [
