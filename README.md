@@ -79,7 +79,7 @@ After that, [CI](.github/workflows/ci.yml) deploys every push to main once `npm 
 npm run watch-production
 ```
 
-Checks the live API: the scoreboard, docs and API answer, the daily refresh succeeded within the last 26 hours, and no post is waiting to be cataloged. [A workflow](.github/workflows/watch-production.yml) runs it after every deploy and daily at 07:23 UTC, an hour after the refresh. A failed run is the alarm; GitHub emails it.
+Checks the live API: the scoreboard, docs and API answer, the daily refresh succeeded within the last 26 hours, and no post is waiting to be cataloged. [A workflow](.github/workflows/watch-production.yml) runs it after every deploy and daily at 07:23 UTC, an hour after the refresh, with steps shared from [karkhana](https://github.com/ahmedavais/karkhana). A failed run is the alarm; GitHub emails it.
 
 ## Check the daily refresh
 
