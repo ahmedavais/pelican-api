@@ -22,8 +22,9 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - Workers static assets serve the scoreboard (`ui/index.html`) at `/`.
 - Live at https://pelican-api.dynamicalchange.workers.dev.
 - CI: `.github/workflows/ci.yml` runs `npm run verify` on every PR and every push to main. A push to main then applies pending D1 migrations, deploys, and applies the catalog to production, through the `production` environment.
-- Watch production: `.github/workflows/watch-production.yml` runs the live checks in `sensors/live/` after every deploy,
-  daily at 07:23 UTC and on demand. A failed run is the alarm (GitHub emails it), including when a new post needs cataloging.
+- Watch production: `.github/workflows/watch-production.yml`, with steps shared from
+  [karkhana](https://github.com/ahmedavais/karkhana), runs the live checks in `sensors/live/` after every deploy, daily
+  at 07:23 UTC and on demand. A failed run is the alarm (GitHub emails it), including when a new post needs cataloging.
 
 ## Commands
 
