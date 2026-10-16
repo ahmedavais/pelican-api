@@ -5,7 +5,14 @@ import { newPostValues, PELICAN_COLUMNS, pelicanValues, POST_COLUMNS } from "./s
 type SqlValue = string | null;
 
 export function backfillSql(posts: Post[], catalog: Catalog, ingestedAt: string): string {
-  const statements = posts.flatMap((post) => [insertPostIfNew(post, ingestedAt), ...attributionStatements(post, catalog)]);
+  return sqlScript(posts.flatMap((post) => [insertPostIfNew(post, ingestedAt), ...attributionStatements(post, catalog)]));
+}
+
+export function catalogSql(posts: Post[], catalog: Catalog): string {
+  return sqlScript(posts.flatMap((post) => attributionStatements(post, catalog)));
+}
+
+function sqlScript(statements: string[]): string {
   return `${statements.join("\n")}\n`;
 }
 

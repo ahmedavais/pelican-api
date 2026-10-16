@@ -8,6 +8,8 @@
     "dev": "wrangler dev --test-scheduled",
     "backfill:local": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --local --file .wrangler/backfill.sql",
     "backfill:remote": "tsx scripts/backfill.ts .wrangler/backfill.sql && wrangler d1 execute pelican-api --remote --file .wrangler/backfill.sql",
+    "catalog:local": "mkdir -p .wrangler && wrangler d1 execute pelican-api --local --json --command \"SELECT id, url, title, published_at, tags FROM posts\" > .wrangler/stored-posts.json && tsx scripts/catalog.ts .wrangler/stored-posts.json .wrangler/catalog.sql && wrangler d1 execute pelican-api --local --file .wrangler/catalog.sql",
+    "catalog:remote": "mkdir -p .wrangler && wrangler d1 execute pelican-api --remote --json --command \"SELECT id, url, title, published_at, tags FROM posts\" > .wrangler/stored-posts.json && tsx scripts/catalog.ts .wrangler/stored-posts.json .wrangler/catalog.sql && wrangler d1 execute pelican-api --remote --file .wrangler/catalog.sql",
     "test:mutation": "stryker run",
     "ingest:status": "CLOUDFLARE_API_TOKEN=$(security find-generic-password -s pelican-api-d1-read -w) CLOUDFLARE_ACCOUNT_ID=$(security find-generic-password -s pelican-api-cloudflare-account -w) wrangler d1 execute pelican-api --remote --command \"SELECT started_at, status, posts_added, entries_skipped, error FROM ingest_runs ORDER BY started_at DESC LIMIT 7\"",
     "verify": "npm run typecheck && npm run check:american-english && npm test",

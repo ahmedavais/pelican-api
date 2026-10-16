@@ -1,9 +1,10 @@
 import { env } from "cloudflare:workers";
 import { describe, expect, it } from "vitest";
 import { applyCatalog } from "../src/catalog-sync";
-import { backfillSql } from "../src/backfill-sql";
+import { backfillSql, catalogSql } from "../src/backfill-sql";
 import type { Catalog, Post } from "../src/domain";
 import { type MirrorRow, postsFromMirrorRows } from "../src/mirror";
+import { type PostRow, postFromRow } from "../src/stored-rows";
 import mirrorRows from "./fixtures/mirror-rows.json";
 
 const posts = postsFromMirrorRows(mirrorRows as MirrorRow[]);
@@ -74,5 +75,21 @@ describe("backfillSql", () => {
     expect(await env.DB.prepare("SELECT DISTINCT ingested_at FROM posts").all()).toMatchObject({
       results: [{ ingested_at: "2026-09-25T20:00:00.000Z" }],
     });
+  });
+});
+
+describe("catalogSql", () => {
+  it("applies the whole catalog to the posts read back from storage, leaving the daily run nothing to rewrite", async () => {
+    const catalog: Catalog = Object.fromEntries(
+      posts.map((post) => [post.url, { kind: "model_pelicans", pelicans: [{ modelName: `Model for ${post.id}`, vendor: null }] }]),
+    );
+    await execute(backfillSql(posts, {}, "2026-09-25T20:00:00.000Z"));
+    const { results } = await env.DB.prepare("SELECT id, url, title, published_at, tags FROM posts").all<PostRow>();
+
+    await execute(catalogSql(results.map(postFromRow), catalog));
+
+    expect(await count("posts")).toBe(144);
+    expect(await count("pelicans")).toBe(144);
+    expect(await applyCatalog(env.DB, catalog)).toBe(0);
   });
 });

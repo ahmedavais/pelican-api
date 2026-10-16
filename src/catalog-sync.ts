@@ -1,16 +1,9 @@
 import { attributePost } from "./attribution";
 import { inChunksOf, multiRowInsert, rowsPerInsert } from "./d1-limits";
 import type { Attribution, Catalog, Pelican, Post, PostKind } from "./domain";
-import { PELICAN_COLUMNS, pelicanValues } from "./stored-rows";
+import { PELICAN_COLUMNS, type PostRow, pelicanValues, postFromRow } from "./stored-rows";
 
-type PostRow = {
-  id: string;
-  url: string;
-  title: string;
-  published_at: string;
-  tags: string;
-  kind: PostKind;
-};
+type StoredPostRow = PostRow & { kind: PostKind };
 
 type PelicanRow = {
   id: string;
@@ -68,7 +61,7 @@ async function storedPosts(db: D1Database): Promise<StoredPost[]> {
     db.prepare("SELECT * FROM pelicans"),
   ]);
   const pelicansByPost = Map.groupBy((pelicans.results as PelicanRow[]).map(pelicanFromRow), (pelican) => pelican.postId);
-  return (posts.results as PostRow[]).map((row) => ({
+  return (posts.results as StoredPostRow[]).map((row) => ({
     post: postFromRow(row),
     attribution: { kind: row.kind, pelicans: pelicansByPost.get(row.id) ?? [] },
   }));
@@ -90,16 +83,6 @@ function rewriteAttribution(db: D1Database, { post, attribution }: StoredPost): 
       db.prepare(multiRowInsert("pelicans", PELICAN_COLUMNS, chunk.length)).bind(...chunk.flatMap(pelicanValues)),
     ),
   ];
-}
-
-function postFromRow(row: PostRow): Post {
-  return {
-    id: row.id,
-    url: row.url,
-    title: row.title,
-    publishedAt: row.published_at,
-    tags: JSON.parse(row.tags),
-  };
 }
 
 function pelicanFromRow(row: PelicanRow): Pelican {

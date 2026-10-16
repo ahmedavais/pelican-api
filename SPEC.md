@@ -74,14 +74,15 @@ Error responses use this shape: `{ "error": { "code": "...", "message": "..." } 
                                                       ├──► store post (idempotent on URL)
  daily cron (Worker)           ──► Atom feed        ──┘              │
                                                                      ▼
-                                          pelican catalog applied (checked-in file)
-                                            entry exists ──► kind + pelicans
-                                            no entry     ──► kind = unclassified
+ every deploy (CI) ──────────────────────────────►  pelican catalog applied (checked-in file)
+                                                      entry exists ──► kind + pelicans
+                                                      no entry     ──► kind = unclassified
 ```
 
 - Backfill (one-time). `npm run backfill:remote` queries the mirror once, generates SQL that stores every post and applies the full catalog, and runs it with `wrangler d1 execute`. Safe to re-run.
 - Daily refresh. A scheduled Worker reads the feed once a day and stores any post URLs not already stored.
 - Pelican catalog. `pelican-catalog.ts` is a checked-in file keyed by post URL, giving each post's `kind` and its pelicans (`model_name`, `vendor`). Every run re-applies the whole catalog to stored posts, idempotently. It is the only source of model attribution.
+- Catalog on deploy. After every deploy, CI runs `npm run catalog:remote`: it reads the stored posts, generates SQL that applies the whole catalog to them, and runs it with `wrangler d1 execute`. A new catalog entry is live as soon as its deploy finishes.
 - Uncataloged posts stay `kind = unclassified` and are visible in `/posts?kind=unclassified` until a catalog entry is added.
 - Each run's outcome is recorded in `ingest_runs`, which feeds `last_ingest_at` in `/stats`.
 
@@ -109,7 +110,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 ## Decisions
 
 - Backfill reads Simon's Datasette mirror instead of the HTML tag pages: one request, exact timestamps matching the feed, and no scraping of several markup layouts. The daily refresh reads the Atom feed, which holds only the latest 30 entries.
-- Each daily run stays within the free plan's 50 D1 queries per invocation: multi-row inserts, and at most 36 catalog rewrite statements per run, newest first; the rest is applied on later runs. Large catalog changes can instead be applied by re-running the backfill.
+- Each daily run stays within the free plan's 50 D1 queries per invocation: multi-row inserts, and at most 36 catalog rewrite statements per run, newest first; the rest is applied on later runs. Deploys apply the whole catalog at once, so this budget only paces catalog changes the daily run finds on its own.
 - Post bodies are stripped from the feed before parsing, to stay well inside the free plan's 10 ms CPU limit.
 - Model attribution comes from a curated, checked-in catalog instead of the Claude API, to keep the project free. The trade-off: new posts appear automatically but stay `unclassified` until cataloged.
 - No retries or attempt counters, since there is no extraction step that can fail.
@@ -117,7 +118,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - Post IDs include the date, because slugs repeat across dates.
 - `model_name` is the catalog's canonical spelling, not the post's wording, because Simon spells the same family differently across posts ("Qwen3.8" vs "Qwen 3.8"). Normalization stays a plain lowercase-and-hyphenate step; a catalog test guards against near-duplicate spellings.
 - Rate limiting uses the Workers rate-limit binding rather than a Durable Object limiter; approximate, per-location counts are acceptable. On the free plan the worst case of heavy use is a day of quota errors, never a bill.
-- CI deploys every push to main after verify passes, applying pending D1 migrations first so code never goes live ahead of its schema. Pushing or merging to main is Ahmed's deploy approval. The Cloudflare token can edit only Workers scripts and D1, and lives in the `production` environment's secrets, which only main can use. Deploys used to run from Ahmed's laptop, which depended on a `wrangler login` that expires. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
+- CI deploys every push to main after verify passes, applying pending D1 migrations first so code never goes live ahead of its schema, then applying the catalog so the watch that follows sees the catalog it just shipped. Waiting for the next cron left new entries unapplied for up to a day and failed every post-deploy watch in between. Pushing or merging to main is Ahmed's deploy approval. The Cloudflare token can edit only Workers scripts and D1, and lives in the `production` environment's secrets, which only main can use. Deploys used to run from Ahmed's laptop, which depended on a `wrangler login` that expires. Live at https://pelican-api.dynamicalchange.workers.dev since 2026-09-25, daily cron at 06:17 UTC.
 - The API is open and public, linked from ahmedavais.com, rather than behind Cloudflare Access or an API key. It started out unlisted; linking it from the project page made it public. On the free plan the worst case of heavy use is a day of quota errors, never a bill, and the data is public-derived metadata.
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
 - A daily GitHub workflow watches production through the public API only: the pages answer, `last_ingest_at` is under 26 hours old, and no post is unclassified. A failed run emails Ahmed, so a missed refresh or a post waiting to be cataloged doesn't depend on anyone remembering to look. It needs no secrets.
