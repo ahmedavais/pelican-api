@@ -22,6 +22,9 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - Workers static assets serve the scoreboard (`ui/index.html`) at `/`.
 - Live at https://pelican-api.dynamicalchange.workers.dev.
 - CI: `.github/workflows/ci.yml` runs `npm run verify` on every PR and every push to main. A push to main then applies pending D1 migrations, deploys, and applies the catalog to production, through the `production` environment.
+- Duplication: the `duplication` job in `.github/workflows/ci.yml`, shared from
+  [karkhana](https://github.com/ahmedavais/karkhana), fails when a change adds code duplicated elsewhere in the repo,
+  tests included. `.jscpd.json` lists the lock and generated files it skips.
 - Adversarial review: `.github/workflows/adversarial-review.yml` has Claude Code review every PR with the shared
   workflow and brief from [karkhana](https://github.com/ahmedavais/karkhana). Comments only. The reviewer takes
   this repo's checks and conventions from this file, so keep them current here.
