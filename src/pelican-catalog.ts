@@ -1,6 +1,12 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Oct/17/web-edit/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "DeepSeek-V4.1-Flash-1017", vendor: "deepseek" },
+    ],
+  },
   "https://simonwillison.net/2026/Oct/13/llm-gemini/": {
     kind: "model_pelicans",
     pelicans: [
