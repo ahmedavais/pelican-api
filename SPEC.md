@@ -123,6 +123,7 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 - The 7-day check is a `wrangler d1 execute` query on `ingest_runs`, documented in the README. No extra endpoint.
 - A daily GitHub workflow watches production through the public API only: the pages answer, `last_ingest_at` is under 26 hours old, and no post is unclassified. A failed run emails Ahmed, so a missed refresh or a post waiting to be cataloged doesn't depend on anyone remembering to look. It needs no secrets.
 - The scoreboard is served from the Worker's static assets at `/`, so the page deploys together with the API it reads, and ahmedavais.com can embed it. Static files take priority over the Worker, and serving them runs no Worker code. The `ASSETS` binding is there only so tests can check what the asset layer serves.
+- The API freezes on 2026-11-30: the daily cron and the production watch go, the data stays served as of that day, and the repo is archived. It was a toy project, and keeping up with every new post wasn't worth the alerts. Until then, new posts are still cataloged as the watch flags them.
 
 ## Catalog rules
 

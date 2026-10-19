@@ -6,6 +6,7 @@ An open, read-only hobby API of every "pelican riding a bicycle" Simon Willison 
 
 Anyone can use it, and it's linked from https://ahmedavais.com/p/pelican-api, where the scoreboard is embedded.
 The definition of done is met, so most work now is cataloging new posts and keeping it running.
+It freezes on 2026-11-30 (see SPEC.md's Decisions): don't plan work that outlives that date.
 
 - Metadata only. Never copy Simon's images, SVGs or post text; every record links back to his post.
 - Read his feed at most once a day.
