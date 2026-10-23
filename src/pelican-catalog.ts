@@ -1,6 +1,7 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Oct/22/de-staat-freedom/": { kind: "sighting" },
   "https://simonwillison.net/2026/Oct/17/web-edit/": {
     kind: "model_pelicans",
     pelicans: [
