@@ -109,8 +109,22 @@ describe("CORS", () => {
   });
 });
 
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const ROOM_FOR_A_BURST_MS = 5_000;
+
+function timeLeftInRateLimitWindow(): number {
+  return RATE_LIMIT_WINDOW_MS - (Date.now() % RATE_LIMIT_WINDOW_MS);
+}
+
+async function waitForRoomInRateLimitWindow(): Promise<void> {
+  while (timeLeftInRateLimitWindow() < ROOM_FOR_A_BURST_MS) {
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+}
+
 describe("rate limiting", () => {
   it("allows 60 requests a minute from one IP, then answers 429", async () => {
+    await waitForRoomInRateLimitWindow();
     const statuses: number[] = [];
     for (let request = 0; request < 61; request++) {
       statuses.push((await get("/openapi.json", "203.0.113.7")).status);
