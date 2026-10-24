@@ -110,7 +110,7 @@ describe("CORS", () => {
 });
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
-const ROOM_FOR_A_BURST_MS = 5_000;
+const ROOM_FOR_A_BURST_MS = 1_000;
 
 function timeLeftInRateLimitWindow(): number {
   return RATE_LIMIT_WINDOW_MS - (Date.now() % RATE_LIMIT_WINDOW_MS);
