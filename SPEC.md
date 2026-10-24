@@ -146,3 +146,4 @@ No write endpoints, no user accounts, no API keys, no image hosting, no frontend
 ## Open decisions (Ahmed's)
 
 - Whether to later add a "pelican of the day" endpoint
+- Whether the rate-limit test should stop showing how the local limiter's window lines up with the clock (`waitForRoomInRateLimitWindow` in `test/api-platform.test.ts`). It keeps the test from flaking and reads clearly; the alternative is retrying the burst with a fresh IP when the window rolls over, which hides the timing but is harder to read.
