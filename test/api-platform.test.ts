@@ -140,10 +140,12 @@ describe("rate limiting", () => {
   });
 
   it("counts each IP separately", async () => {
+    await waitForRoomInRateLimitWindow();
     for (let request = 0; request < 61; request++) {
       await get("/openapi.json", "203.0.113.8");
     }
 
+    expect((await get("/openapi.json", "203.0.113.8")).status).toBe(429);
     expect((await get("/openapi.json", "203.0.113.9")).status).toBe(200);
   });
 });
