@@ -1,6 +1,13 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Oct/23/kimi-k31-pro/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Kimi K3.1 Pro", vendor: "moonshot" },
+      { modelName: "Kimi K3", vendor: "moonshot" },
+    ],
+  },
   "https://simonwillison.net/2026/Oct/22/de-staat-freedom/": { kind: "sighting" },
   "https://simonwillison.net/2026/Oct/17/web-edit/": {
     kind: "model_pelicans",
@@ -95,6 +102,12 @@ export const pelicanCatalog: Catalog = {
     kind: "model_pelicans",
     pelicans: [
       { modelName: "Qwen3.8-Flash-Next", vendor: "alibaba" },
+    ],
+  },
+  "https://simonwillison.net/2026/Aug/25/pelican-watercolor/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Claude Fable 5", vendor: "anthropic" },
     ],
   },
   "https://simonwillison.net/2026/Aug/16/qwen-38-27b/": {
