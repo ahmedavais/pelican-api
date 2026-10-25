@@ -62,7 +62,8 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 
 ## Conventions
 
-- Ask Ahmed before every commit and push. Pushing or merging to main deploys, so it is the deploy approval.
+- Never commit on `main`. Make a branch named `<prefix>/<what>` with the commit's semantic prefix (`content/catalog-kimi-and-watercolor`), and open a PR when Ahmed says to. `main` is protected: it takes only PRs with `verify` and the duplication gate green, admins included.
+- Ask Ahmed before every commit and push. Merging to main deploys, so it is the deploy approval.
 - Never print or commit tokens or the Cloudflare account ID. Both live in the macOS Keychain.
 - Keep rate-limit enforcement details out of public text.
 - Each run stays under the free plan's 50 D1 queries and 10 ms CPU; see SPEC.md's Decisions before adding queries to the cron.
