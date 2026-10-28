@@ -1,6 +1,12 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Oct/26/gpt-61-terra/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "GPT-6.1 Terra", vendor: "openai" },
+    ],
+  },
   "https://simonwillison.net/2026/Oct/23/kimi-k31-pro/": {
     kind: "model_pelicans",
     pelicans: [
