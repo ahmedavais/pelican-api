@@ -31,8 +31,11 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
   workflow and brief from [karkhana](https://github.com/ahmedavais/karkhana). Comments only. The reviewer takes
   this repo's checks and conventions from this file, so keep them current here.
 - Watch production: `.github/workflows/watch-production.yml`, with steps shared from
-  [karkhana](https://github.com/ahmedavais/karkhana), runs the live checks in `sensors/live/` after every deploy, daily
-  at 07:23 UTC and on demand. A failed run is the alarm (GitHub emails it), including when a new post needs cataloging.
+  [karkhana](https://github.com/ahmedavais/karkhana), runs the live checks in `sensors/live/production.test.ts` after
+  every deploy, daily at 07:23 UTC and on demand. A failed run is the alarm (GitHub emails it): production is broken.
+- New posts to catalog: `.github/workflows/watch-catalog.yml` runs `sensors/live/catalog.test.ts` after every
+  passing Watch production run, with the same shared steps. A failed run means a post is waiting to be cataloged, not that
+  anything broke. Keeping it a separate workflow puts that difference in the email's subject.
 
 ## Commands
 
@@ -44,7 +47,8 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
   and `npm run backfill:local` once.
 - `npm run catalog:local` / `npm run catalog:remote`: apply the whole catalog to the stored posts. CI runs the remote one after every deploy.
 - `npm run watch-production`: live checks against production (`API_URL` overrides it): the scoreboard, docs and API answer,
-  the daily refresh succeeded within 26 hours, and no post is unclassified.
+  and the daily refresh succeeded within 26 hours.
+- `npm run watch-catalog`: the live check that no post is unclassified (`API_URL` overrides it too).
 - `npm run ingest:status`: the latest seven daily runs, read with a read-only token from the macOS Keychain.
 
 ## Layout
@@ -57,7 +61,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
 - `scripts/backfill.ts`: one-time load from Simon's Datasette mirror into SQL for `wrangler d1 execute`.
 - `scripts/catalog.ts`: turns the stored posts into SQL that applies the catalog, for `wrangler d1 execute`.
 - `ui/index.html`: the scoreboard, one static file reading the live API.
-- `sensors/live/`: checks against the live API, run by `npm run watch-production`, never by `npm test`.
+- `sensors/live/`: checks against the live API, run by `npm run watch-production` and `npm run watch-catalog`, never by `npm test`.
 - `test/`: one test file per module or route group. `test/fixtures/` holds a saved feed and mirror rows; never fetch live data in tests.
 
 ## Conventions
