@@ -1,0 +1,17 @@
+name: New posts to catalog
+
+on:
+  workflow_run:
+    workflows: ["Watch production"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    uses: ahmedavais/karkhana/.github/workflows/watch-production.yml@main
+    with:
+      script: watch-catalog

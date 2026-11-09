@@ -49,7 +49,7 @@ The scoreboard at https://pelican-api.dynamicalchange.workers.dev/ reads the liv
 
 ## Curate a new post
 
-New posts arrive as `unclassified`, and the daily production watch fails until they're cataloged. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. Once it's on main, CI deploys it and the next daily run applies it.
+New posts arrive as `unclassified`, and the [New posts to catalog](.github/workflows/watch-catalog.yml) workflow fails until they're cataloged. List them at `/posts?kind=unclassified`, then add an entry to [src/pelican-catalog.ts](src/pelican-catalog.ts) keyed by the post URL, following the catalog rules in [SPEC.md](SPEC.md). `npm test` checks spelling consistency, vendors and entry shape. Once it's on main, CI deploys it and the next daily run applies it.
 
 ## Deploy
 
@@ -79,7 +79,13 @@ After that, [CI](.github/workflows/ci.yml) deploys every push to main once `npm 
 npm run watch-production
 ```
 
-Checks the live API: the scoreboard, docs and API answer, the daily refresh succeeded within the last 26 hours, and no post is waiting to be cataloged. [A workflow](.github/workflows/watch-production.yml) runs it after every deploy and daily at 07:23 UTC, an hour after the refresh, with steps shared from [karkhana](https://github.com/ahmedavais/karkhana). A failed run is the alarm; GitHub emails it.
+Checks the live API: the scoreboard, docs and API answer, and the daily refresh succeeded within the last 26 hours. [A workflow](.github/workflows/watch-production.yml) runs it after every deploy and daily at 07:23 UTC, an hour after the refresh, with steps shared from [karkhana](https://github.com/ahmedavais/karkhana). A failed run is the alarm; GitHub emails it.
+
+```bash
+npm run watch-catalog
+```
+
+Checks that no post is waiting to be cataloged. [A second workflow](.github/workflows/watch-catalog.yml), "New posts to catalog", runs it after every production watch. It's separate so the email's subject says whether production broke or Simon posted something new.
 
 ## Check the daily refresh
 
