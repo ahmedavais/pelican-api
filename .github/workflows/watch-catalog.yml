@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   watch:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     uses: ahmedavais/karkhana/.github/workflows/watch-production.yml@main
     with:
       script: watch-catalog

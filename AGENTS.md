@@ -34,7 +34,7 @@ behavior, and don't re-decide a catalog rule without asking Ahmed.
   [karkhana](https://github.com/ahmedavais/karkhana), runs the live checks in `sensors/live/production.test.ts` after
   every deploy, daily at 07:23 UTC and on demand. A failed run is the alarm (GitHub emails it): production is broken.
 - New posts to catalog: `.github/workflows/watch-catalog.yml` runs `sensors/live/catalog.test.ts` after every
-  Watch production run, with the same shared steps. A failed run means a post is waiting to be cataloged, not that
+  passing Watch production run, with the same shared steps. A failed run means a post is waiting to be cataloged, not that
   anything broke. Keeping it a separate workflow puts that difference in the email's subject.
 
 ## Commands

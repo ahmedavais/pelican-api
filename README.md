@@ -85,7 +85,7 @@ Checks the live API: the scoreboard, docs and API answer, and the daily refresh 
 npm run watch-catalog
 ```
 
-Checks that no post is waiting to be cataloged. [A second workflow](.github/workflows/watch-catalog.yml), "New posts to catalog", runs it after every production watch. It's separate so the email's subject says whether production broke or Simon posted something new.
+Checks that no post is waiting to be cataloged. [A second workflow](.github/workflows/watch-catalog.yml), "New posts to catalog", runs it after every production watch that passes. It's separate so the email's subject says whether production broke or Simon posted something new.
 
 ## Check the daily refresh
 
