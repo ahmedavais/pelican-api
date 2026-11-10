@@ -1,6 +1,12 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Nov/9/llm-anthropic/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Claude Fable 5.2", vendor: "anthropic" },
+    ],
+  },
   "https://simonwillison.net/2026/Oct/26/gpt-61-terra/": {
     kind: "model_pelicans",
     pelicans: [
