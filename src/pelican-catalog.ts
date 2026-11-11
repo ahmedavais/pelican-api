@@ -1,6 +1,12 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Nov/10/llm-gemini/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Gemini 4 Carbon", vendor: "google" },
+    ],
+  },
   "https://simonwillison.net/2026/Nov/9/llm-anthropic/": {
     kind: "model_pelicans",
     pelicans: [
