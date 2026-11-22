@@ -1,6 +1,20 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Nov/20/llm-gemini/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Gemini 4 Neon", vendor: "google" },
+      { modelName: "Gemini 4 Hydrogen", vendor: "google" },
+    ],
+  },
+  "https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/": { kind: "other" },
+  "https://simonwillison.net/2026/Nov/18/llm-gemini/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "Gemini 4 Neon", vendor: "google" },
+    ],
+  },
   "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/": {
     kind: "model_pelicans",
     pelicans: [
