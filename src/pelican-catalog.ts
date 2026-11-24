@@ -1,6 +1,13 @@
 import type { Catalog } from "./domain";
 
 export const pelicanCatalog: Catalog = {
+  "https://simonwillison.net/2026/Nov/23/glm-54/": {
+    kind: "model_pelicans",
+    pelicans: [
+      { modelName: "GLM-5.4", vendor: "zai" },
+      { modelName: "GLM-5.3", vendor: "zai" },
+    ],
+  },
   "https://simonwillison.net/2026/Nov/20/llm-gemini/": {
     kind: "model_pelicans",
     pelicans: [
